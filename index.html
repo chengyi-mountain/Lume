@@ -1,0 +1,3751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lume Studio · 小白学习指南 | 让每一个"我想学"都有第一步</title>
+<meta name="description" content="Lume Studio 小白学习指南：输入想学的科目，自动生成大白话学习目标与分阶段计划，小白/进阶双模式，含智能答疑与学习打卡。Your First Step into Anything.">
+<style>
+:root{
+  --green:#4ade80; --green-d:#22c55e; --green-dd:#16a34a;
+  --blue:#60a5fa; --blue-d:#3b82f6;
+  --orange:#fb923c; --pink:#f472b6; --purple:#a78bfa;
+  --ink:#1f2937; --ink2:#4b5563; --ink3:#9ca3af;
+  --bg:#f0fdf4; --card:#ffffff; --line:#e5e7eb;
+  --shadow:0 8px 30px rgba(34,197,94,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",system-ui,-apple-system,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.7;
+  background-image:radial-gradient(circle at 15% 10%,rgba(74,222,128,.13),transparent 40%),radial-gradient(circle at 85% 20%,rgba(96,165,250,.13),transparent 40%),radial-gradient(circle at 50% 90%,rgba(244,114,182,.10),transparent 45%);
+  background-attachment:fixed;
+}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* ===== Header ===== */
+header{text-align:center;padding:52px 20px 28px;position:relative}
+.logo{display:inline-flex;align-items:center;gap:12px;font-size:30px;font-weight:900;letter-spacing:-.5px}
+.logo .emoji{font-size:40px;animation:wave 2.4s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-6deg)}}
+.logo span b{color:var(--green-dd)}
+.tagline{margin-top:14px;font-size:16px;color:var(--ink2)}
+.tagline .pill{display:inline-block;background:#dcfce7;color:#166534;padding:3px 12px;border-radius:20px;font-size:13px;margin:0 3px;font-weight:700}
+
+/* ===== 项目介绍区块 ===== */
+.intro{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(240,253,244,.9));border:2px solid #fff;border-radius:26px;box-shadow:var(--shadow);padding:34px;margin-bottom:26px;position:relative;overflow:hidden}
+.intro::before{content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(74,222,128,.22),transparent 70%);z-index:0}
+.intro-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+.intro-eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--green-dd);background:#dcfce7;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.intro-title{font-size:28px;font-weight:950;line-height:1.3;letter-spacing:-.5px;margin-bottom:14px}
+.intro-title em{font-style:normal;background:linear-gradient(135deg,var(--green-dd),var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.intro-lead{font-size:15.5px;color:var(--ink2);margin-bottom:18px}
+.intro-points{list-style:none;display:grid;gap:10px}
+.intro-points li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink2);line-height:1.6}
+.intro-points .pk{font-size:15px;line-height:1.2;flex-shrink:0;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background:#ecfdf5;border-radius:8px}
+.intro-points b{color:var(--ink)}
+.intro-visual{position:relative;min-height:230px;display:flex;align-items:center;justify-content:center}
+.intro-art{position:relative;width:100%;height:230px}
+.intro-art .orb{position:absolute;border-radius:50%;opacity:.9}
+.intro-art .orb.o1{width:150px;height:150px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 30%,#86efac,#22c55e 55%,#16a34a);box-shadow:0 10px 34px rgba(34,197,94,.35)}
+.intro-art .orb.o2{width:72px;height:72px;left:12%;top:18%;background:radial-gradient(circle at 35% 30%,#93c5fd,#3b82f6);box-shadow:0 8px 22px rgba(59,130,246,.3)}
+.intro-art .orb.o3{width:58px;height:58px;right:10%;bottom:16%;background:radial-gradient(circle at 35% 30%,#fcd34d,#f59e0b);box-shadow:0 8px 22px rgba(245,158,11,.3)}
+.intro-art .orb.o4{width:44px;height:44px;right:24%;top:12%;background:radial-gradient(circle at 35% 30%,#f9a8d4,#ec4899);box-shadow:0 8px 22px rgba(236,72,153,.3)}
+.intro-art .ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:2px dashed rgba(34,197,94,.4);border-radius:50%;width:210px;height:210px;animation:spin 22s linear infinite}
+.intro-art .tag{position:absolute;background:#fff;border-radius:12px;padding:7px 13px;font-size:12px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.08);color:var(--ink2);white-space:nowrap}
+.intro-art .tag.t1{left:0;top:6%}
+.intro-art .tag.t2{right:0;top:40%}
+.intro-art .tag.t3{left:8%;bottom:4%}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@media(max-width:820px){
+  .intro-inner{grid-template-columns:1fr;gap:24px}
+  .intro-visual{display:none}
+  .intro-title{font-size:24px}
+}
+
+/* ===== Hero / Search ===== */
+.hero{background:var(--card);border-radius:24px;padding:34px;box-shadow:var(--shadow);margin-bottom:22px;border:2px solid #fff}
+.search-box{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.search-box input{
+  flex:1;min-width:220px;padding:16px 20px;font-size:16px;border:2px solid var(--line);border-radius:16px;outline:none;transition:.2s;background:#fafafa;font-family:inherit
+}
+.search-box input:focus{border-color:var(--green);background:#fff;box-shadow:0 0 0 4px rgba(74,222,128,.18)}
+.btn{cursor:pointer;border:none;border-radius:16px;font-size:16px;font-weight:800;padding:0 26px;transition:.18s;font-family:inherit;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--green-d),var(--green-dd));color:#fff;box-shadow:0 6px 18px rgba(34,197,94,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(34,197,94,.45)}
+.btn-primary:active{transform:translateY(0)}
+.btn-ghost{background:#f3f4f6;color:var(--ink2)}
+.btn-ghost:hover{background:#e5e7eb}
+
+/* 模式切换 */
+.mode-switch{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#f9fafb;padding:12px 16px;border-radius:16px;border:1px dashed var(--line)}
+.mode-label{font-size:14px;color:var(--ink3);font-weight:700}
+.switch{position:relative;width:150px;height:42px;background:#e5e7eb;border-radius:30px;cursor:pointer;transition:.3s;flex-shrink:0}
+.switch::before{
+  content:"";position:absolute;top:4px;left:4px;width:71px;height:34px;border-radius:26px;background:linear-gradient(135deg,var(--green-d),var(--green-dd));transition:.3s cubic-bezier(.4,0,.2,1);z-index:1;box-shadow:0 3px 10px rgba(34,197,94,.4)
+}
+.switch.advanced::before{left:75px;width:71px;background:linear-gradient(135deg,var(--orange),#ea580c);box-shadow:0 3px 10px rgba(249,115,22,.4)}
+.switch-text{position:absolute;top:0;height:42px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;transition:.3s;z-index:2;width:71px}
+.switch-text.beginner{left:4px;color:#fff}
+.switch-text.advanced{left:75px;color:var(--ink3)}
+.switch.advanced .switch-text.beginner{color:var(--ink3)}
+.switch.advanced .switch-text.advanced{color:#fff}
+.mode-tip{font-size:13px;color:var(--ink2);flex:1;min-width:220px}
+
+/* 快捷科目 */
+.quick{margin-top:18px}
+.quick-title{font-size:13px;color:var(--ink3);margin-bottom:10px;font-weight:700}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#fff;border:1.5px solid var(--line);color:var(--ink2);padding:7px 15px;border-radius:20px;font-size:13.5px;cursor:pointer;transition:.18s;font-weight:600}
+.chip:hover{border-color:var(--green);color:var(--green-dd);transform:translateY(-2px);background:#f0fdf4}
+.chip.hot{background:#fee2e2;color:#dc2626;border-color:#fecaca}
+.chip.hot::after{content:"🔥";margin-left:4px}
+
+/* ===== Section title ===== */
+.sec-head{display:flex;align-items:baseline;gap:10px;margin:34px 4px 16px}
+.sec-head h2{font-size:22px;font-weight:900}
+.sec-head span{font-size:13px;color:var(--ink3)}
+
+/* 科目卡片网格 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.subject-card{
+  background:var(--card);border-radius:20px;padding:22px;cursor:pointer;transition:.22s;box-shadow:0 2px 10px rgba(0,0,0,.03);border:2px solid #fff;position:relative;overflow:hidden
+}
+.subject-card::after{content:"";position:absolute;top:0;right:0;width:70px;height:70px;border-radius:0 0 0 70px;opacity:.5;z-index:0}
+.subject-card:nth-child(8n+1)::after{background:var(--green)} .subject-card:nth-child(8n+2)::after{background:var(--blue)}
+.subject-card:nth-child(8n+3)::after{background:var(--orange)} .subject-card:nth-child(8n+4)::after{background:var(--pink)}
+.subject-card:nth-child(8n+5)::after{background:var(--purple)} .subject-card:nth-child(8n+6)::after{background:#2dd4bf}
+.subject-card:nth-child(8n+7)::after{background:#facc15} .subject-card:nth-child(8n+8)::after{background:#f87171}
+.subject-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.subject-card .ico{font-size:34px;position:relative;z-index:1}
+.subject-card h3{font-size:16px;margin-top:6px;position:relative;z-index:1}
+.subject-card p{font-size:12.5px;color:var(--ink3);margin-top:4px;position:relative;z-index:1}
+.subject-card .tag{display:inline-block;font-size:11px;background:#f3f4f6;color:var(--ink2);padding:2px 8px;border-radius:10px;margin-top:8px;font-weight:700;position:relative;z-index:1}
+
+/* ===== Result ===== */
+#result{display:none;margin-top:10px}
+.result-head{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow);margin-bottom:20px;position:relative;overflow:hidden}
+.result-head::before{content:"";position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(74,222,128,.25),transparent 70%)}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink3);cursor:pointer;margin-bottom:12px;font-weight:600}
+.back-btn:hover{color:var(--green-dd)}
+.result-head h1{font-size:26px;font-weight:900;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mode-badge{font-size:13px;font-weight:800;padding:5px 14px;border-radius:20px;vertical-align:middle}
+.mode-badge.beginner{background:#dcfce7;color:#166534}
+.mode-badge.advanced{background:#ffedd5;color:#9a3412}
+.result-head .desc{color:var(--ink2);margin-top:10px;max-width:820px}
+
+/* 目标卡片 */
+.goals{background:var(--card);border-radius:24px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px}
+.goals h2,.phases h2,.tips h2{font-size:20px;font-weight:900;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.goals .sub,.phases .sub,.tips .sub{font-size:13px;color:var(--ink3);margin-bottom:20px}
+.goal-list{list-style:none;display:grid;gap:12px}
+.goal-list li{display:flex;gap:12px;align-items:flex-start;background:#f9fafb;border-radius:14px;padding:14px 16px;font-size:14.5px}
+.goal-list .num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-dd));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+
+/* 阶段 */
+.phases{background:var(--card);border-radius:24px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px}
+.phase{position:relative;padding-left:34px;margin-bottom:26px}
+.phase:last-child{margin-bottom:0}
+.phase::before{content:"";position:absolute;left:11px;top:34px;bottom:-26px;width:2px;background:var(--line)}
+.phase:last-child::before{display:none}
+.phase-dot{position:absolute;left:0;top:2px;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;z-index:2}
+.phase-dot.advanced{background:var(--orange)}
+.phase-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.phase-head h3{font-size:17px;font-weight:900}
+.phase-meta{font-size:12px;color:var(--ink3);background:#f3f4f6;padding:2px 10px;border-radius:12px;font-weight:700}
+.phase-quote{font-size:13.5px;color:var(--ink2);background:linear-gradient(90deg,#ecfdf5,#f0f9ff);border-left:3px solid var(--green);padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0 14px}
+.phase ul{list-style:none;display:grid;gap:8px}
+.phase ul li{font-size:14px;padding-left:20px;position:relative;color:var(--ink2)}
+.phase ul li::before{content:"✓";position:absolute;left:0;color:var(--green-dd);font-weight:900}
+
+/* tips */
+.tips{background:linear-gradient(135deg,#fff7ed,#fef2f2);border-radius:24px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px;border:2px solid #fed7aa}
+.tips ul{list-style:none;display:grid;gap:10px}
+.tips li{font-size:14px;padding-left:26px;position:relative;color:var(--ink2)}
+.tips li::before{content:"💡";position:absolute;left:0;font-size:14px}
+
+/* 资源 */
+.resources{background:var(--card);border-radius:24px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.res-card{background:#f9fafb;border-radius:16px;padding:16px;border:1px solid var(--line);transition:.2s}
+.res-card:hover{border-color:var(--green);background:#f0fdf4;transform:translateY(-3px)}
+.res-card .rt{font-size:15px;font-weight:800;margin-bottom:4px}
+.res-card .rd{font-size:13px;color:var(--ink3)}
+
+/* ===== Footer ===== */
+footer{text-align:center;padding:40px 20px 50px;color:var(--ink3);font-size:13px}
+footer .heart{color:#ef4444}
+
+/* toast */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:#1f2937;color:#fff;padding:12px 24px;border-radius:14px;font-size:14px;font-weight:600;opacity:0;transition:.3s;pointer-events:none;z-index:999;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* 空状态/loading */
+.empty{text-align:center;padding:60px 20px;color:var(--ink3)}
+.empty .big{font-size:60px;margin-bottom:10px}
+.fade-in{animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== 生成态（未内置科目） ===== */
+.gen-head{background:var(--card);border-radius:24px;padding:26px 30px;box-shadow:var(--shadow);margin-bottom:20px;border:2px dashed var(--blue);position:relative;overflow:hidden}
+.gen-head::before{content:"";position:absolute;top:-50px;right:-30px;width:200px;height:200px;background:radial-gradient(circle,rgba(96,165,250,.25),transparent 70%)}
+.gen-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#dbeafe,#e0e7ff);color:#1e40af;padding:5px 13px;border-radius:20px;font-size:12.5px;font-weight:800;margin-bottom:14px}
+.gen-badge.local{background:linear-gradient(135deg,#fef3c7,#fde68a);color:#92400e}
+.gen-tags{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.gen-tag{background:#f3f4f6;color:var(--ink3);font-size:12px;padding:5px 12px;border-radius:14px;border:1px solid var(--line);cursor:pointer;transition:.18s}
+.gen-tag:hover{background:#eef2ff;color:var(--blue-d);border-color:var(--blue)}
+.gen-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.gen-note{font-size:12.5px;color:var(--ink3);margin-top:14px;line-height:1.8}
+.gen-note b{color:var(--ink2)}
+.gen-note a{color:var(--blue-d);border-bottom:1px dashed var(--blue)}
+.spinner{width:34px;height:34px;border:4px solid #dbeafe;border-top-color:var(--blue-d);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gen-spin{display:flex;align-items:center;gap:16px}
+.save-hint{font-size:13px;color:#16a34a;font-weight:700;margin-left:6px}
+.ai-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:5px;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ===== 暗色主题 ===== */
+:root[data-theme="dark"]{
+  --bg:#0f172a; --card:#1e293b; --line:#334155;
+  --ink:#e2e8f0; --ink2:#cbd5e1; --ink3:#94a3b8;
+  --shadow:0 8px 30px rgba(0,0,0,.4);
+}
+:root[data-theme="dark"] body{background-image:radial-gradient(circle at 15% 10%,rgba(74,222,128,.10),transparent 40%),radial-gradient(circle at 85% 20%,rgba(96,165,250,.10),transparent 40%),radial-gradient(circle at 50% 90%,rgba(244,114,182,.08),transparent 45%)}
+:root[data-theme="dark"] .hero,.subject-card,.goals,.phases,.tips,.resources,.gen-head,.res-card,.result-head{background:var(--card);border-color:var(--line)}
+:root[data-theme="dark"] .subject-card{background:var(--card)}
+:root[data-theme="dark"] .phase-quote{background:linear-gradient(90deg,rgba(74,222,128,.10),rgba(96,165,250,.10))}
+:root[data-theme="dark"] .phase ul li,.tips li{color:var(--ink2)}
+:root[data-theme="dark"] .res-card{background:#273449}
+:root[data-theme="dark"] .chip{background:var(--card)}
+:root[data-theme="dark"] .search-box input{background:#273449;color:var(--ink)}
+:root[data-theme="dark"] .mode-switch{background:#273449}
+:root[data-theme="dark"] .goal-list li,.phase ul li{background:#273449}
+:root[data-theme="dark"] .empty,.toast{color:#fff}
+:root[data-theme="dark"] #askInput{background:#273449;color:var(--ink);border-color:var(--line)}
+:root[data-theme="dark"] .ask-bubble.ai{background:#273449}
+:root[data-theme="dark"] .kb-item{background:var(--card);border-color:var(--line)}
+:root[data-theme="dark"] .kb-item:hover{background:#273449}
+
+/* 主题切换按钮 */
+.theme-btn{position:fixed;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:2px solid #fff;background:var(--card);color:var(--ink);font-size:18px;cursor:pointer;box-shadow:var(--shadow);z-index:60;display:flex;align-items:center;justify-content:center;transition:.2s}
+.theme-btn:hover{transform:scale(1.1)}
+
+/* ===== 悬浮助手按钮 ===== */
+.ask-fab{position:fixed;right:20px;bottom:24px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--green-d),var(--green-dd));color:#fff;font-size:26px;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(34,197,94,.45);z-index:70;display:flex;align-items:center;justify-content:center;transition:.2s}
+.ask-fab:hover{transform:scale(1.08)}
+.ask-fab .badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#ef4444;color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+
+/* ===== 抽屉 ===== */
+.drawer-mask{position:fixed;inset:0;background:rgba(15,23,42,.5);opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.drawer-mask.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:100%;max-width:420px;background:var(--card);box-shadow:-10px 0 40px rgba(0,0,0,.25);transform:translateX(100%);transition:.3s cubic-bezier(.4,0,.2,1);z-index:90;display:flex;flex-direction:column}
+.drawer.show{transform:translateX(0)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-size:17px;font-weight:900;display:flex;align-items:center;gap:8px}
+.drawer-head .x{cursor:pointer;font-size:22px;color:var(--ink3);line-height:1;border:none;background:none}
+.drawer-body{flex:1;overflow-y:auto;padding:16px 20px}
+
+/* 进度与打卡 */
+.overview-card{background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow);margin-bottom:20px}
+.ov-row{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.ov-bar{flex:1;height:12px;background:#e5e7eb;border-radius:10px;overflow:hidden}
+:root[data-theme="dark"] .ov-bar{background:#334155}
+.ov-fill{height:100%;width:0;background:linear-gradient(90deg,var(--green-d),var(--green-dd));border-radius:10px;transition:.5s}
+.ov-pct{font-size:13px;font-weight:800;color:var(--green-dd);min-width:44px}
+.ov-meta{font-size:12.5px;color:var(--ink3)}
+.ov-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.check-grid{display:grid;gap:10px;margin-top:14px}
+.check-item{display:flex;align-items:center;gap:12px;background:#f9fafb;border:1px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;transition:.18s}
+:root[data-theme="dark"] .check-item{background:#273449}
+.check-item.done{background:#ecfdf5;border-color:#86efac}
+:root[data-theme="dark"] .check-item.done{background:rgba(74,222,128,.12);border-color:var(--green)}
+.check-box{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;transition:.15s}
+.check-item.done .check-box{background:var(--green);border-color:var(--green)}
+.check-txt{flex:1;font-size:14px;color:var(--ink2)}
+.check-item.done .check-txt{text-decoration:line-through;color:var(--ink3)}
+
+/* 弹窗 */
+.modal-mask{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal-mask.show{display:flex}
+.modal{background:var(--card);border-radius:24px;max-width:560px;width:100%;max-height:88vh;overflow-y:auto;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.modal h2{font-size:20px;font-weight:900;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.modal h3{font-size:15px;font-weight:900;margin:18px 0 8px;color:var(--green-dd)}
+.modal p,.modal li{font-size:14px;color:var(--ink2);line-height:1.85}
+.modal ul{list-style:none;display:grid;gap:8px}
+.modal ul li{padding-left:22px;position:relative}
+.modal ul li::before{content:"✓";position:absolute;left:0;color:var(--green-dd);font-weight:900}
+.modal .close-x{float:right;cursor:pointer;font-size:22px;color:var(--ink3);border:none;background:none}
+.modal a{color:var(--blue-d);border-bottom:1px dashed var(--blue)}
+.modal .warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:12px 14px;font-size:13px;color:#9a3412;margin-top:10px}
+:root[data-theme="dark"] .modal .warn{background:rgba(251,146,60,.12);color:#fdba74}
+
+/* 助手气泡 */
+.ask-bubble{margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+.ask-bubble.user{flex-direction:row-reverse}
+.ask-ava{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-dd));color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px}
+.ask-bubble.user .ask-ava{background:linear-gradient(135deg,var(--blue),var(--blue-d))}
+.ask-bubble.ai .ask-ava{background:linear-gradient(135deg,var(--orange),#ea580c)}
+.ask-bubble.user .ask-msg{background:var(--green);color:#fff;border-radius:16px 4px 16px 16px}
+.ask-bubble.ai .ask-msg{background:#f9fafb;border:1px solid var(--line);border-radius:4px 16px 16px 16px;color:var(--ink2)}
+:root[data-theme="dark"] .ask-bubble.ai .ask-msg{background:#273449;border-color:var(--line)}
+.ask-msg{font-size:14px;line-height:1.75;padding:11px 15px;border-radius:16px;max-width:78%;white-space:pre-wrap;word-break:break-word}
+.ask-msg code{background:rgba(0,0,0,.08);padding:1px 5px;border-radius:5px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px}
+:root[data-theme="dark"] .ask-msg code{background:rgba(255,255,255,.12)}
+.ask-msg.typing{color:var(--ink3)}
+.ask-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line);background:var(--card)}
+#askInput{flex:1;border:1.5px solid var(--line);border-radius:14px;padding:11px 14px;font-size:14px;outline:none;font-family:inherit;background:#fafafa;color:var(--ink);transition:.2s}
+#askInput:focus{border-color:var(--green)}
+#askSend{padding:0 20px}
+.ask-quick{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;border-top:1px solid var(--line)}
+.ask-quick button{font-size:12px;padding:6px 11px;border-radius:14px;border:1px solid var(--line);background:#f9fafb;color:var(--ink2);cursor:pointer;transition:.15s;font-family:inherit}
+.ask-quick button:hover{border-color:var(--green);color:var(--green-dd);background:#f0fdf4}
+.ask-kb-note{font-size:12px;color:var(--ink3);padding:0 16px 12px}
+.kb-item{background:#f9fafb;border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:10px;cursor:pointer;transition:.15s}
+.kb-item:hover{background:#f0fdf4;border-color:var(--green)}
+.kb-item .kq{font-size:13.5px;font-weight:700;color:var(--ink)}
+.kb-item .ka{font-size:12.5px;color:var(--ink2);margin-top:5px;line-height:1.7}
+.ask-provider{padding:10px 16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);display:flex;align-items:center;gap:6px}
+.ask-provider select{font-size:11.5px;padding:3px 6px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-family:inherit}
+
+/* 回到顶部 */
+.top-btn{position:fixed;right:20px;bottom:96px;width:42px;height:42px;border-radius:50%;background:var(--card);color:var(--ink);font-size:18px;border:2px solid #fff;box-shadow:var(--shadow);cursor:pointer;z-index:60;opacity:0;pointer-events:none;transition:.25s;display:flex;align-items:center;justify-content:center}
+.top-btn.show{opacity:1;pointer-events:auto}
+.top-btn:hover{transform:translateY(-3px)}
+
+/* 头部工具栏 */
+.tools{position:fixed;top:16px;right:70px;display:flex;gap:8px;z-index:60}
+.tool-btn{width:42px;height:42px;border-radius:50%;border:2px solid #fff;background:var(--card);color:var(--ink);font-size:16px;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;transition:.2s}
+.tool-btn:hover{transform:scale(1.1)}
+.tool-btn .dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:#ef4444;border:2px solid #fff}
+
+/* 首页升级入口 */
+.entry-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:22px}
+.entry-card{background:var(--card);border-radius:20px;padding:20px;border:2px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.03);cursor:pointer;transition:.22s;position:relative;overflow:hidden}
+.entry-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.entry-card .ec-ico{font-size:30px}
+.entry-card h3{font-size:16px;margin:6px 0 4px}
+.entry-card p{font-size:12.5px;color:var(--ink3);line-height:1.6}
+
+@media(max-width:600px){
+  header{padding:34px 16px 20px} .logo{font-size:24px} .hero{padding:22px} .wrap{padding:0 14px}
+  .btn{padding:0 20px} .search-box input{padding:14px 16px}
+  .tools{right:64px} .theme-btn{right:12px;top:12px;width:38px;height:38px;font-size:16px}
+  .ask-fab{right:14px;bottom:18px;width:52px;height:52px;font-size:23px}
+  .top-btn{right:14px;bottom:82px;width:38px;height:38px}
+}
+</style>
+</head>
+<body>
+
+<!-- 主题切换 + 工具栏 -->
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换主题">🌙</button>
+<div class="tools">
+  <button class="tool-btn" onclick="openDrawer('plan')" title="我的学习">🎯<span class="dot" id="planDot" style="display:none"></span></button>
+  <button class="tool-btn" onclick="openDrawer('kb')" title="常见问题">❓</button>
+  <button class="tool-btn" onclick="openModal('about')" title="关于项目">ℹ️</button>
+  <button class="tool-btn" onclick="openModal('disclaimer')" title="免责声明">⚖️</button>
+</div>
+
+<!-- 悬浮助手 -->
+<button class="ask-fab" id="askFab" onclick="toggleAsk()" title="学习助手">
+  💬<span class="badge" id="askBadge" style="display:none">1</span>
+</button>
+
+<!-- 助手抽屉 -->
+<div class="drawer-mask" id="askMask" onclick="toggleAsk(false)"></div>
+<div class="drawer" id="askDrawer">
+  <div class="drawer-head">
+    <h3 id="askTitle">💬 学习助手 · 随时问我</h3>
+    <button class="x" onclick="toggleAsk(false)">×</button>
+  </div>
+  <div class="drawer-body" id="askBody">
+    <p class="ov-meta" id="askCtx" style="margin-bottom:14px"></p>
+    <div id="askLog"></div>
+    <div class="ask-kb-note" id="askKbNote"></div>
+  </div>
+  <div class="ask-quick" id="askQuick"></div>
+  <div class="ask-input-row">
+    <input id="askInput" placeholder="比如：卡在循环上了，啥意思？" onkeydown="if(event.key==='Enter')sendAsk()">
+    <button class="btn btn-primary" id="askSend" onclick="sendAsk()">发送</button>
+  </div>
+  <div class="ask-provider">
+    <span id="askProvLabel">🤖 通道：</span>
+    <select id="askProvider" onchange="switchProvider()">
+      <option value="kb">内置知识库</option>
+      <option value="ai">AI 智能体</option>
+    </select>
+    <span id="askAiState" style="margin-left:6px"></span>
+  </div>
+</div>
+
+<!-- 通用抽屉 -->
+<div class="drawer-mask" id="drawerMask" onclick="closeDrawer()"></div>
+<div class="drawer" id="sideDrawer">
+  <div class="drawer-head">
+    <h3 id="sideTitle">🎯 我的学习</h3>
+    <button class="x" onclick="closeDrawer()">×</button>
+  </div>
+  <div class="drawer-body" id="sideBody"></div>
+</div>
+
+<!-- 免责/关于弹窗 -->
+<div class="modal-mask" id="modalMask" onclick="if(event.target.classList.contains('modal-mask'))closeModal()">
+  <div class="modal">
+    <button class="close-x" onclick="closeModal()">×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- 回到顶部 -->
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:\'smooth\'})">↑</button>
+
+<header>
+  <div class="wrap">
+    <div class="logo"><span class="emoji">🌱</span> Lume Studio <span>· <b>小白学习指南</b></span></div>
+    <p class="tagline">
+      <span class="pill">零基础</span>也能学会<span class="pill">大白话</span>教学
+      <span class="pill">不丢知识点</span>不劝退
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 项目介绍 -->
+  <section class="intro" id="intro">
+    <div class="intro-inner">
+      <div class="intro-text">
+        <span class="intro-eyebrow">ABOUT · 这是什么</span>
+        <h1 class="intro-title">学新东西最难的不是坚持，<br>而是<em>不知道第一步该干什么</em>。</h1>
+        <p class="intro-lead">
+          输入任何你想学的科目，Lume Studio 立刻给你一份结构完整、全程大白话的学习计划——
+          小白能听懂，进阶有条理，卡住了还有答疑助手。
+        </p>
+        <ul class="intro-points">
+          <li><span class="pk">🐣</span><span><b>小白模式</b>：不堆术语，每个知识点配一句人话解释，步骤拆到最小颗粒度，绝不劝退。</span></li>
+          <li><span class="pk">🚀</span><span><b>进阶模式</b>：讲深度、讲体系、讲实战，给已经入门的人一条清晰的进阶路线。</span></li>
+          <li><span class="pk">💬</span><span><b>智能答疑</b>：学卡住了随时提问，助手自动结合你正在学的科目给答，不泛泛而谈。</span></li>
+          <li><span class="pk">✅</span><span><b>学习打卡</b>：每阶段的待办都能勾选，进度自动记录，不让自己悄悄放弃。</span></li>
+        </ul>
+      </div>
+      <div class="intro-visual">
+        <div class="intro-art">
+          <div class="ring"></div>
+          <div class="orb o2"></div>
+          <div class="orb o3"></div>
+          <div class="orb o4"></div>
+          <div class="orb o1"></div>
+          <span class="tag t1">🐣 大白话</span>
+          <span class="tag t2">💬 有问必答</span>
+          <span class="tag t3">🚀 不丢知识点</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 搜索区 -->
+  <section class="hero">
+    <div class="search-box">
+      <input id="searchInput" type="text" placeholder="想学点啥？比如：Python、英语、剪辑、四六级、Excel……" autocomplete="off">
+      <button class="btn btn-primary" onclick="doSearch()">🚀 生成学习计划</button>
+    </div>
+
+    <div class="mode-switch">
+      <span class="mode-label">🎚️ 难度模式</span>
+      <div class="switch" id="modeSwitch" onclick="toggleMode()">
+        <span class="switch-text beginner">🐣 小白</span>
+        <span class="switch-text advanced">🚀 进阶</span>
+      </div>
+      <span class="mode-tip" id="modeTip">当前：<b>小白模式</b> —— 全程大白话，像朋友一样把知识点掰碎了讲，绝不劝退。</span>
+    </div>
+
+    <div class="quick">
+      <div class="quick-title">🔥 大家最近最想学（点一下直接看计划）</div>
+      <div class="chips" id="hotChips"></div>
+    </div>
+    <div class="quick">
+      <div class="quick-title">📚 全部科目，挑一个开始</div>
+      <div class="chips" id="allChips"></div>
+    </div>
+  </section>
+
+  <!-- 科目总览 -->
+  <div id="overview">
+    <div class="sec-head"><h2>🗂️ 按方向挑科目</h2><span>点击任意卡片直接进入学习</span></div>
+    <div class="grid" id="subjectGrid"></div>
+  </div>
+
+  <!-- 结果区 -->
+  <section id="result"></section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>🌱 <b>Lume Studio · 小白学习指南</b> · 让每一个"我想学"都有第一步</p>
+    <p style="margin-top:8px">用 <span class="heart">❤️</span> 做成，欢迎在 GitHub 上 Star / Fork / 提交你自己的科目计划 ✨</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   科目知识库 —— 每个科目含「小白 / 进阶」两套学习目标 + 阶段计划
+   字段说明：
+   id, icon, name, cat(方向), hot(是否热门推荐),
+   intro: 一句话说清这玩意儿是啥、学了能干嘛
+   goals: { beginner:[...], advanced:[...] }  学习目标
+   phases: { beginner:[...], advanced:[...] }  分阶段计划，每阶段含 meta(周期/产出)、quote(大白话)、items(知识点)
+   tips: { beginner:[...], advanced:[...] }    避坑提醒
+   resources: [ {t,d} ]  免费/主流学习资源
+============================================================ */
+window.SUBJECTS = [
+{
+  id:"python", icon:"🐍", name:"Python", cat:"编程技术", hot:true,
+  intro:"一门语法接近人话的编程语言，写爬虫、自动化办公、数据分析、AI 都能干，公认的零基础第一门语言。",
+  goals:{
+    beginner:[
+      "能看懂并自己写出 100 行以内的小程序，不再对着代码发懵",
+      "掌握变量、列表、判断、循环、函数这些「编程的 ABC」",
+      "用 Python 自动处理一份 Excel / 批量重命名文件，真正解放双手",
+      "理解「程序就是一步步告诉电脑做什么」这件事，建立编程思维"
+    ],
+    advanced:[
+      "能独立开发带文件读写、异常处理、模块组织的完整脚本/工具",
+      "掌握面向对象、装饰器、生成器、上下文管理器等进阶特性",
+      "用 requests + BeautifulSoup 爬取网页，用 pandas 做数据分析",
+      "能阅读第三方库源码、写单元测试、用 git 管理项目"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先把环境搭起来，跑出第一行代码", meta:{time:"1-3 天",out:"运行成功 Hello World"}, quote:"别怕装软件，就像新手机第一次开机，装好一次就再也不用管了。",
+        items:["装 Python（官网下载，一路下一步）","装一个代码编辑器 VSCode，就像给电脑装个「写字板」","写 print('Hello World')，让电脑跟你打招呼","搞懂「命令行/终端」是啥，会用 cd 进入文件夹"] },
+      { title:"记住编程的几个「零件」", meta:{time:"1 周",out:"能写简单小工具"}, quote:"变量就像贴了标签的盒子，判断循环就像生活中的「如果…就…」「一直做…直到…」。",
+        items:["变量与数据类型：数字、文字、真假值","输入 input 与输出 print，让程序能对话","列表、字典：把一堆东西装进一个箱子","if 判断：让程序学会做选择题","for / while 循环：让电脑帮你重复劳动"] },
+      { title:"把重复劳动交给电脑", meta:{time:"1-2 周",out:"做出第一个实用脚本"}, quote:"学编程最大的快乐就是「偷懒」——以前手点一小时，现在代码跑一秒。",
+        items:["函数：把常用操作打包成「菜谱」，随时调用","文件读写：让程序能打开、保存文件","用 os 模块批量重命名/整理文件夹","实战：自动整理桌面文件、批量改 Excel 内容"] },
+      { title:"打通「发现问题→查资料→解决」的闭环", meta:{time:"持续",out:"具备自学能力"}, quote:"程序员不是背代码的人，是会查、会试、会改的人。卡住了很正常，搜就完了。",
+        items:["学会用报错信息定位问题（别怕红字）","会用菜鸟教程、官方文档、搜索引擎","加一个学习社群，敢提问敢分享"] }
+    ],
+    advanced:[
+      { title:"语法进阶，写出「老手味」的代码", meta:{time:"2-3 周",out:"掌握 Pythonic 写法"}, quote:"同样的活，新手写出来能跑，老手写出来好看又好改。",
+        items:["列表推导式、生成器表达式","函数进阶：默认参数、*args、**kwargs","面向对象：类、继承、魔术方法","装饰器与上下文管理器"] },
+      { title:"文件、网络与数据处理", meta:{time:"3-4 周",out:"能抓取并清洗数据"}, quote:"数据是现在的「石油」，Python 就是最好的炼油厂。",
+        items:["正则 re、文件编码与路径处理","requests + BeautifulSoup 爬取网页","csv / json / excel 数据读写","pandas 做数据筛选、分组、透视"] },
+      { title:"工程化与协作", meta:{time:"3-4 周",out:"能维护一个正经项目"}, quote:"一个人写代码是玩，团队协作写代码是工作。",
+        items:["虚拟环境与依赖管理 pipenv / venv","用 git 做版本控制并托管到 GitHub","写单元测试 unittest / pytest","项目结构、日志、配置分离"] },
+      { title:"选定方向深入", meta:{time:"1-3 月",out:"形成可展示的作品"}, quote:"Python 像一把瑞士军刀，选一个方向磨深，就能变成你的饭碗。",
+        items:["Web：Flask / Django 搭网站","数据：numpy / pandas / matplotlib 做分析","自动化：selenium / playwright 操控浏览器","AI：调用大模型 API 做小应用"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别一上来就看大部头书，跟着敲代码比看懂更重要",
+      "每学一个知识点，立刻写一个 10 行的小例子验证",
+      "不要用 Python 2，直接用 Python 3.10+",
+      "配置环境变量卡住时，重启电脑往往有奇效"
+    ],
+    advanced:[
+      "不要重复造轮子，先查有没有现成的库",
+      "重视代码可读性和命名，半年后你会感谢自己",
+      "爬虫注意对方网站的 robots 协议和法律边界",
+      "多读优秀开源项目的源码，比看十篇文章有用"
+    ]
+  },
+  resources:[
+    {t:"菜鸟教程 Python3",d:"中文免费，语法速查首选"},
+    {t:"B站 小甲鱼《零基础入门》",d:"讲得通俗，小白友好"},
+    {t:"Python 官方文档（中文）",d:"最权威，当字典用"},
+    {t:"LeetCode 简单题",d:"刷 20 道练编程手感"}
+  ]
+},
+{
+  id:"ai-prompt", icon:"🤖", name:"AI 提示词(Prompt)", cat:"AI与智能", hot:true,
+  intro:"学会跟 ChatGPT、Claude、豆包这类大模型「好好说话」，让它真正帮你干活，是当前性价比最高的新技能。",
+  goals:{
+    beginner:[
+      "能写出结构清晰、输出靠谱的提示词，告别「答非所问」",
+      "掌握角色设定、上下文、格式要求这几个核心套路",
+      "用 AI 帮你写文案、总结文章、翻译、做表格",
+      "能判断 AI 的回答对不对，不被它「一本正经地胡说」骗到"
+    ],
+    advanced:[
+      "掌握思维链、少样本、自我一致性等进阶技巧",
+      "能搭建多轮对话流程和提示词模板系统",
+      "会用 LangChain / API 把提示词工程化、产品化",
+      "具备评估提示词效果、迭代优化的能力"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"破除误解，先敢用起来", meta:{time:"1-2 天",out:"完成 10 次有效对话"}, quote:"把 AI 当成一个记性好但会瞎编的实习生，你要做的是把话说清楚。",
+        items:["注册一个主流大模型工具（免费版就够）","先随便聊，感受它的能力和边界","记住一个铁律：AI 会「幻觉」，数字和事实必须核对"] },
+      { title:"万能公式：角色+任务+要求+格式", meta:{time:"3-5 天",out:"套公式写出高质量提示词"}, quote:"就像点外卖要写清「什么菜、几份、不要葱、送到哪」，给 AI 的指令也要说全。",
+        items:["角色：让 AI 扮演专家（如「你是资深编辑」）","任务：说清你要它做什么（写/改/总结/翻译）","上下文：提供背景信息，越具体越好","格式：规定输出格式（表格/分点/500字内）","约束：告诉它不要做什么"] },
+      { title:"实战场景逐个打通", meta:{time:"1-2 周",out:"建立自己的提示词库"}, quote:"好提示词是攒出来的，把每次好用的句子存下来，下次改改就能用。",
+        items:["写文章/文案：给大纲再让 AI 扩写","总结长文：让它「用三句话讲清核心」","翻译润色：指定语气和读者对象","做表格：给示例让它按格式输出","头脑风暴：让它「列出 10 个方案并打分」"] },
+      { title:"学会追问和纠错", meta:{time:"持续",out:"具备「调教」能力"}, quote:"第一遍不满意太正常，好的结果是「聊」出来的。",
+        items:["结果不满意就补一句限定条件","让它解释自己的思路，再针对性纠正","一次只让它做一件事，别贪多"] }
+    ],
+    advanced:[
+      { title:"进阶技巧体系", meta:{time:"1-2 周",out:"掌握主流 Prompt 范式"}, quote:"从「说话清楚」升级到「设计流程」。",
+        items:["思维链 Chain-of-Thought：让 AI 先想后答","少样本 Few-shot：给例子比讲道理有效","自我一致性：多次采样取最优","角色反转与对抗式提问"] },
+      { title:"多轮对话与工作流", meta:{time:"2-3 周",out:"设计对话流程"}, quote:"把一次问答变成一条流水线，效率翻倍。",
+        items:["拆解复杂任务为多步提示","用「总结上文+新指令」维持上下文","提示词模板化，参数化变量"] },
+      { title:"接入 API 与工具", meta:{time:"3-4 周",out:"做出可用小工具"}, quote:"真正把提示词变成产品，而不是停留在聊天框。",
+        items:["调用大模型 API（Python + requests）","用 LangChain 编排提示词链","结合 RAG 让 AI 读你的资料","做自动评测，量化提示词效果"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "越具体越好，别说「帮我写点东西」，要说「写给宝妈看的 300 字种草文」",
+      "涉及数字、引用、医学法律等内容一定要二次核实",
+      "不要上传包含隐私/公司机密的信息",
+      "免费模型够用就先用免费的，别一上来就花钱"
+    ],
+    advanced:[
+      "提示词不是越长越好，冗余会干扰输出",
+      "关注上下文窗口和 token 成本，长对话要裁剪",
+      "任何 AI 输出都要有「人类把关」环节",
+      "把常用提示词沉淀成模板，别每次从零写"
+    ]
+  },
+  resources:[
+    {t:"《AI 提示词工程入门》免费课",d:"Google / 各大平台均有中文版"},
+    {t:"Prompt 样例库（GitHub 开源）",d:"搜 awesome-chatgpt-prompts"},
+    {t:"LangChain 官方文档",d:"进阶工程化必备"},
+    {t:"B站「跟李沐学 AI」",d:"前沿原理讲得通俗"}
+  ]
+},
+{
+  id:"frontend", icon:"🎨", name:"前端开发(HTML/CSS/JS)", cat:"编程技术", hot:true,
+  intro:"做网站、做小程序的「门面活」，你看到的每一个网页长什么样、点起来爽不爽，都是前端决定的。",
+  goals:{
+    beginner:[
+      "能用 HTML+CSS 还原一个静态页面，看懂网页结构",
+      "掌握 CSS 布局（Flex/Grid），让元素乖乖听话",
+      "用 JavaScript 让页面「动起来」：点击、切换、弹窗",
+      "独立完成一个属于自己的个人主页并上线"
+    ],
+    advanced:[
+      "掌握 ES6+ 语法、异步编程、模块化开发",
+      "能用 Vue 或 React 开发单页应用",
+      "理解浏览器原理、性能优化、响应式适配",
+      "能对接后端接口，完成前后端联调"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"搭起网页的骨架", meta:{time:"3-5 天",out:"能写结构清晰的网页"}, quote:"HTML 就是一堆有名字的盒子，CSS 负责给盒子化妆，JS 负责让盒子动起来。",
+        items:["HTML 常用标签：div/p/a/img/ul 等","理解块级与行内元素的区别","用 VSCode 写代码并实时预览","语义化标签：让代码更好读、SEO 更好"] },
+      { title:"让网页变好看", meta:{time:"1-2 周",out:"还原一个设计稿"}, quote:"CSS 就像装修，颜色、间距、字体调一调，丑房子变样板间。",
+        items:["选择器、盒模型、内外边距","Flex 布局（最常用）","Grid 布局、定位 position","响应式：用媒体查询适配手机"] },
+      { title:"让页面动起来", meta:{time:"2-3 周",out:"实现交互效果"}, quote:"JS 是网页的灵魂，点按钮弹出东西、切换 tab，全是它干的。",
+        items:["变量、函数、事件监听","操作 DOM：增删改页面元素","条件判断与循环","做一个 Tab 切换 / 轮播图 / 简易计算器"] },
+      { title:"上线你的第一个网站", meta:{time:"1 天",out:"公网可访问"}, quote:"写完代码一定要让人能看到，那种成就感会推着你继续学。",
+        items:["用 GitHub Pages 免费部署","绑定自定义域名（可选）","提交到 GitHub，成为你的第一个开源项目"] }
+    ],
+    advanced:[
+      { title:"JavaScript 深度", meta:{time:"2-3 周",out:"吃透语言核心"}, quote:"把基础打牢，后面学框架才不会一脸懵。",
+        items:["ES6+：let/const、解构、箭头函数","作用域、闭包、this 指向","Promise、async/await 异步编程","模块化 import/export"] },
+      { title:"框架实战", meta:{time:"4-6 周",out:"做出一个 SPA"}, quote:"框架就是把重复劳动打包好的工具箱。",
+        items:["选一个主流框架 Vue 或 React","组件化思维、状态管理","路由、接口请求 axios","做一个 Todo / 博客 / 后台管理"] },
+      { title:"工程化与性能", meta:{time:"2-3 周",out:"具备工程化能力"}, quote:"能跑和跑得好，是两回事。",
+        items:["Vite / Webpack 构建工具","TypeScript 类型系统","浏览器缓存、懒加载、代码分割","调试工具与性能分析"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "先看效果再抠原理，边写边看页面变化最直观",
+      "Flex 布局吃透，能解决 80% 的排版问题",
+      "不要抄代码，要理解每一行为什么这么写",
+      "善用浏览器 F12 开发者工具，调试神器"
+    ],
+    advanced:[
+      "框架只是工具，核心是编程思维和 JS 功底",
+      "不要同时学多个框架，一个学深再扩展",
+      "关注 Web 标准和新特性，别只学框架 API",
+      "多写项目多踩坑，看文档是最快的学习方式"
+    ]
+  },
+  resources:[
+    {t:"MDN Web 文档（中文）",d:"前端最权威的百科全书"},
+    {t:"菜鸟教程 HTML/CSS/JS",d:"边学边练，语法速查"},
+    {t:"B站 尚硅谷 / 黑马前端课",d:"体系完整，免费"},
+    {t:"freeCodeCamp",d:"交互式练习，边做边学"}
+  ]
+},
+{
+  id:"data-analysis", icon:"📊", name:"数据分析", cat:"职业技能", hot:true,
+  intro:"从一堆乱糟糟的数字里挖出「能用来做决策的结论」，Excel、SQL、Python 三件套，职场人的硬通货。",
+  goals:{
+    beginner:[
+      "能用 Excel 函数、透视表完成日常数据统计",
+      "能用 SQL 从数据库里查到自己想要的数据",
+      "能看懂一份数据并说出 3 个有价值的结论",
+      "会用图表把数据讲成一个「有说服力的故事」"
+    ],
+    advanced:[
+      "能用 Python(pandas) 做数据清洗、建模分析",
+      "掌握数据可视化，做出可交互的看板",
+      "具备指标体系搭建和业务归因分析能力",
+      "能独立完成从取数到汇报的全流程"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"Excel 基本功", meta:{time:"1-2 周",out:"告别手动统计"}, quote:"Excel 是职场第一生产力工具，大部分「数据分析」其实一张表就能搞定。",
+        items:["常用函数：VLOOKUP、SUMIFS、IF、TEXT","数据透视表：拖一拖就出报表","图表制作：选对图比画好看更重要","数据清洗：去重、分列、填充"] },
+      { title:"学会跟数据库「对话」", meta:{time:"2-3 周",out:"能独立取数"}, quote:"SQL 就像问数据库要东西，学会 SELECT 你就拿到了数据的钥匙。",
+        items:["SELECT / WHERE / ORDER BY 基础查询","GROUP BY 分组聚合，算出关键指标","JOIN 多表关联，把分散的数据拼起来","子查询与常用函数"] },
+      { title:"从数字到结论", meta:{time:"1-2 周",out:"写出一份分析报告"}, quote:"数据本身没意义，能指导行动的结论才有意义。",
+        items:["明确分析目的，先问「我想解决什么问题」","看趋势、看对比、看占比","用图表讲结论，别堆数字","写出「现象—原因—建议」三段式"] }
+    ],
+    advanced:[
+      { title:"Python 数据处理", meta:{time:"3-4 周",out:"自动化分析流程"}, quote:"数据量大了 Excel 会卡死，Python 是更顺手的工具。",
+        items:["pandas 读取、清洗、合并数据","matplotlib / seaborn 可视化","数据建模与简单预测","自动化报表生成"] },
+      { title:"可视化与看板", meta:{time:"2-3 周",out:"搭建可视化看板"}, quote:"一张好看的看板，顶十页 PPT。",
+        items:["Power BI 或 Tableau 入门","指标体系与维度设计","交互式筛选与下钻"] },
+      { title:"业务分析思维", meta:{time:"持续",out:"形成分析框架"}, quote:"工具是手的延伸，思维才是大脑。",
+        items:["AARRR 漏斗、RFM 模型","AB 测试与归因分析","指标体系搭建方法论"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "先学 Excel 再学 SQL，循序渐进不容易崩",
+      "数据准确性第一，结论再漂亮，数算错了就是白干",
+      "每个图都要能回答一个问题，别为了好看而画图",
+      "多问业务方「你到底想通过数据解决什么」"
+    ],
+    advanced:[
+      "别沉迷工具，业务理解比技术更重要",
+      "数据量大时注意性能，先想清楚逻辑再写代码",
+      "结论要有假设、有验证、有可执行的建议",
+      "学会用数据「讲故事」，汇报能力决定价值体现"
+    ]
+  },
+  resources:[
+    {t:"B站 戴师兄《数据分析课》",d:"通俗易懂，体系完整"},
+    {t:"SQLZoo / 牛客网",d:"在线刷题练 SQL"},
+    {t:"《数据分析思维》",d:"补业务分析思路"},
+    {t:"ExcelHome 论坛",d:"函数问题搜得到答案"}
+  ]
+},
+{
+  id:"video-edit", icon:"🎬", name:"短视频剪辑", cat:"职业技能", hot:true,
+  intro:"用剪映、Premiere 把素材剪成有节奏、有情绪的片子，做自媒体、做副业、记录生活都靠它。",
+  goals:{
+    beginner:[
+      "能独立完成一条 1 分钟短视频的剪辑与配乐",
+      "掌握剪辑节奏、卡点、转场这些基本功",
+      "会加字幕、配音、调色，让画面更精致",
+      "能做出一条完播率不错的成品并发布"
+    ],
+    advanced:[
+      "掌握 Premiere / Final Cut 专业工作流",
+      "能做运镜设计、调色、特效合成",
+      "具备独立策划+拍摄+剪辑的完整能力",
+      "能稳定产出有个人风格的内容"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"认识工具，完成第一次剪辑", meta:{time:"2-3 天",out:"剪出一条 30 秒视频"}, quote:"剪映就够了，免费、手机电脑都能用，别在选软件上纠结。",
+        items:["下载剪映，认识时间轴、素材库、工具栏","导入素材、分割、删除、排序","添加背景音乐并调整音量","导出成品"] },
+      { title:"剪辑的「节奏感」", meta:{time:"1 周",out:"剪出一条卡点视频"}, quote:"剪辑不是把镜头拼起来，而是控制观众的情绪起伏。",
+        items:["卡点：让画面切换踩在音乐节拍上","J  cut / L cut：声音先入或后出","控制单镜头时长，避免拖沓","用转场但不要滥用"] },
+      { title:"让画面更精致", meta:{time:"1 周",out:"有字幕有调色的成品"}, quote:"字幕和调色是「廉价但有效」的提升质感手段。",
+        items:["自动识别加字幕、调整字体样式","基础调色：亮度、对比度、滤镜","配音与音效，营造氛围","片头片尾设计"] }
+    ],
+    advanced:[
+      { title:"专业软件与工作流", meta:{time:"3-4 周",out:"转用专业软件"}, quote:"剪映够用，但专业软件给你更精细的控制权。",
+        items:["Premiere 或 Final Cut 基础","序列设置、代理剪辑","多机位剪辑、嵌套序列"] },
+      { title:"调色与特效", meta:{time:"3-4 周",out:"电影感画面"}, quote:"调色不是加滤镜，是统一并塑造画面的情绪。",
+        items:["色彩理论、示波器读取","LUT 与分级调色","AE 基础动效与合成","绿幕抠像与跟踪"] },
+      { title:"全流程创作", meta:{time:"持续",out:"稳定产出内容"}, quote:"剪辑只是最后一步，选题、拍摄、节奏才是核心。",
+        items:["选题策划与脚本撰写","拍摄技巧与灯光","形成个人风格与系列"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别一上来就学特效，先把「剪对」练熟",
+      "多看多拆优秀视频，模仿是最好的老师",
+      "完播率比画面炫酷更重要，前 3 秒决定生死",
+      "保存工程文件和素材，别剪完就删"
+    ],
+    advanced:[
+      "素材管理是专业和业余的分水岭",
+      "调色要服务于内容，不要为了风格牺牲观感",
+      "关注画面与声音的配合，声音常被忽视",
+      "建立自己的模板和预设，提升效率"
+    ]
+  },
+  resources:[
+    {t:"剪映内置教程",d:"官方免费，上手最快"},
+    {t:"B站 影视飓风 / 南门录像厅",d:"剪辑思维讲得透"},
+    {t:"B站 doyoudo",d:"零基础软件操作课"},
+    {t:"《剪辑的语法》",d:"经典教材，讲剪辑逻辑"}
+  ]
+},
+{
+  id:"english", icon:"🇬🇧", name:"英语口语", cat:"语言学习",
+  intro:"不是为了应付考试，而是能听懂、能开口，跟外国人交流不再卡壳。",
+  goals:{
+    beginner:[
+      "能掌握 1000 个高频日常词汇",
+      "能进行简单的日常对话（点餐、问路、自我介绍）",
+      "能听懂慢速英语的主要意思",
+      "敢开口、不怕犯错，建立「用」英语的习惯"
+    ],
+    advanced:[
+      "能就熟悉话题流利表达观点",
+      "能听懂正常语速的美剧、播客",
+      "掌握地道的口语表达和俚语",
+      "能进行工作/学术场景的专业交流"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"打破「不敢说」", meta:{time:"1 周",out:"开口说出第一句"}, quote:"口语最大的障碍不是不会，是怕错。先开口，再变好。",
+        items:["跟读模仿，先从「影子跟读」开始","每天大声朗读 10 分钟","用简单句描述今天做了什么","接受「说得不完美」这件事"] },
+      { title:"攒够高频词汇", meta:{time:"2-4 周",out:"掌握场景词库"}, quote:"别背单词书，按场景背（餐厅、机场、办公室），用得上才记得住。",
+        items:["食物、购物、出行等场景词汇","高频动词短语 phrasal verbs","日常寒暄与礼貌用语","用 APP 碎片时间复习"] },
+      { title:"练成句与对话", meta:{time:"1-2 月",out:"能完成日常对话"}, quote:"一句一句搭起来，从「单词」到「句子」到「对话」。",
+        items:["句型操练：主谓宾开口就来","角色扮演日常场景对话","找语伴或 AI 对话练习","录下自己的发音，对比改进"] }
+    ],
+    advanced:[
+      { title:"提升流利度", meta:{time:"1-2 月",out:"减少卡顿"}, quote:"流利不是不犯错，是犯错还能不停下来。",
+        items:["学习填充词、连接词让表达连贯","复述听到的内容（retell）","就热点话题做 2 分钟即兴表达","减少母语翻译，直接英文思考"] },
+      { title:"输入决定上限", meta:{time:"持续",out:"听懂地道表达"}, quote:"说得好，前提是听得够多、够地道。",
+        items:["看美剧/播客，先看后精听","精读外刊，积累地道表达","跟读模仿语音语调","记录地道表达并造句使用"] },
+      { title:"场景深化", meta:{time:"1-3 月",out:"专业场景能用"}, quote:"通用口语练好后，往你的工作或兴趣方向加料。",
+        items:["商务会议、汇报表达","学术讨论与演讲","行业专业术语与表达"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别等「准备好了」才开口，边说边学最快",
+      "词汇要放在句子里记，别孤立背单词",
+      "每天哪怕 15 分钟，也比周末猛学 5 小时有效",
+      "接受口音不完美，能被听懂就是好口语"
+    ],
+    advanced:[
+      "不要沉迷背模板，真实交流才有价值",
+      "录自己的声音复盘，比听老师讲有用",
+      "找真人对话，AI 再好也替代不了互动",
+      "关注用词准确度和语气，而不只是语法"
+    ]
+  },
+  resources:[
+    {t:"多邻国 / 不背单词",d:"碎片时间背词练句"},
+    {t:"HelloTalk / Tandem",d:"找语伴真人对话"},
+    {t:"《赖世雄美语音标》",d:"发音基础纠正"},
+    {t:"BBC 6 Minute English",d:"适合进阶的听力材料"}
+  ]
+},
+{
+  id:"cet4", icon:"📝", name:"英语四六级", cat:"学科考试", hot:true,
+  intro:"大学生绕不开的一关，掌握方法比死磕更重要——单词是地基，真题是捷径。",
+  goals:{
+    beginner:[
+      "系统过一遍四/六级核心词汇",
+      "掌握各题型（听力、阅读、翻译、作文）的答题套路",
+      "限时完成整套真题，摸清自己的薄弱环节",
+      "稳定通过考试，冲击高分"
+    ],
+    advanced:[
+      "词汇量达到 6000+ 并能活用",
+      "阅读速度和准确率显著提升",
+      "写作翻译形成可复用的模板与语料",
+      "具备冲刺 550+ 高分的应试能力"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"单词打底", meta:{time:"1-2 月",out:"过完核心词表"}, quote:"单词是硬门槛，每天定量，不求一次记住，求反复见面。",
+        items:["选一本核心词书或用 APP","每天 50-80 个，滚动复习","只记高频义，别贪多","在阅读中巩固单词"] },
+      { title:"题型逐个击破", meta:{time:"1 月",out:"掌握各题型技巧"}, quote:"四六级是标准化考试，每种题都有「套路」。",
+        items:["听力：预读选项、抓关键词","阅读：先看题再读文，定位关键句","翻译：抓主干、补修饰","作文：三段式结构+高频句型"] },
+      { title:"真题实战", meta:{time:"1 月",out:"刷完近年真题"}, quote:"真题是最好的老师，模拟考试环境限时做。",
+        items:["近 5 年真题至少刷两遍","做完必须精析错题","总结高频考点和易错点","按考试时间限时训练"] }
+    ],
+    advanced:[
+      { title:"词汇深度与活用", meta:{time:"持续",out:"词汇量 6000+"}, quote:"从「认得」到「用得」，掌握搭配和语境。",
+        items:["同义替换、词根词缀","高频写作词汇与搭配","在写作翻译中刻意使用新词"] },
+      { title:"阅读提速与精准", meta:{time:"3-4 周",out:"阅读高分"}, quote:"阅读是分值大户，速度和准确率都要抓。",
+        items:["长难句拆解训练","限时阅读训练","篇章逻辑与态度判断"] },
+      { title:"写作翻译模板化", meta:{time:"2-3 周",out:"形成个人模板"}, quote:"好的模板能救急，但要在模板上做出自己的味道。",
+        items:["积累万能句型与过渡词","整理社会热点话题语料","翻译高频句型和固定表达","限时写作并批改"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别只背单词不做题，单词要在题目里活起来",
+      "听力是最大的拉分项，每天听比突击有效",
+      "作文不要裸考，背 3 篇范文并默写",
+      "留出时间涂答题卡，很多人来不及"
+    ],
+    advanced:[
+      "不要盲目刷题，错题分析比题量重要",
+      "高分关键在阅读和听力，别把宝押在作文",
+      "关注出题套路和干扰项特征",
+      "考前一周调整生物钟，按考试时间作息"
+    ]
+  },
+  resources:[
+    {t:"星火/新东方真题",d:"主流真题资料"},
+    {t:"百词斩 / 墨墨背单词",d:"APP 碎片背词"},
+    {t:"B站 刘晓艳 / 烤鸭TV",d:"免费四六级课"},
+    {t:"每日英语听力",d:"精听泛听材料"}
+  ]
+},
+{
+  id:"japanese", icon:"🗾", name:"日语入门", cat:"语言学习",
+  intro:"从五十音开始，一路到能看生肉番剧、能去日本自由行，一门越学越有成就感的语种。",
+  goals:{
+    beginner:[
+      "熟练掌握五十音图，能读写平假名片假名",
+      "掌握基础语法（判断句、动词变形入门）",
+      "能进行简单的日常寒暄和自我介绍",
+      "词汇量达到 800-1000，看懂简单句子"
+    ],
+    advanced:[
+      "掌握 N4-N3 级别核心语法与动词变形",
+      "能听懂日常对话，看懂简单文章",
+      "能就熟悉话题进行基本交流",
+      "为 JLPT 等级考试打好基础"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"五十音图", meta:{time:"1-2 周",out:"背下平假名片假名"}, quote:"五十音就像日语的 ABC，背不下来后面全白搭，但这关没那么难。",
+        items:["平假名一行行攻克，配联想记忆","片假名单独过一遍（外来语用）","每天默写一遍，直到条件反射","学几个简单的问候语找成就感"] },
+      { title:"基础发音与寒暄", meta:{time:"1 周",out:"能简单对话"}, quote:"先把「你好谢谢再见」说顺，语感比语法先建立。",
+        items:["长音、促音、拗音的发音规则","基本寒暄：こんにちは、ありがとう","数字、时间、自我介绍","跟读音频练语调"] },
+      { title:"核心语法入门", meta:{time:"3-4 周",out:"能组简单句"}, quote:"日语语序是「主语 宾语 动词」，跟中文反过来，习惯就好。",
+        items:["判断句：～です/～ではありません","助词：は、が、を、に、で 的作用","动词分类与ます形","形容词与名词修饰"] }
+    ],
+    advanced:[
+      { title:"动词变形体系", meta:{time:"3-4 周",out:"掌握主要变形"}, quote:"动词变形是日语的门槛，跨过去就能读能写能表达。",
+        items:["て形、た形、ない形","意向形、可能形、被动使役","条件表达：と、ば、たら、なら","自他动词的区别"] },
+      { title:"阅读与听力", meta:{time:"持续",out:"能读简单文章"}, quote:"输入量决定水平上限，看番看日剧就是最好的学习。",
+        items:["读简单新闻、短文","看生肉番剧配字幕对照","听简单对话并复述","积累场景句型"] },
+      { title:"JLPT 备考", meta:{time:"2-3 月",out:"冲刺 N4/N3"}, quote:"有个考试目标，学起来更有方向。",
+        items:["系统过一遍对应级别语法","刷对应级别真题","整理错题与高频考点"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "五十音一定要写得出来，只看不写等于没背",
+      "助词は和が最容易混，多读多感受语感",
+      "利用看番剧的兴趣学，效率翻倍",
+      "先追求「能沟通」，别怕语法不完美"
+    ],
+    advanced:[
+      "动词变形要成体系地记，别零散背",
+      "听力是短板，每天磨耳朵比突击有效",
+      "语法要在例句中记，别背干巴巴的规则",
+      "找一个学习搭子互相督促"
+    ]
+  },
+  resources:[
+    {t:"《标准日本语》初级",d:"经典教材，体系完整"},
+    {t:"B站 叶子先生 / 明王道",d:"免费入门课"},
+    {t:"MOJi辞書 / 沪江开心词场",d:"APP 背单词"},
+    {t:"NHK やさしいニュース",d:"简单日语新闻"}
+  ]
+},
+{
+  id:"excel", icon:"📈", name:"Excel 进阶", cat:"职业技能",
+  intro:"比「会用 Excel」多走一步：函数嵌套、透视表、动态图表，让你在职场里成为「那个表格大神」。",
+  goals:{
+    beginner:[
+      "掌握常用函数组合，告别手动计算",
+      "能用数据透视表快速汇总分析",
+      "做出清晰、美观的表格和图表",
+      "能自动化处理日常报表工作"
+    ],
+    advanced:[
+      "掌握数组公式、间接引用等高级技巧",
+      "能用 Power Query 做数据清洗自动化",
+      "能用 VBA 编写自动化脚本",
+      "能搭建可复用的数据模板与看板"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"函数三板斧", meta:{time:"1 周",out:"搞定日常统计"}, quote:"VLOOKUP、SUMIFS、IF 三个函数能解决大部分表格需求。",
+        items:["VLOOKUP / XLOOKUP 查找匹配","SUMIFS 多条件求和","IF 与嵌套函数做逻辑判断","TEXT、日期函数处理格式"] },
+      { title:"透视表", meta:{time:"1 周",out:"秒出汇总报表"}, quote:"透视表是 Excel 最被低估的功能，拖一拖就出结果。",
+        items:["创建透视表与字段布局","分组、筛选、排序","计算字段与百分比","一表多用，多维度分析"] },
+      { title:"图表与美化", meta:{time:"3 天",out:"做出专业表格"}, quote:"表格好看不难，难的是信息清晰、重点突出。",
+        items:["选对图表类型","配色、字体、对齐统一","条件格式突出重点","打印与页面设置"] }
+    ],
+    advanced:[
+      { title:"高级函数与数组", meta:{time:"2 周",out:"复杂计算无压力"}, quote:"数组公式让一个公式顶十个。",
+        items:["数组公式与动态数组","INDEX+MATCH 组合","INDIRECT、OFFSET 间接引用","多条件复杂统计"] },
+      { title:"Power Query", meta:{time:"2 周",out:"自动化清洗数据"}, quote:"一次设置，数据更新后一键刷新。",
+        items:["数据导入与清洗步骤录制","合并查询、追加查询","自定义列与条件列","参数化与可刷新模板"] },
+      { title:"VBA 自动化", meta:{time:"3-4 周",out:"解放双手"}, quote:"把重复操作录成宏，一键搞定。",
+        items:["宏录制与基础语法","变量、循环、条件判断","编写自定义函数","错误处理与用户交互"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "函数参数看不懂就看「插入函数」的提示",
+      "绝对引用 $ 用不好，公式一拖就错",
+      "表格先设计结构再填数据，省一半麻烦",
+      "F4 键可以快速切换引用方式"
+    ],
+    advanced:[
+      "能用 Power Query 就别用复杂公式",
+      "VBA 操作前先手动走一遍流程再录制",
+      "做好备份，宏和公式一旦出错容易丢数据",
+      "注释写清楚，半年后你还看得懂"
+    ]
+  },
+  resources:[
+    {t:"ExcelHome 论坛",d:"问题基本都能搜到"},
+    {t:"B站 Excel 自学成才",d:"函数实战讲解"},
+    {t:"《别怕，Excel 函数其实很简单》",d:"通俗入门书"},
+    {t:"微软官方支持文档",d:"权威函数说明"}
+  ]
+},
+{
+  id:"design", icon:"🎨", name:"平面设计(PS/AI)", cat:"职业技能",
+  intro:"用 Photoshop、Illustrator 做海报、做图、做排版，让「好看」变成你能交付的东西。",
+  goals:{
+    beginner:[
+      "掌握 PS 基本操作：图层、选区、调色",
+      "能独立完成一张电商海报或社交媒体配图",
+      "理解版式、配色、字体搭配的基本原则",
+      "能接简单的设计小单或运营配图"
+    ],
+    advanced:[
+      "掌握 AI 矢量绘图与品牌视觉设计",
+      "能独立完成一套视觉识别系统",
+      "具备 UI 设计或插画进阶能力",
+      "形成个人设计风格与作品集"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"认识 PS，完成第一次修图", meta:{time:"3-5 天",out:"修好一张照片"}, quote:"图层是 PS 的灵魂，就像一叠透明玻璃，每层各管一件事。",
+        items:["界面与工具栏认识","图层概念与基本操作","选区、抠图（快速选择/钢笔）","裁剪、调色、滤镜基础"] },
+      { title:"版式与配色", meta:{time:"1-2 周",out:"做出第一张海报"}, quote:"好设计不是堆素材，是对齐、留白、对比三件事做到位。",
+        items:["对齐、亲密性、重复、对比原则","配色方案与色卡运用","字体选择与排版节奏","海报构图：三分法、视觉中心"] },
+      { title:"实战输出", meta:{time:"持续",out:"作品集成型"}, quote:"做比看重要，多临摹多输出。",
+        items:["临摹优秀海报，拆解思路","做社交媒体配图","学会导出不同格式的注意事项"] }
+    ],
+    advanced:[
+      { title:"AI 矢量绘图", meta:{time:"2-3 周",out:"Logo 与图标设计"}, quote:"矢量图放大多大都不虚，做 Logo 必须用 AI。",
+        items:["钢笔工具、路径编辑","形状生成器与布尔运算","描边与填充技巧","LOGO 设计规范"] },
+      { title:"品牌视觉", meta:{time:"3-4 周",out:"完成 VI 小样"}, quote:"从一张图到一个品牌系统。",
+        items:["品牌色、字体、图形系统","名片、信纸、包装延展","视觉识别规范文档"] },
+      { title:"风格与作品集", meta:{time:"持续",out:"形成个人风格"}, quote:"技术会过时，审美和风格是你的护城河。",
+        items:["建立灵感库（Pinterest 等）","研究优秀设计师作品","整理个人作品集 Behance/站酷"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别一上来就装几十个插件，先把基础工具吃透",
+      "多看优秀作品，审美是练出来的",
+      "对齐和留白比加装饰更重要",
+      "记得勤保存，PS 偶尔会崩溃"
+    ],
+    advanced:[
+      "不要用素材堆砌代替设计思考",
+      "字体版权问题要重视，商用时选免费字体",
+      "输出前检查分辨率，印刷要 300dpi",
+      "保持个人风格，但别被一种风格框死"
+    ]
+  },
+  resources:[
+    {t:"B站 doyoudo / 李涛 PS",d:"软件操作与理念"},
+    {t:"站酷 / Behance",d:"找灵感、看作品"},
+    {t:"《写给大家看的设计书》",d:"排版四原则入门"},
+    {t:"Google Fonts / 免费商用字体",d:"解决字体版权"}
+  ]
+},
+{
+  id:"fitness", icon:"🏃", name:"健身入门", cat:"兴趣生活",
+  intro:"从零开始练力量、练体态，不求变成肌肉猛男，但要练得健康、练得不伤身。",
+  goals:{
+    beginner:[
+      "掌握深蹲、硬拉、卧推等基础动作的正确姿势",
+      "能独立完成一周 3 次的训练计划",
+      "建立热身与拉伸的习惯，避免受伤",
+      "理解饮食与训练的关系，科学增肌减脂"
+    ],
+    advanced:[
+      "掌握分化训练与进阶动作（引体、倒立等）",
+      "能根据目标调整训练量与强度",
+      "具备一定的运动康复与体态纠正能力",
+      "能为自己或他人设计训练计划"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"学会动作，别急着加重量", meta:{time:"2 周",out:"掌握基础动作模式"}, quote:"动作做对了，5 公斤也有效；动作错了，50 公斤是找伤。",
+        items:["深蹲、髋 hinge 铰链动作","俯卧撑、划船等推拉动作","学会核心收紧与呼吸","空杆或轻重量反复打磨姿势"] },
+      { title:"建立训练习惯", meta:{time:"4-6 周",out:"稳定每周 3 练"}, quote:"能坚持下来的计划才是好计划，别一上来就猛练到怀疑人生。",
+        items:["全身训练 3 分化入门","每次训练 45-60 分钟","渐进超负荷：一点点加重","记录训练日志"] },
+      { title:"吃对才能长对", meta:{time:"持续",out:"掌握基础营养"}, quote:"三分练七分吃，吃错了努力白费一半。",
+        items:["蛋白质摄入：每公斤体重 1.5-2g","碳水是训练燃料，别一味戒","多喝水、少熬夜","减脂靠热量缺口，增肌靠盈余"] }
+    ],
+    advanced:[
+      { title:"分化训练", meta:{time:"持续",out:"更高效的训练"}, quote:"新手适合全身练，进阶要拆部位分化。",
+        items:["上下肢分化 / 推拉腿分化","进阶动作：引体、双杠臂屈伸","调整组数、次数、强度","周期性训练与减载周"] },
+      { title:"体态与康复", meta:{time:"持续",out:"纠正体态问题"}, quote:"圆肩驼背不是一天形成的，纠正也要有耐心。",
+        items:["评估自身体态问题","强化弱项、放松紧张肌群","肩关节、腰椎的养护","必要时寻求专业康复师"] },
+      { title:"计划设计与复盘", meta:{time:"持续",out:"能定制计划"}, quote:"会给自己设计计划，才算真正入门。",
+        items:["根据目标设定训练量","定期测力量与围度","调整计划避免平台期"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "第一次去健身房可以请教练带 1-2 节课纠正动作",
+      "肌肉酸痛正常，关节疼痛要立刻停",
+      "别天天练同一部位，肌肉是在休息时长大的",
+      "睡眠比补剂重要一百倍"
+    ],
+    advanced:[
+      "动作质量是第一位，重量其次",
+      "热身 5-10 分钟能大幅降低受伤概率",
+      "不要迷信补剂，蛋白粉只是食物的补充",
+      "定期拍照对比，数据不会骗人"
+    ]
+  },
+  resources:[
+    {t:"B站 帅soserious / 马克老师",d:"动作教学与科普"},
+    {t:"《力量训练基础》",d:"经典入门教材"},
+    {t:"Keep APP",d:"在家跟练课程"},
+    {t:"运动解剖学图谱",d:"理解肌肉发力"}
+  ]
+},
+{
+  id:"sql", icon:"🗃️", name:"SQL 数据库", cat:"编程技术",
+  intro:"跟数据库沟通的唯一语言，增删改查样样行，不管是做开发还是做数据，SQL 都是必备技能。",
+  goals:{
+    beginner:[
+      "能独立完成增删改查（CRUD）基本操作",
+      "理解表、字段、主键、外键等基本概念",
+      "能用 JOIN 关联多张表查询",
+      "能在工作中独立取数或做简单报表"
+    ],
+    advanced:[
+      "掌握子查询、窗口函数、CTE 等进阶语法",
+      "能进行 SQL 性能优化与索引设计",
+      "理解事务、锁、存储过程等机制",
+      "具备数据库设计与调优能力"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"搞懂数据库是什么", meta:{time:"2-3 天",out:"理解基本概念"}, quote:"数据库就是一张张超大号的 Excel 表，SQL 就是问它们要数据的话。",
+        items:["表、字段、记录的概念","主键、外键、索引的作用","安装 MySQL 或 SQLite","认识图形化管理工具"] },
+      { title:"学会查数据", meta:{time:"1-2 周",out:"能写常用查询"}, quote:"SELECT 是你用得最多的命令，学会它就拿到了数据的钥匙。",
+        items:["SELECT / WHERE / ORDER BY / LIMIT","模糊查询 LIKE、范围 IN、BETWEEN","聚合函数 COUNT/SUM/AVG","GROUP BY 与 HAVING"] },
+      { title:"多表关联", meta:{time:"1-2 周",out:"能取跨表数据"}, quote:"数据往往分散在多张表，JOIN 就是把它们拼起来的胶水。",
+        items:["INNER JOIN / LEFT JOIN","多表关联查询","子查询与相关子查询","UNION 合并结果集"] }
+    ],
+    advanced:[
+      { title:"进阶语法", meta:{time:"2-3 周",out:"写出复杂查询"}, quote:"复杂业务需求，靠进阶语法才能优雅解决。",
+        items:["窗口函数 ROW_NUMBER/RANK","CTE 公用表表达式","CASE WHEN 条件逻辑","行列转换"] },
+      { title:"性能优化", meta:{time:"2-3 周",out:"让慢查询变快"}, quote:"查得出和查得快，是两个层次。",
+        items:["EXPLAIN 分析执行计划","索引原理与最左前缀","避免全表扫描与慢查询","SQL 改写技巧"] },
+      { title:"设计与进阶", meta:{time:"持续",out:"能设计库表"}, quote:"好的数据库设计能让后面的开发少走一半弯路。",
+        items:["范式与反范式设计","事务 ACID 与隔离级别","存储过程与触发器","主从复制、分库分表概念"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "先装 SQLite 本地练，门槛最低",
+      "JOIN 最容易错的是搞混 ON 和 WHERE",
+      "多表关联先画 ER 图，理清关系再写 SQL",
+      "每个查询结果都要验证一下是不是对的"
+    ],
+    advanced:[
+      "索引不是越多越好，写入会变慢",
+      "避免在 WHERE 里对字段做函数运算",
+      "生产环境改数据前一定要先 SELECT 看一眼",
+      "大表操作要分批，别一次性锁全表"
+    ]
+  },
+  resources:[
+    {t:"菜鸟教程 SQL",d:"语法速查与练习"},
+    {t:"SQLZoo / LeetCode 数据库",d:"在线刷题"},
+    {t:"《SQL 必知必会》",d:"薄薄一本，入门经典"},
+    {t:"B站 戴师兄 SQL 课",d:"零基础到进阶"}
+  ]
+},
+{
+  id:"photo", icon:"📷", name:"摄影入门", cat:"兴趣生活",
+  intro:"从手机到相机，学会用光、构图、调色，把眼前的风景和日常拍得好看又有故事。",
+  goals:{
+    beginner:[
+      "理解曝光三要素（光圈、快门、ISO）的关系",
+      "掌握常用构图法则",
+      "能拍出曝光正确、画面干净的照片",
+      "会用手机专业模式或入门相机"
+    ],
+    advanced:[
+      "掌握不同光线环境下的拍摄技巧",
+      "具备人像、风光、街拍等专项能力",
+      "能独立完成后期调色与修图",
+      "形成个人风格与作品系列"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"曝光三要素", meta:{time:"1 周",out:"拍出曝光正确的照片"}, quote:"光圈管景深，快门管动静，ISO 管明暗——三者配合决定一张照片。",
+        items:["光圈与景深的关系","快门速度与动态模糊","ISO 与噪点的取舍","曝光补偿的使用"] },
+      { title:"构图基础", meta:{time:"1 周",out:"画面不再乱"}, quote:"构图就是把画面里不该有的东西去掉，让视线落在主角上。",
+        items:["三分法与黄金分割","引导线、对称、框架构图","留白与视觉中心","学会减法，别贪多"] },
+      { title:"用光", meta:{time:"1 周",out:"拍出有质感的照片"}, quote:"摄影是用光的艺术，光的方向和软硬决定画面情绪。",
+        items:["顺光、侧光、逆光的特点","黄金时刻与蓝调时刻","室内自然光利用","反光板与补光基础"] }
+    ],
+    advanced:[
+      { title:"专项拍摄", meta:{time:"持续",out:"形成专项能力"}, quote:"什么都拍等于什么都没拍，选一个方向深耕。",
+        items:["人像：沟通、引导、美姿","风光：天气、时间、滤镜","街拍：观察、预判、抓拍"] },
+      { title:"后期调色", meta:{time:"2-3 周",out:"修出风格"}, quote:"后期不是造假，是还原你按下快门那一刻看到的样子。",
+        items:["Lightroom / 手机 Snapseed","白平衡、色调、曲线","局部调整与蒙版","建立自己的预设风格"] },
+      { title:"系列与输出", meta:{time:"持续",out:"有主题的作品"}, quote:"一组有主题的照片，比一百张随手拍更有价值。",
+        items:["围绕主题拍摄一组照片","整理与选片","打印、展览或做相册"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "手机就够入门，别急着买相机",
+      "先学曝光再学构图，顺序别反了",
+      "多看优秀摄影作品，训练审美",
+      "同一场景多拍几张，角度换着来"
+    ],
+    advanced:[
+      "RAW 格式保留更多后期空间",
+      "调色要服务于内容，别一味高饱和",
+      "存储和备份很重要，硬盘有价照片无价",
+      "形成系列作品比单张精彩更有价值"
+    ]
+  },
+  resources:[
+    {t:"B站 影视飓风 / Thomas 看看世界",d:"摄影技巧与理念"},
+    {t:"《纽约摄影学院教材》",d:"经典大部头"},
+    {t:"Snapseed / Lightroom",d:"手机后期工具"},
+    {t:"500px / 图虫",d:"看作品找灵感"}
+  ]
+},
+{
+  id:"cooking", icon:"🍳", name:"家常菜", cat:"兴趣生活",
+  intro:"从「不会开火」到「能自己搞定一日三餐」，做饭是性价比最高的生活技能。",
+  goals:{
+    beginner:[
+      "掌握炒菜、煮汤、蒸制等基本烹饪方法",
+      "认识常用调料并能合理搭配",
+      "能独立完成 10 道家常菜",
+      "具备看菜谱并灵活调整的能力"
+    ],
+    advanced:[
+      "掌握刀工、火候等基本功",
+      "能复刻餐厅菜品并调整口味",
+      "具备宴客菜的统筹与制作能力",
+      "能根据食材自主搭配菜谱"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"厨房基本功", meta:{time:"1 周",out:"敢开火、会用刀"}, quote:"刀工和火候是做饭的地基，地基稳了后面啥都能做。",
+        items:["认识锅具与基本厨具","切菜基本刀法与安全","油温判断与火候控制","备菜与食材处理"] },
+      { title:"从最简单的菜开始", meta:{time:"2 周",out:"做出 5 道家常菜"}, quote:"先从「三步内搞定」的菜练手，建立信心。",
+        items:["番茄炒蛋、炒时蔬","煮汤：紫菜蛋花汤等","蒸菜：蒸蛋、蒸鱼","煮面、炒饭等主食"] },
+      { title:"认识调料", meta:{time:"持续",out:"调味有章法"}, quote:"盐是基础，生抽提鲜，老抽上色，醋解腻——各有各的活儿。",
+        items:["常用调料的作用","油盐酱醋糖的搭配","尝味与调整","学会看菜谱并换算用量"] }
+    ],
+    advanced:[
+      { title:"刀工与火候进阶", meta:{time:"1 月",out:"切配更专业"}, quote:"同样的菜，切得好看、受热均匀，味道和卖相都上一个台阶。",
+        items:["切丝、切片、滚刀块","焯水、过油、煎制技巧","爆香、焖烧、收汁","一锅出多菜的统筹"] },
+      { title:"复刻与宴客", meta:{time:"持续",out:"能办一桌菜"}, quote:"能把餐厅的菜在家做出来，是很大的成就感。",
+        items:["研究餐厅菜的做法","宴客菜的组合与节奏","凉菜、热菜、汤品的搭配","摆盘与色彩搭配"] },
+      { title:"自主创作", meta:{time:"持续",out:"无菜谱也能做"}, quote:"最高境界是看一眼冰箱就知道今晚吃啥。",
+        items:["根据食材搭配菜谱","掌握调味比例与平衡","中西融合与创新"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "新手菜谱一定要严格按克数来，熟练了再随心",
+      "油温判断：筷子插进去冒小泡就是五六成热",
+      "备菜一定要在开火前完成，炒菜节奏很快",
+      "第一次做新菜别贪多，一次一到两道"
+    ],
+    advanced:[
+      "好食材少加工，差食材才需要重调味",
+      "大火快炒能锁住水分，别一直小火慢吞",
+      "做菜前尝三遍：生尝、半熟尝、出锅尝",
+      "菜谱是参考，按自己和家人的口味调整"
+    ]
+  },
+  resources:[
+    {t:"B站 美食作家王刚",d:"硬核川菜技法"},
+    {t:"B站 小高姐的 Magic Ingredients",d:"原理讲得透"},
+    {t:"下厨房 APP",d:"海量菜谱与步骤"},
+    {t:"《风味人间》",d:"开阔对食材的认知"}
+  ]
+},
+  // ---- v1.1 新增科目（17 个，由作者与社区补充）----
+
+/* ---------- 办公与效率 ---------- */
+{
+  id:"ppt", icon:"📊", name:"PPT 制作", cat:"办公与效率",
+  intro:"做出逻辑清晰、看着不廉价的演示文稿，汇报、答辩、路演都用得上，是职场最显功力的硬技能之一。",
+  goals:{
+    beginner:[
+      "做出一份结构完整、重点突出的工作汇报 PPT",
+      "掌握对齐、栅格、配色等基础排版原则",
+      "能用母版和版式统一全篇风格",
+      "学会克制地用动画和切换，服务表达而非炫技"
+    ],
+    advanced:[
+      "能独立完成一套品牌化的演示视觉方案",
+      "掌握图表、图示和数据可视化的高级用法",
+      "会用平滑切换、变体等做出高级动效",
+      "形成自己的模板库与设计工作流"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先搭骨架，再填内容", meta:{time:"3-5 天",out:"做出 10 页结构清晰的 PPT"}, quote:"PPT 先做大纲再排版，就像盖楼先画图纸，直接美化等于把装修贴在一团浆糊上。",
+        items:["用大纲视图理清一页只讲一件事","搭封面、目录、章节页、结尾页","每页遵循「标题是结论，正文是证据」","学会用备注页写演讲词"] },
+      { title:"排版三原则：对齐、对比、留白", meta:{time:"1 周",out:"告别「大堆文字」"}, quote:"对齐是秩序，对比是重点，留白是呼吸——做到这三点就已经赢过 80% 的 PPT。",
+        items:["用参考线和网格线对齐元素","栅格系统让版面稳定","字号拉开层级，颜色突出重点","删掉装饰性线条和渐变"] },
+      { title:"配色与图表", meta:{time:"1 周",out:"视觉统一的专业稿"}, quote:"配色别超过三个主色，图表别用 3D 效果，这是最容易被看出来的两个业余动作。",
+        items:["取色器从 logo 或图片里吸色","SmartArt 快速做逻辑图示","图表简化：去掉网格线和多余图例","统一全篇的字体和字号"] }
+    ],
+    advanced:[
+      { title:"母版与主题化", meta:{time:"1 周",out:"一套可复用的模板"}, quote:"母版是 PPT 里的「样式表」，改一次全篇跟着变，效率差十倍。",
+        items:["编辑幻灯片母版和版式","设置主题色、主题字体","占位符的灵活运用","把模板存成 .potx 文件"] },
+      { title:"高级图表与数据呈现", meta:{time:"2 周",out:"数据会讲故事"}, quote:"同样的数据，柱状图只能对比，组合图能讲趋势和结构的双重故事。",
+        items:["组合图表、次坐标轴","瀑布图、帕累托图、甘特图","用色块和图标做 KPI 看板","表格降噪：突出关键数字"] },
+      { title:"动效与路演", meta:{time:"2-3 周",out:"电影级的演示"}, quote:"高级动效的秘诀是「平滑」而不是「飞入」，让元素的移动有因果关系。",
+        items:["平滑切换做形变和位移","变体让图形之间无缝转换","用缩放定位做目录跳转","演讲者视图与排练计时"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "一页 PPT 只说一个观点，字越多越没人看",
+      "先写逐字稿再提炼成页面，比直接排版快",
+      "图片别拉伸变形，按住 Shift 等比缩放",
+      "投影效果比屏幕暗，深色背景浅色字更保险"
+    ],
+    advanced:[
+      "别用「商务风」模板网站上的花哨模板，显得廉价",
+      "动画服务逻辑：一条路径、一次出现、一个重点",
+      "导出 PDF 备份，防止字体丢失变形",
+      "图片用 .png 透明背景，放大会糊"
+    ]
+  },
+  resources:[
+    {t:"B站 旁门左道PPT / 邵云蛟",d:"排版与逻辑讲得透"},
+    {t:"《写给大家看的 PPT 设计书》",d:"零基础排版入门"},
+    {t:"iSlide / 母版库插件",d:"快速规范全篇排版"},
+    {t:"Dribbble / 优设网",d:"找排版灵感"}
+  ]
+},
+{
+  id:"auto-office", icon:"🤖", name:"办公自动化", cat:"办公与效率",
+  intro:"用 Python 或低代码工具把重复、繁琐、易出错的办公动作一键搞定，同样的活别人 3 小时你 3 分钟。",
+  goals:{
+    beginner:[
+      "能用脚本批量处理 Excel、Word、PDF",
+      "把每天重复的整理、汇总、重命名交给电脑",
+      "掌握定时任务让脚本自动运行",
+      "具备「这个活能不能自动化」的判断力"
+    ],
+    advanced:[
+      "能用 Python 做数据采集与系统对接",
+      "掌握邮件、企业微信、飞书等平台自动化",
+      "能设计低代码+RPA 的完整工作流",
+      "把个人脚本做成同事也能用的小工具"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"从最痛的那个重复劳动开始", meta:{time:"1 周",out:"第一个自动化脚本"}, quote:"别一上来就规划宏大系统，先挑一个你最烦的活，哪怕只是批量改文件名。",
+        items:["盘点日常重复动作，挑一个开刀","Python 基础：变量、循环、文件操作","用 os / shutil 批量重命名整理","openpyxl 读写 Excel"] },
+      { title:"批量处理文档", meta:{time:"1-2 周",out:"一份模板生成百份文件"}, quote:"邮件合并能做的，脚本能做更灵活；邮件合并做不了的，脚本能做。",
+        items:["用 Word 模板批量生成合同/通知","PDF 合并、拆分、加水印、提取文字","批量填表、批量盖章（电子章）","处理多张表的汇总与对比"] },
+      { title:"让它自己跑起来", meta:{time:"1 周",out:"定时自动执行"}, quote:"脚本写一次跑一百次才值，配个定时任务它就变成你的免费员工。",
+        items:["Windows 任务计划 / macOS launchd","监控文件夹自动触发处理","异常时发邮件或微信提醒","日志和失败重试机制"] }
+    ],
+    advanced:[
+      { title:"数据采集与接口对接", meta:{time:"2-3 周",out:"打通数据来源"}, quote:"自动化的上游是数据，会抓网页、会调接口，才有用不完的原料。",
+        items:["requests 抓取公开数据","调用企业 API 拉取报表","数据库直连批量取数","验证码与反爬的基本应对"] },
+      { title:"平台自动化", meta:{time:"2-3 周",out:"打通办公生态"}, quote:"飞书、企微、钉钉都有开放接口，能省下大量人工搬运。",
+        items:["飞书/企微机器人发消息","邮件自动分类与回复草稿","表单收集自动入库并生成报表","审批流与自动化规则配置"] },
+      { title:"做成别人也能用的工具", meta:{time:"3-4 周",out:"交付给同事使用"}, quote:"只有你自己会用的脚本是玩具，做成界面和说明文档才是产品。",
+        items:["tkinter / Streamlit 做简单界面","打包成 exe 免装 Python","写使用文档和配置说明","权限与敏感信息处理"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "先手动跑通一遍流程，再考虑自动化",
+      "操作文件前先备份，脚本跑错会真删数据",
+      "不要把账号密码写死在代码里",
+      "从「每天 10 分钟的活」里挑 ROI 最高的做"
+    ],
+    advanced:[
+      "能用系统自带工具就别引入重框架",
+      "网络请求加重试和超时，防止中途崩掉",
+      "处理大量文件时用生成器，别一次性读进内存",
+      "给脚本留日志，出问题能查到是哪一步"
+    ]
+  },
+  resources:[
+    {t:"B站 王树义 / Python 办公自动化",d:"实战案例多"},
+    {t:"《Python 自动化办公》",d:"系统入门教材"},
+    {t:"飞书/企微开放平台文档",d:"接口与机器人配置"},
+    {t:"UiBot / 影刀 RPA",d:"无代码自动化工具"}
+  ]
+},
+
+/* ---------- 设计创作 ---------- */
+{
+  id:"guitar", icon:"🎸", name:"吉他入门", cat:"音乐与艺术",
+  intro:"从零学会弹唱，几个月内能完整伴奏一首喜欢的歌，乐器里最容易快速获得正反馈的那一类。",
+  goals:{
+    beginner:[
+      "掌握 C、G、D、Am、Em 等常用开放和弦",
+      "能完整弹唱 5 首以上歌曲",
+      "节奏稳定，会基本扫弦和分解指法",
+      "看懂简单六线谱和和弦图"
+    ],
+    advanced:[
+      "掌握大横按和弦与多种节奏型",
+      "能自配和弦和简单的指弹曲目",
+      "具备扒带和即兴伴奏能力",
+      "形成稳定的练习体系与演奏风格"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"琴和姿势先搞定", meta:{time:"1 周",out:"能正确持琴按弦"}, quote:"琴先调到标准音，姿势对了手不痛，否则第三天就想放弃。",
+        items:["调音：调音器或手机 APP","坐姿与站姿，右手放松","左手拇指位置与按弦角度","爬格子练手指独立性和力量"] },
+      { title:"攻克第一批和弦", meta:{time:"2-4 周",out:"C G D Am Em 切换自如"}, quote:"和弦难在「换」，不在「按」。每天只练和弦转换，两周就能听出区别。",
+        items:["C、Am、Fmaj7 小横按","G、D、Em 常用和弦","按弦消音与和弦清晰度","两和弦之间的切换练习"] },
+      { title:"边扫边唱", meta:{time:"1-2 月",out:"弹唱第一首歌"}, quote:"弹唱的核心是先唱熟再配上和弦，别边看谱边按弦，脑子不够用。",
+        items:["下上下上的基本扫弦","四分、八分节奏型","先清唱记熟再上琴","选节奏慢的歌起步（如《小星星》）"] }
+    ],
+    advanced:[
+      { title:"大横按与更多和弦", meta:{time:"1-2 月",out:"F、Bm 等大横按"}, quote:"大横按是新手的第一道坎，食指力量够了自然就过去了，别死磕。",
+        items:["F 大横按的省力按法","Bm、Dm 等封闭和弦","七和弦、挂留和弦丰富色彩","和弦内音与根音走向"] },
+      { title:"节奏型与风格", meta:{time:"持续",out:"多种风格伴奏"}, quote:"同一组和弦，切音、闷音、切分节奏一换，味道完全不同。",
+        items:["民谣扫弦与切音","乡村式交替低音","Bossa Nova 节奏型","指弹分解与打板技巧"] },
+      { title:"扒带与即兴", meta:{time:"持续",out:"听歌能跟弹"}, quote:"能扒出一首歌的和弦，才算真正懂这门乐器。",
+        items:["听根音判断调性","常用和弦走向（4536、1564）","用 capo 变调","简单的即兴伴奏与 solo 思路"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "琴不要买太便宜的，手感差会劝退",
+      "左手指尖痛是正常的，起茧就好了，别停",
+      "每天练 20 分钟比周末练 3 小时有效",
+      "节拍器是最被低估的神器，一定要用"
+    ],
+    advanced:[
+      "大横按别用蛮力，靠拇指和食指的夹力",
+      "右手拨弦角度决定音色，多练靠弦奏法",
+      "别只练歌不练基本功，爬格子要长期坚持",
+      "录音回听是进步最快的方法"
+    ]
+  },
+  resources:[
+    {t:"B站 老蒋聊音乐 / 胡sir 弹吉他",d:"零基础系统课"},
+    {t:"《吉他自学三月通》",d:"经典入门教材"},
+    {t:"吉他社 / Ultimate-Guitar",d:"海量曲谱与和弦"},
+    {t:"GuitarTuna APP",d:"免费调音与和弦练习"}
+  ]
+},
+{
+  id:"drawing", icon:"✏️", name:"绘画入门", cat:"音乐与艺术",
+  intro:"从素描基础到能画出看得过去的人物或场景，不求当艺术家，但要能把自己脑子里的画面落到纸上。",
+  goals:{
+    beginner:[
+      "掌握线条、明暗、透视等素描基本功",
+      "能独立完成一张结构正确的静物或头像",
+      "理解人体比例与动态的基本规律",
+      "能用简单造型做原创小插画"
+    ],
+    advanced:[
+      "掌握色彩理论与上色技法",
+      "能独立完成一张完整的插画或概念图",
+      "具备人体结构与动态的准确表达能力",
+      "形成个人画风与稳定的产出节奏"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"线条与形体", meta:{time:"2 周",out:"画准基本几何体"}, quote:"所有东西都能拆成球、方块、圆柱，画得像的第一步是画准这些基本形。",
+        items:["排线、握笔与线条控制","正方体、球体、圆柱体的透视","观察与测量：目测比例的方法","画静物组合的起形练习"] },
+      { title:"光影与明暗", meta:{time:"2-3 周",out:"画出立体感"}, quote:"明暗只有五个层次：高光、灰面、明暗交界线、反光、投影。记住这五个词就够了。",
+        items:["三大面五大调","单一光源下的明暗规律","投影的形状与虚实","用纸笔和手指揉擦做过渡"] },
+      { title:"人体比例入门", meta:{time:"1 月",out:"能画站立的人"}, quote:"成年人大概七个半头长，记住这个比例，画出来的人就不会歪。",
+        items:["头身比与三庭五眼","人体体块与动态线","手、脚、五官的结构","用火柴人先做动态草图"] }
+    ],
+    advanced:[
+      { title:"色彩基础", meta:{time:"1-2 月",out:"画出通透的上色"}, quote:"上色翻车的根本原因不是笔不好，是没搞清楚冷暖和固有色。",
+        items:["色相、明度、纯度三属性","冷暖色与光影关系","马克笔、水彩、厚涂的基本技法","配色方案与色彩情绪"] },
+      { title:"原创与设计", meta:{time:"持续",out:"能做完整作品"}, quote:"临摹是学招式，原创才是目的。先抄别人的构图，再换自己的题材。",
+        items:["从照片提炼构图与剪影","角色设计的基本流程","场景透视与氛围营造","构图法则：三分、引导线、层次"] },
+      { title:"形成个人风格", meta:{time:"持续",out:"稳定更新作品集"}, quote:"风格不是装出来的，是你反复画同一种东西自然形成的惯性。",
+        items:["建立素材库与灵感板","坚持日课与速写练习","研究喜欢的画师并拆解","整理账号与作品集"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别一上来就画二次元大眼萌妹，先把形画准",
+      "用 HB 起形、2B 加深，别一直用一支笔",
+      "画完拍下来看，很多错误在照片里更明显",
+      "速写比精稿更能练造型能力"
+    ],
+    advanced:[
+      "少买笔少买纸，工具永远不是瓶颈",
+      "起形阶段多花时间，后面上色事半功倍",
+      "人体是长期功，别指望一个月过关",
+      "关注整体效果，别沉迷抠细节"
+    ]
+  },
+  resources:[
+    {t:"B站 抖抖村 / Krenz 色彩课",d:"理念与技法讲解"},
+    {t:"《伯里曼人体结构绘画教学》",d:"人体结构经典"},
+    {t:"《色彩与光线》",d:"光色关系理论"},
+    {t:"Pixiv / ArtStation",d:"找参考与灵感"}
+  ]
+},
+{
+  id:"writing", icon:"📝", name:"写作", cat:"办公与效率",
+  intro:"把脑子里的想法清清楚楚写出来，不管是公文、新媒体、小说还是邮件，表达能力是回报率最高的底层技能。",
+  goals:{
+    beginner:[
+      "写出结构清晰、语句通顺的短篇内容",
+      "掌握金字塔原理等基础写作框架",
+      "能在动笔前先搭好大纲",
+      "改稿能力：从「写得出」到「写得好」"
+    ],
+    advanced:[
+      "能驾驭长文与系列化内容",
+      "掌握不同文体的写作套路与语感",
+      "具备稳定日更与持续输出的能力",
+      "形成个人文字风格与读者群"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先学会说清楚一件事", meta:{time:"1-2 周",out:"写出 500 字的短文"}, quote:"好文章的标准就一句：读者不用回头重读第二遍。",
+        items:["一句话说清你要表达的观点","每段的中心句放开头","用具体例子代替抽象形容词","写完读一遍，删掉一半"] },
+      { title:"搭框架再动笔", meta:{time:"2 周",out:"告别「不知道写什么」"}, quote:"大纲不是束缚，是让你不用一边写一边想下一段该写什么的扶手。",
+        items:["金字塔原理：结论先行","总分总、问题-分析-方案","用思维导图先铺开素材","给每个小节写一个关键词"] },
+      { title:"改写比写更重要", meta:{time:"持续",out:"能自己改出好稿"}, quote:"好文章是改出来的，第一稿允许烂，第二稿才是作品。",
+        items:["冷处理：写完放一天再改","删冗余、换强动词","长句拆短、短句合并","朗读检查语感"] }
+    ],
+    advanced:[
+      { title:"文体与语感", meta:{time:"1-2 月",out:"多文体切换自如"}, quote:"写公文、写小说、写推文用的是三套不同的语感，要能切换。",
+        items:["公文：准确、简练、规范","新媒体：钩子、节奏、金句","小说：视角、对话、张力","评论与观点文：论证结构"] },
+      { title:"建立素材与选题库", meta:{time:"持续",out:"不缺可写的东西"}, quote:"真正让日更变得可能的不是灵感，是一个随时能翻的素材库。",
+        items:["读书与工作笔记卡片化","建立选题池并定期清理","拆解喜欢的作者与句式","用 RSS 和剪藏工具攒料"] },
+      { title:"形成输出节奏", meta:{time:"持续",out:"稳定更新与读者群"}, quote:"写作是复利最高的技能，坚持发比写得惊艳更重要。",
+        items:["选定一个主平台深耕","固定更新频率","回评论、做选题互动","复盘数据，迭代选题"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "写不出来就先写烂稿，别盯着空白页发呆",
+      "少用「非常、特别、极其」这类弱化词",
+      "读完一本书写 300 字摘要，练表达最快",
+      "投稿前一定按平台风格改一遍"
+    ],
+    advanced:[
+      "别把凑字当写作，删比写更难也更重要",
+      "数据好的选题值得写成系列，别只写一次",
+      "风格建立在大量阅读上，输入不够写不出新东西",
+      "保留版权证据，重要稿件存草稿记录"
+    ]
+  },
+  resources:[
+    {t:"《写作这回事》斯蒂芬·金",d:"作家谈写作本质"},
+    {t:"《金字塔原理》",d:"结构化表达经典"},
+    {t:"《文心》夏丏尊、叶圣陶",d:"中文写作基本功"},
+    {t:"豆瓣阅读 / 简书",d:"练笔与投稿平台"}
+  ]
+},
+
+/* ---------- 语言学习 ---------- */
+{
+  id:"korean", icon:"🇰🇷", name:"韩语入门", cat:"语言学习",
+  intro:"从 Hangul 字母到能听懂韩剧台词、能去韩国自由行，拼读规则比日语简单，入门是最快的一门。",
+  goals:{
+    beginner:[
+      "熟练掌握谚文（Hangul）拼读规则",
+      "掌握敬语与平语的基本区分",
+      "能进行购物、点餐、问路等日常对话",
+      "看懂简单的韩剧台词和歌词"
+    ],
+    advanced:[
+      "掌握中高级语法与惯用表达",
+      "能听懂无字幕的日常对话",
+      "能就熟悉话题做连续表达",
+      "为 TOPIK 考试打好基础"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"学会谚文拼读", meta:{time:"3-5 天",out:"看到就能读出来"}, quote:"韩语是表音文字，字母拼读规则两小时能懂，练一周就能见词读音，比五十音容易。",
+        items:["19 个辅音、21 个元音","收音（韵尾）规则","拼写法与隔写规则","跟读练习发音"] },
+      { title:"敬语与基本句型", meta:{time:"2-3 周",out:"能说基本句子"}, quote:"韩语最特别的是敬语体系，对谁说话用什么阶称，说错会显得很没礼貌。",
+        items:["습니다 / 아요 句式","体言与用言的区别","助词：은/는、이/가、을/를","疑问句、否定句"] },
+      { title:"场景会话", meta:{time:"1 月",out:"能应对旅行场景"}, quote:"先背场景句再学语法，旅行时能用上，成就感来得最快。",
+        items:["问候、自我介绍","点餐、购物、讨价还价","问路、交通、住宿","用 Papago 做日常对话练习"] }
+    ],
+    advanced:[
+      { title:"语法体系", meta:{time:"1-2 月",out:"掌握中高级语法"}, quote:"初级靠背句型，中高级靠语法体系，把相似表达放在一起对比着学。",
+        items:["连接词尾：-아서、-면、-는데","间接引用与转述","被动、使动、 causative","惯用表达与俗语"] },
+      { title:"听力与输入", meta:{time:"持续",out:"听懂无字幕内容"}, quote:"韩剧关掉字幕是听力分水岭，一开始听不懂很正常，听久了会突然开窍。",
+        items:["看带韩文字幕的韩剧","听韩语播客与综艺","影子跟读训练","看新闻与 YouTube"] },
+      { title:"TOPIK 备考", meta:{time:"2-3 月",out:"冲刺 3-4 级"}, quote:"有个考试目标，背单词会更有动力，也不用把证书看得太重。",
+        items:["系统过中高级语法","刷对应级别真题","作文模板与写作训练","口语专项突破"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "谚文一定要会手写，只看不写等于没学",
+      "发音中的紧音、送气音差异要反复听辨",
+      "别一上来就追韩剧，先打句型基础",
+      "多邻国、蛋蛋韩语适合碎片时间入门"
+    ],
+    advanced:[
+      "敬语用错比语法错更扣分，多观察韩国人怎么用",
+      "听力是最大短板，每天磨耳朵最有效",
+      "写作要请韩国人帮忙改，自己改不出来",
+      "韩语口语课性价比高，一对一口语最见效"
+    ]
+  },
+  resources:[
+    {t:"《延世韩国语》",d:"主流教材体系完整"},
+    {t:"B站 韩语养乐多老师",d:"免费入门课"},
+    {t:"Papago / 多邻国",d:"翻译与日常练习"},
+    {t:"Talk to Me in Korean",d:"免费音频课带文本"}
+  ]
+},
+{
+  id:"listening", icon:"🎧", name:"英语听力", cat:"语言学习",
+  intro:"从「每个词都认识但连起来听不懂」，练到能无字幕看懂美剧、听懂播客，英语最值钱的一项能力。",
+  goals:{
+    beginner:[
+      "能听懂慢速英语并抓取关键信息",
+      "掌握连读、弱读、失爆等语音现象",
+      "词汇量扩展到 4000 以上",
+      "能裸听并复述简单对话"
+    ],
+    advanced:[
+      "能听懂常速新闻与播客",
+      "能裸听美剧影视剧大意",
+      "能做听写与同声复述训练",
+      "形成自己的精听与泛听体系"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先搞懂英语是怎么被「说」出来的", meta:{time:"1-2 周",out:"听懂连读弱读"}, quote:"你听不懂不是词汇量不够，是课本上一个个独立的词，到嘴里全粘在一起了。",
+        items:["连读、弱读、失爆规则","重音与语调的规律","跟读模仿原声","用 Aegisub 做逐句精听"] },
+      { title:"慢速材料打底", meta:{time:"3-4 周",out:"听懂 VOA 慢速"}, quote:"慢速材料是台阶，听懂了再上常速，跳级只会越听越沮丧。",
+        items:["VOA Special English","ESL Pod 生活场景","儿童动画与分级读物音频","每天精听 10 分钟"] },
+      { title:"常速新闻过渡", meta:{time:"1-2 月",out:"听懂 BBC 6 Minute"}, quote:"新闻语速适中、用词规范，是听力进阶最稳的跳板。",
+        items:["BBC 6 Minute English","TED 短演讲","CNN 学生新闻","泛听+精听交替"] }
+    ],
+    advanced:[
+      { title:"影视与播客裸听", meta:{time:"持续",out:"脱离字幕"}, quote:"关字幕的那一刻最难，但也是听力真正开始长进的时刻。",
+        items:["先英文字幕、再无字幕看剧","影子跟读训练","无字幕看综艺和脱口秀","播客精听与复述"] },
+      { title:"听写训练", meta:{time:"持续",out:"听到每个词"}, quote:"听写是硬功夫，一个句子听十遍写下来，比泛听十篇都有用。",
+        items:["逐句听写与复盘","记录高频听不出的连读","同传式复述练习","盲听+看文本对照分析"] },
+      { title:"建立自己的听力体系", meta:{time:"持续",out:"稳定输入量"}, quote:"听力靠的是持续输入量，不是某个神奇方法。",
+        items:["订阅 3-5 个固定播客","每天保证 30 分钟泛听","题材多样化：新闻、访谈、故事","每月做一次完整听写自测"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别一上来就听美剧，语速太快只会打击信心",
+      "精听一段比泛听十段有效",
+      "看剧要反复看同一集，看一遍等于没看",
+      "每天 20 分钟比周末猛听 3 小时有效"
+    ],
+    advanced:[
+      "听不懂的段落一定看文本找原因，别蒙混过去",
+      "口音要多样化，只听标准美音会水土不服",
+      "精听的材料要选略高于当前水平的",
+      "听力和口语是同一件事的两面，别分开学"
+    ]
+  },
+  resources:[
+    {t:"BBC 6 Minute English",d:"最适合进阶的短材料"},
+    {t:"ESL Pod / 6 Minute Grammar",d:"慢速场景对话"},
+    {t:"TED / YouTube 英文频道",d:"题材丰富常速输入"},
+    {t:"每日英语听力 APP",d:"精听材料与单句循环"}
+  ]
+},
+
+/* ---------- 学科与考试 ---------- */
+{
+  id:"postgrad", icon:"🎓", name:"考研", cat:"学科与考试", hot:true,
+  intro:"从选学校、定专业到初试复试全程规划，把一场长达一年的硬仗拆成能每天执行的小任务。",
+  goals:{
+    beginner:[
+      "明确目标院校与专业的择校策略",
+      "制定一份贴合自身节奏的全年复习计划",
+      "掌握英语、政治、数学/专业课的基础框架",
+      "能持续稳定地推进每日学习任务"
+    ],
+    advanced:[
+      "在薄弱科目上形成有效的提分策略",
+      "掌握真题与模拟卷的复盘方法",
+      "具备考场时间管理与答题技巧",
+      "能从容应对复试与调剂环节"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"择校与信息搜集", meta:{time:"1-2 周",out:"定下目标院校"}, quote:"考研最大的坑是信息差，学校选对了，后面努力才不白费。",
+        items:["看报录比、分数线、复录比","找目标院校的经验帖和真题","联系上岸学长学姐问细节","评估自身基础与目标差距"] },
+      { title:"英语与数学先动起来", meta:{time:"3-6 月",out:"基础阶段过关"}, quote:"英语和数学是慢功夫，暑假再开始就晚了。",
+        items:["英语：单词每天定量+长难句拆解","数学：高数线代概率论过一遍教材","政治先不用急，暑假开始完全来得及","专业课建立知识框架"] },
+      { title:"强化与真题", meta:{time:"7-10 月",out:"真题刷到第二遍"}, quote:"真题是考研最值钱的资料，模拟题只是补充。",
+        items:["英语真题精读与作文模板","数学分题型刷真题","政治：肖秀荣或腿姐跟课刷题","专业课背诵启动"] }
+    ],
+    advanced:[
+      { title:"冲刺提分", meta:{time:"11-12 月",out:"形成考场状态"}, quote:"冲刺阶段拼的是效率和心态，不是谁学得久。",
+        items:["数学模拟卷限时训练","政治押题背诵与选择题刷量","专业课反复默写与框架回忆","按考试时间作息调整生物钟"] },
+      { title:"复试与调剂", meta:{time:"次年 2-4 月",out:"顺利上岸"}, quote:"初试是门票，复试才决定去哪个学校。",
+        items:["准备中英文自我介绍","联系导师与邮件模板","专业文献与热点准备","调剂信息同步关注"] },
+      { title:"复盘与节奏管理", meta:{time:"全程",out:"不中断地走完全程"}, quote:"考研最大的敌人是中断，能每天学 6 小时的人胜过偶尔突击 14 小时的人。",
+        items:["周复盘与月复盘","建立错题本和背诵记录","心态调节与适当放松","找到不占手机的学习环境"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别一开始就买齐所有资料，先把真题研究透",
+      "择校要留 5-10 分的容错空间，别冲太猛",
+      "不要照搬别人的时间表，按自己节奏来",
+      "暑假是分水岭，别回家摆烂"
+    ],
+    advanced:[
+      "数学错题本要记录思路卡在哪一步，不是抄题",
+      "政治别等押题，选择题分差是拉分关键",
+      "专业课笔记自己做，抄别人的记不住",
+      "考前两周别再学新东西，回归基础和错题"
+    ]
+  },
+  resources:[
+    {t:"B站 考研名师免费课（张宇、唐迟等）",d:"各科基础到强化"},
+    {t:"研招网 / 目标院校官网",d:"最权威的信息源"},
+    {t:"红宝书 / 恋练有词",d:"英语单词书"},
+    {t:"考研帮 / 知乎经验帖",d:"择校与复习节奏参考"}
+  ]
+},
+{
+  id:"cpa", icon:"📚", name:"CPA 注册会计师", cat:"学科与考试",
+  intro:"财会人最硬的一张证，六科五年滚动通过，难在坚持不在智商，规划比题量更重要。",
+  goals:{
+    beginner:[
+      "明确报考科目组合与五年通关节奏",
+      "掌握会计、审计、税法等科目基础框架",
+      "能独立完成一轮基础班学习",
+      "建立稳定的每日学习习惯"
+    ],
+    advanced:[
+      "掌握主观题的答题结构与得分点",
+      "能高效刷题与精准复盘",
+      "在薄弱环节形成提分策略",
+      "具备冲刺阶段的应试技巧"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"了解考试与规划科目", meta:{time:"1 周",out:"定下第一年报考方案"}, quote:"六科不是随便选，难度搭配错了会连累后面几年。",
+        items:["会计、审计、财管三座大山","第一年建议「会计+税法+经济法」","了解五年有效期与成绩滚动","算清每年需要的有效学习时长"] },
+      { title:"基础班一轮学习", meta:{time:"3-6 月",out:"过完一遍基础课"}, quote:"基础班的任务是听懂，不是记住，听懂一遍后面才能捡回来。",
+        items:["跟网课逐章学习","每章配套轻一练习题","会计长投合并先理解再记忆","建立每科的知识框架图"] },
+      { title:"强化刷题", meta:{time:"7-8 月",out:"轻二+真题刷完"}, quote:"CPA 是考试不是学术研究，题感是刷出来的。",
+        items:["分章节专项刷题","整理错题与易混点","计算题规范答题步骤","税法与战略侧重记忆"] }
+    ],
+    advanced:[
+      { title:"真题与模拟", meta:{time:"9 月",out:"模拟卷限时训练"}, quote:"机考环境要提前适应，打字速度和公式输入都靠练。",
+        items:["近五年真题反复做","机考模拟系统练习","主观题答题模板","财管计算器操作熟练"] },
+      { title:"冲刺记忆", meta:{time:"10 月",out:"考前突击记忆"}, quote:"CPA 考前一个月背的东西，考场都能用上。",
+        items:["战略、经济法最后突击","税法新政策与时政","考前串讲与押题","错题本最后一遍"] },
+      { title:"考场与复盘", meta:{time:"全程",out:"平稳通过"}, quote:"每年通过两科是性价比最高的节奏，别贪多。",
+        items:["每科至少保证 300-400 小时","保住会的分，放弃不会的题","五年规划滚动调整","考完及时复盘并衔接下一年"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "零基础先啃会计，它是其他几科的地基",
+      "不要同时报六科，第一年三科是合理上限",
+      "只跟一个老师的课，换老师会浪费时间",
+      "全职备考也要留社交和运动时间"
+    ],
+    advanced:[
+      "主观题先写结论再写理由，按得分点给分",
+      "机考打字慢会真的做不完，一定要练",
+      "税法每年都有变动，只用当年新教材",
+      "战略和经济法别留到最后一个月，记忆量太大"
+    ]
+  },
+  resources:[
+    {t:"东奥 / 中华会计网校",d:"各科网课与讲义"},
+    {t:"轻松过关 / 轻一轻二",d:"主流教辅与题库"},
+    {t:"中国注册会计师协会官网",d:"报名与考试政策"},
+    {t:"B站 CPA 免费试听课",d:"选老师前先试听"}
+  ]
+},
+
+/* ---------- 数据与 AI ---------- */
+{
+  id:"powerbi", icon:"📈", name:"Power BI", cat:"数据与 AI",
+  intro:"把散乱的数据做成能交互、能钻取、能自动刷新的报表看板，数据岗和分析岗的加分硬技能。",
+  goals:{
+    beginner:[
+      "掌握 Power Query 数据清洗与建模",
+      "能用 DAX 写出常用的度量值",
+      "做出一张可交互的可视化报表",
+      "能让报表自动刷新与分享"
+    ],
+    advanced:[
+      "掌握 DAX 上下文与复杂度量值",
+      "能设计规范的星型模型与关系",
+      "具备 Power BI Service 协同能力",
+      "能处理大数据量与性能优化"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"数据导入与清洗", meta:{time:"1-2 周",out:"搞定一张干净的数据表"}, quote:"Power Query 是 Power BI 里最被低估的部分，一次设置、永久刷新。",
+        items:["从 Excel、CSV、数据库导入","提升、转换、追加查询","拆分列、替换值、填充","参数化与可刷新流程"] },
+      { title:"数据建模", meta:{time:"1-2 周",out:"建立表关系模型"}, quote:"模型设计错了，后面 DAX 再厉害也白搭。",
+        items:["星型模型与维度事实表","一对一、一对多关系","双向筛选的坑","日期表与连续日期"] },
+      { title:"可视化报表", meta:{time:"2-3 周",out:"第一张看板"}, quote:"图表是为结论服务的，别为了好看堆一屏图。",
+        items:["卡片图、柱状、折线、组合图","切片器与钻取交互","书签与按钮做导航","移动端布局适配"] }
+    ],
+    advanced:[
+      { title:"DAX 核心", meta:{time:"3-4 周",out:"写出能复用的度量值"}, quote:"DAX 最难的是行上下文和筛选上下文，搞懂这两个词就通了一半。",
+        items:["CALCULATE 与筛选上下文","时间智能函数","迭代函数：SUMX、FILTER","变量 VAR 与度量值管理"] },
+      { title:"Power BI Service", meta:{time:"2 周",out:"部署与协同"}, quote:"本地做好的报表要上云才能被同事用起来。",
+        items:["发布到 Service","网关配置与自动刷新","工作区权限管理","应用与共享报表"] },
+      { title:"性能与规范", meta:{time:"持续",out:"可维护的数据项目"}, quote:"报表不是做完就完事，要能被别人接手维护。",
+        items:["性能优化与 DAX Studio","规范命名与文档","增量刷新与大数据量处理","版本管理与变更记录"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "能用 Power Query 清洗就别在 DAX 里硬算",
+      "模型里别留一堆冗余列，影响性能",
+      "日期表一定要单列连续的日期",
+      "度量值统一放一个表，方便管理"
+    ],
+    advanced:[
+      "双向关系能不用就不用，容易产生歧义",
+      "DAX 写不出来时先想清业务逻辑",
+      "自动刷新要提前配网关，否则白做",
+      "不要用 Power BI 做精细填报，它不是表单工具"
+    ]
+  },
+  resources:[
+    {t:"B站 SQLBI / 马世权",d:"DAX 与建模深度讲解"},
+    {t:"《DAX 权威指南》",d:"系统学 DAX 必备"},
+    {t:"微软官方 Learn 文档",d:"Power Query 与建模"},
+    {t:"Power BI 社区论坛",d:"报错和疑难问题搜得到"}
+  ]
+},
+{
+  id:"ai-coding", icon:"💻", name:"AI 编程(Cursor/Claude)", cat:"数据与 AI", hot:true,
+  intro:"用 Cursor、Claude Code 这类 AI 编程工具把想法直接变成能跑的代码，编程门槛被大幅降低的新技能。",
+  goals:{
+    beginner:[
+      "能使用 Cursor 完成日常编码与重构",
+      "学会写有效的代码生成提示词",
+      "掌握 AI 辅助调试与报错定位",
+      "理解 AI 生成的代码并做必要修改"
+    ],
+    advanced:[
+      "掌握多文件与复杂项目的 AI 协作",
+      "能用 Claude Code 做端到端功能开发",
+      "建立工程化的 AI 编程工作流",
+      "能评估并改进 AI 生成代码的质量"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先会基础编程再上 AI", meta:{time:"1 周",out:"搭好工具链"}, quote:"AI 编程不是不用学编程，而是把你会的东西放大十倍。",
+        items:["装 Cursor 并登录账号","理解 Tab 补全与 Cmd+K 改写","会用聊天面板问代码问题","配置好终端和运行环境"] },
+      { title:"学会怎么「说」才能让 AI 写出对的代码", meta:{time:"1-2 周",out:"有效提示词模板"}, quote:"把需求说成「上下文+目标+约束+验收标准」，比一句「帮我写个程序」强十倍。",
+        items:["给 AI 看相关代码文件","说明技术栈和已有约定","要求先给方案再写代码","让它写完后自己 review"] },
+      { title:"AI 辅助调试", meta:{time:"持续",out:"能定位并修复 bug"}, quote:"AI 最擅长的是读报错信息，把堆栈贴给它往往比自己查快。",
+        items:["把完整报错和上下文给它","让它逐行解释可疑代码","要求补单元测试验证修复","记录有效的问题描述模板"] }
+    ],
+    advanced:[
+      { title:"多文件与大型项目", meta:{time:"2-4 周",out:"驾驭完整项目"}, quote:"给 AI 看整个项目结构，它才能写出和现有代码风格一致的代码。",
+        items:["用 @ 引用多文件和目录","写好 CLAUDE.md / .cursorrules","让 AI 先探索再动手改","拆分任务，一次只改一个功能"] },
+      { title:"Claude Code 工作流", meta:{time:"3-4 周",out:"端到端开发"}, quote:"命令行里的 AI 编程工具适合跑长任务，把说明文档写好就能放手。",
+        items:["写清晰的任务说明文件","让它自己跑测试并迭代","用 git 做断点回退","设定权限边界避免误删"] },
+      { title:"建立质量门槛", meta:{time:"持续",out:"可控的 AI 协作"}, quote:"AI 写代码要像外包同事：给清楚需求、要交付标准、最后自己验一遍。",
+        items:["强制它写测试和文档","代码审查清单化","定期重读 AI 写的代码","对安全敏感逻辑保持人工把关"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "不会编程直接依赖 AI，代码出了问题你查不出来",
+      "AI 给的代码一定要跑一遍再提交",
+      "把报错原文贴进去，别自己概括转述",
+      "每改一小段就跑测试，别攒一大堆一起改"
+    ],
+    advanced:[
+      "长对话会忘上下文，及时开新对话给完整背景",
+      "不要把 .env 和密钥上传给 AI 工具",
+      "AI 会过度自信地编接口，要核对官方文档",
+      "保持自己写代码的手感，别彻底当甩手掌柜"
+    ]
+  },
+  resources:[
+    {t:"Cursor 官方文档",d:"功能与规则文件说明"},
+    {t:"Claude Code 官方指南",d:"工作流与最佳实践"},
+    {t:"B站 AI 编程实战分享",d:"中文案例演示"},
+    {t:"GitHub Copilot 文档",d:"辅助补全对比参考"}
+  ]
+},
+
+/* ---------- 理财与生活 ---------- */
+{
+  id:"investing", icon:"💰", name:"理财入门", cat:"理财与生活",
+  intro:"从记账、应急金、指数基金开始，建立一套不焦虑、能长期执行的个人财务系统，比买哪只股票重要得多。",
+  goals:{
+    beginner:[
+      "理清个人收支并建立记账习惯",
+      "攒够 3-6 个月应急金",
+      "理解股票、基金、债券等基础工具",
+      "能制定一份适合自己的资产配置方案"
+    ],
+    advanced:[
+      "掌握定投与再平衡的执行方法",
+      "能评估基金与指数的基本面",
+      "具备识别常见投资骗局的能力",
+      "形成长期稳定、情绪可控的投资体系"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先记账，再谈投资", meta:{time:"1 月",out:"收支全貌清晰"}, quote:"不知道钱花在哪，就谈不上理财。记账不是为了省钱，是为了看清结构。",
+        items:["选记账工具并坚持记满一个月","按「必要/需要/想要」分类","算清收入结构与现金流","找出可优化的固定支出"] },
+      { title:"应急金与负债管理", meta:{time:"1-3 月",out:"攒下第一笔底气钱"}, quote:"投资的前提是手里有一笔「丢在股市里也不会影响生活」的钱。",
+        items:["攒够 3-6 个月生活费","优先还清高息负债","信用卡只当支付工具不用","建立医疗与意外保障"] },
+      { title:"认识基础工具", meta:{time:"2-4 周",out:"能看懂产品说明"}, quote:"理财产品的名字都很花哨，但底层只有几类基础工具。",
+        items:["活期、定期、货币基金","债券与债券基金","股票与股票基金","ETF、LOF、指数基金的区别"] }
+    ],
+    advanced:[
+      { title:"指数基金定投", meta:{time:"3-6 月",out:"跑通完整流程"}, quote:"定投最反人性也最有效的地方，是强迫你在跌的时候继续买。",
+        items:["选宽基指数与行业指数","设定扣款金额和频率","估值百分位辅助择时","止盈策略：分批还是一次性"] },
+      { title:"资产配置与再平衡", meta:{time:"持续",out:"稳定的收益结构"}, quote:"收益主要来自配置，不是来自选股。配好了就别天天看。",
+        items:["股债比例按年龄与风险定","再平衡的触发条件","不同账户分工（短期/长期/保障）","定期复盘与调整"] },
+      { title:"避开坑与长期主义", meta:{time:"持续",out:"情绪稳定地持有"}, quote:"大多数人不是选错标的，是拿不住。",
+        items:["识别庞氏与高息骗局","警惕「稳赚」和「内部消息」","避免频繁交易与追涨杀跌","投资与教育、健康的长期权衡"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "先学保险再学投资，保障没做好别谈收益",
+      "不要借钱投资，包括信用卡和网贷",
+      "任何让你先交钱的理财课都先打个问号",
+      "投资前先留足生活费和应急金"
+    ],
+    advanced:[
+      "别信「老师带单」，正规投资不用带单",
+      "收益越高风险越大，这是铁律不是建议",
+      "定投在下跌时最难受，但也最有用",
+      "税务与费用会吃掉不少收益，别忽略"
+    ]
+  },
+  resources:[
+    {t:"《小狗钱钱》",d:"入门最温和的一本"},
+    {t:"《指数基金投资指南》银行螺丝钉",d:"定投实操"},
+    {t:"且慢 / 天天基金 APP",d:"基金筛选与组合"},
+    {t:"雪球 / 集思录",d:"投资者社区与讨论"}
+  ]
+},
+{
+  id:"mental-health", icon:"🧠", name:"心理学入门", cat:"个人成长",
+  intro:"用科学的视角理解自己为什么焦虑、拖延、内耗，不是为了读心，是为了不再被情绪牵着走。",
+  goals:{
+    beginner:[
+      "了解常见情绪与行为的心理机制",
+      "掌握几种自我调节的实操方法",
+      "能识别并应对拖延与内耗",
+      "建立对心理咨询的基本认知"
+    ],
+    advanced:[
+      "理解主要流派的理论与治疗逻辑",
+      "能运用认知行为技巧改善情绪",
+      "具备共情与倾听他人的能力",
+      "能理性看待心理测评与伪心理学"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先认识情绪", meta:{time:"2 周",out:"看懂自己的情绪模式"}, quote:"情绪不是敌人，它是一条信号。学会辨认它，才不会每次都被它接管。",
+        items:["情绪 ABC 理论","焦虑、抑郁、压力的区别","情绪日记与记录方法","生理唤起与情绪的关系"] },
+      { title:"应对拖延与内耗", meta:{time:"2-4 周",out:"行动力提升"}, quote:"拖延往往不是懒，是害怕做不好。把任务拆到「不可能失败」的大小。",
+        items:["两分钟法则与五分钟起步","任务拆解到最小单位","正念呼吸与身体扫描","接受不完美，先做完再做好"] },
+      { title:"自我调节工具箱", meta:{time:"持续",out:"能自己稳住自己"}, quote:"方法不在多，在于你真的练到能自动用出来的那几个。",
+        items:["呼吸与身体放松训练","认知重评：换个角度看","写下来清空大脑","睡眠、运动、社交三件套"] }
+    ],
+    advanced:[
+      { title:"流派与理论", meta:{time:"1-2 月",out:"建立知识框架"}, quote:"各流派不是互相矛盾的答案，而是不同视角的工具箱。",
+        items:["精神分析与依恋理论","认知行为疗法 CBT","人本主义与存在主义","家庭治疗与系统视角"] },
+      { title:"认知行为实操", meta:{time:"持续",out:"改善具体困扰"}, quote:"CBT 的核心练习是「抓住那个自动冒出来的念头」，然后问自己：证据呢？",
+        items:["记录自动思维与情境","识别认知扭曲","行为实验验证想法","情绪容忍与接纳练习"] },
+      { title:"辨别伪心理学", meta:{time:"持续",out:"理性看待测评"}, quote:"网上的心理测试大多只能当娱乐，认真谈心理要看专业量表。",
+        items:["区分科学与伪科学","看证据：样本、对照、可重复","MBTI、星座的局限","何时该寻求专业心理咨询"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "心理问题不是矫情，重视它比硬扛更有效",
+      "自助方法用一个月没改善，建议找专业咨询",
+      "别用心理学去分析身边的每一个人",
+      "睡眠问题是心理健康的早期信号"
+    ],
+    advanced:[
+      "咨询师也是普通人，不匹配可以换",
+      "心理测评只作参考，不要给自己贴标签",
+      "共情不等于替别人解决问题",
+      "照顾他人情绪前先照顾好自己的"
+    ]
+  },
+  resources:[
+    {t:"《被讨厌的勇气》",d:"阿德勒心理学通俗版"},
+    {t:"《认知行为疗法基础》",d:"CBT 系统入门"},
+    {t:"简单心理 / 壹心理",d:"科普文章与咨询平台"},
+    {t:"《蛤蟆先生去看心理医生》",d:"心理咨询过程故事化"}
+  ]
+},
+{
+  id:"time-mgmt", icon:"⏰", name:"时间管理", cat:"个人成长",
+  intro:"不是把一天塞满，而是把有限的时间花在对的事上，从「忙但没成果」到「少做但做对」。",
+  goals:{
+    beginner:[
+      "理清每天的时间都花在哪里",
+      "建立一套可持续的每日计划习惯",
+      "掌握专注与打断应对的基本方法",
+      "能区分重要与紧急的事情"
+    ],
+    advanced:[
+      "能设计适合自身的周计划与节奏",
+      "掌握深度工作与批量处理技巧",
+      "具备目标拆解与复盘能力",
+      "形成稳定高效的生活系统"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先记录，再管理", meta:{time:"1 周",out:"时间流水账"}, quote:"时间管理的第一步是知道时间去了哪，大多数人的感觉都和事实差很远。",
+        items:["用时间块记录一天","统计手机和短视频耗时","找时间的黑洞与碎片","算清每天的有效专注时长"] },
+      { title:"每日计划的最小闭环", meta:{time:"2 周",out:"每天都有产出"}, quote:"计划不是列清单，是只挑今天必须做完的三件事。",
+        items:["每天只定 1-3 件要事","番茄钟 25+5 专注法","睡前 5 分钟复盘","计划留白，别排满"] },
+      { title:"重要 vs 紧急", meta:{time:"1 周",out:"分清优先级"}, quote:"永远先做重要但不紧急的事，不然它们迟早变成又重要又紧急的救火。",
+        items:["四象限分类法","砍掉、委托、推迟的策略","学会说不和拒绝","批量处理同类杂事"] }
+    ],
+    advanced:[
+      { title:"周计划与节奏设计", meta:{time:"2-3 周",out:"稳定的周节奏"}, quote:"日计划管事，周计划管方向，两者缺一不可。",
+        items:["周日做周复盘与下周规划","把任务拆成可执行的步骤","主题日与精力曲线匹配","留出休息和恢复时间"] },
+      { title:"深度工作", meta:{time:"持续",out:"进入心流状态"}, quote:"浅工作是回消息、开小会，深工作才是真正产生价值的部分。",
+        items:["一天只安排一段深工作时间","关闭通知与物理隔离干扰","大块时间做难事","用产出而不是工时衡量自己"] },
+      { title:"系统复盘与迭代", meta:{time:"持续",out:"持续优化的习惯"}, quote:"时间管理不是找到一套方法，是不断根据反馈调整。",
+        items:["周、月、季度复盘","复盘形式：写下来+看数据","识别个人效率高峰期","工具越少越好，坚持比完美重要"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "别把日程排满，留 30% 空白应对突发",
+      "多任务不是高效，切换成本很高",
+      "计划完不成别自责，先看看是不是定多了",
+      "手机是时间最大的隐形小偷"
+    ],
+    advanced:[
+      "工具三四个就够了，反复换工具是另一种拖延",
+      "最重要的任务放在精力最好的时段",
+      "复盘要落到具体动作，不是写感想",
+      "休息不是浪费时间，是效率的一部分"
+    ]
+  },
+  resources:[
+    {t:"《深度工作》卡尔·纽波特",d:"专注力理论"},
+    {t:"《搞定：无压工作的艺术》",d:"GTD 方法全集"},
+    {t:"《番茄工作法》",d:"短周期专注实操"},
+    {t:"滴答清单 / Notion",d:"任务与时间管理工具"}
+  ]
+},
+
+/* ---------- 编程与硬技能 ---------- */
+{
+  id:"git", icon:"🔀", name:"Git 与 GitHub", cat:"编程技术",
+  intro:"程序员的基本功，也是开源协作的入场券，学会版本控制你才敢大胆改代码、才进得了开源社区。",
+  goals:{
+    beginner:[
+      "掌握 add、commit、push、pull 基本流程",
+      "理解工作区、暂存区、仓库的关系",
+      "能独立用 GitHub 托管自己的项目",
+      "会用分支做并行开发与合并"
+    ],
+    advanced:[
+      "掌握 rebase、cherry-pick、reflog 等进阶操作",
+      "能处理冲突与版本回退",
+      "熟悉 Pull Request 协作流程",
+      "具备仓库管理与贡献规范意识"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先搞懂 Git 在管什么", meta:{time:"1-2 天",out:"理解三个区的区别"}, quote:"Git 不神秘，它只是在你每次提交时给文件拍了张快照，出事了能回去。",
+        items:["工作区、暂存区、本地仓库、远程仓库","git init / clone / status","add 与 commit 的关系","查看历史：git log"] },
+      { title:"日常提交流程", meta:{time:"3-5 天",out:"每天能正常提交"}, quote:"提交要勤、粒度要小、说明要能看懂，半年后的你会感谢现在的自己。",
+        items:["写清楚 commit message","git diff 看改了什么","push 与 pull 同步","关联远程：git remote"] },
+      { title:"用分支做并行开发", meta:{time:"1 周",out:"会用分支合并"}, quote:"分支就是平行宇宙，做完再合并，比直接在主线改安全得多。",
+        items:["git branch / checkout / switch","merge 与快进合并","删除已合并的分支","在 GitHub 上创建仓库并推送"] }
+    ],
+    advanced:[
+      { title:"合并与冲突", meta:{time:"1-2 周",out:"不害怕冲突"}, quote:"冲突不是报错，是两个版本都改了同一处，Git 让你自己决定留哪个。",
+        items:["merge 与 rebase 的区别","解决冲突的标准流程","三方合并与 diff 工具","提交前先 pull --rebase"] },
+      { title:"时光机：回退与补救", meta:{time:"1 周",out:"能救回误删"}, quote:"只要 commit 过，Git 几乎什么都能找回来，别怕做实验。",
+        items:["git reset 与 revert 的区别","reflog 找回丢失的提交","cherry-pick 挑提交","stash 临时保存改动"] },
+      { title:"协作与开源", meta:{time:"持续",out:"能参与开源"}, quote:"PR 是开源世界的社交方式，写得清楚比写得对更重要。",
+        items:["Fork + PR 的完整流程","code review 与反馈处理","写好 README 与 CONTRIBUTING","issue 模板与标签管理"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "每次 commit 前先 git status 和 git diff",
+      "commit message 写「做了什么」而不是「改了代码」",
+      "不要直接往 main 推代码，用分支",
+      "账号要先配好 SSH key 或 token"
+    ],
+    advanced:[
+      "rebase 只用在本地分支，别动已推送的提交",
+      "force push 是危险操作，要加 --force-with-lease",
+      "敏感信息提交后要改密码并清历史",
+      "大文件用 Git LFS，别直接塞进仓库"
+    ]
+  },
+  resources:[
+    {t:"《Pro Git》中文版（git-scm.com）",d:"最权威的完整教程"},
+    {t:"Learn Git Branching（可视化练习）",d:"交互式学分支"},
+    {t:"B站 Git 教学视频",d:"零基础到进阶"},
+    {t:"GitHub Docs",d:"PR 与协作流程官方说明"}
+  ]
+},
+{
+  id:"docker", icon:"🐳", name:"Docker 容器", cat:"编程技术",
+  intro:"把应用和它依赖的运行环境一起打包，一次构建到处运行，彻底告别「在我电脑上能跑」的经典难题。",
+  goals:{
+    beginner:[
+      "理解镜像、容器、仓库的基本概念",
+      "能写 Dockerfile 并构建自己的镜像",
+      "能启动、停止、管理常用容器",
+      "掌握 docker-compose 编排多服务"
+    ],
+    advanced:[
+      "掌握镜像分层与体积优化",
+      "能设计多阶段构建与 CI/CD 集成",
+      "理解网络、卷挂载与持久化",
+      "具备容器化部署与排错能力"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"先明白 Docker 解决了什么问题", meta:{time:"2-3 天",out:"跑起第一个容器"}, quote:"虚拟机是装一套完整系统，容器是只装应用和它要用的那一小截依赖。",
+        items:["镜像、容器、仓库三件套","docker run / ps / stop / rm","端口映射与后台运行","用官方镜像跑 MySQL、Redis"] },
+      { title:"写第一个 Dockerfile", meta:{time:"1 周",out:"构建自己的镜像"}, quote:"Dockerfile 就是一份做菜的步骤清单，按顺序写，Docker 照着做。",
+        items:["FROM、RUN、COPY、CMD","WORKDIR 与 ENV","构建镜像并打标签","docker logs 看运行日志"] },
+      { title:"用 compose 管多服务", meta:{time:"1 周",out:"一键拉起一套环境"}, quote:"compose 把启动命令写成配置文件，换台电脑一条命令全起来。",
+        items:["docker-compose.yml 结构","services、volumes、networks","环境变量与 .env 文件","一键启停：up / down"] }
+    ],
+    advanced:[
+      { title:"镜像优化", meta:{time:"1-2 周",out:"体积缩到最小"}, quote:"镜像小一点，部署快一点，安全面也小一点。",
+        items:["多阶段构建","合并 RUN 减少层数","选 alpine 等精简基础镜像","用 .dockerignore 控制上下文"] },
+      { title:"数据持久化与网络", meta:{time:"1-2 周",out:"数据不丢、服务互通"}, quote:"容器删了数据就没了，持久化一定要用卷挂载。",
+        items:["bind mount 与 named volume","卷的备份与迁移","bridge / host 网络模式","容器间通过服务名互访"] },
+      { title:"CI/CD 与部署", meta:{time:"持续",out:"自动化交付"}, quote:"容器化的终点是自动化，提交代码就自动构建部署。",
+        items:["GitHub Actions 构建并推送镜像","私有镜像仓库","健康检查与重启策略","日志收集与监控"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "容器是临时的一次性东西，别在里面存数据",
+      "官方镜像优先，别什么基础镜像都自己造",
+      "端口映射冲突时先 docker ps 看谁占了",
+      "镜像标签别只用 latest，版本要写清楚"
+    ],
+    advanced:[
+      "root 用户跑容器有安全风险，加个非 root 用户",
+      "镜像体积直接影响部署速度",
+      "不要用 docker commit 做镜像，要写 Dockerfile",
+      "生产环境用 docker stats 看资源占用"
+    ]
+  },
+  resources:[
+    {t:"Docker 官方文档（中文部分）",d:"命令与概念权威说明"},
+    {t:"B站 Docker 实战教程",d:"从入门到部署"},
+    {t:"《Docker 从入门到实践》",d:"开源中文电子书"},
+    {t:"Play with Docker",d:"在线免费实验环境"}
+  ]
+},
+{
+  id:"figma", icon:"🪄", name:"Figma UI 设计", cat:"设计与创作",
+  intro:"现在最主流的界面设计工具，做网页和小程序原型都靠它，也是设计师和前端沟通的共同语言。",
+  goals:{
+    beginner:[
+      "掌握 Figma 基础操作与组件系统",
+      "能独立还原一个移动端页面",
+      "理解自动布局与约束的原理",
+      "能交付规范的设计稿给开发"
+    ],
+    advanced:[
+      "掌握设计系统与变量令牌",
+      "能完成可交互的高保真原型",
+      "具备多端响应式设计能力",
+      "能协同完成完整产品设计流程"
+    ]
+  },
+  phases:{
+    beginner:[
+      { title:"熟悉工具与画布", meta:{time:"1 周",out:"画出第一个界面"}, quote:"Figma 上手很快，难的是用它的组件和自动布局做规范的设计。",
+        items:["画布、帧、形状工具","钢笔与布尔运算","图层与编组管理","填充、描边、阴影"] },
+      { title:"自动布局与组件", meta:{time:"1-2 周",out:"用组件搭出页面"}, quote:"自动布局是 Figma 的灵魂，学会它页面才能自适应，改一个地方全篇跟着变。",
+        items:["Auto Layout 的 padding 与 gap","主组件与变体 variant","组件属性与实例覆盖","命名规范与结构组织"] },
+      { title:"还原一个设计稿", meta:{time:"1 周",out:"完整的移动端界面"}, quote:"临摹成熟产品的界面是进步最快的方式，顺便学了配色和间距。",
+        items:["找一款 APP 截图临摹","统一圆角、间距、字号","图标与插画的使用","导出切图与标注"] }
+    ],
+    advanced:[
+      { title:"设计系统", meta:{time:"2-4 周",out:"一套可复用规范"}, quote:"设计系统的核心是「变量」，颜色、字号、间距全部用令牌管理。",
+        items:["颜色与字号变量","设计令牌 Design Tokens","栅格与间距系统","多主题（明/暗）切换"] },
+      { title:"交互原型", meta:{time:"1-2 周",out:"可点击的演示"}, quote:"原型能跑起来，需求沟通效率至少翻倍。",
+        items:["智能动画与转场","变量与条件逻辑","多状态组件交互","用原型做可用性测试"] },
+      { title:"协作与交付", meta:{time:"持续",out:"和前端无缝对接"}, quote:"Figma 文件是设计师和开发之间的合同。",
+        items:["Dev Mode 标注与代码导出","与开发的协作评审","设计规范文档化","版本管理与变更记录"] }
+    ]
+  },
+  tips:{
+    beginner:[
+      "插件不是越多越好，常用插件就那几个",
+      "多用自动布局，别手动对齐一堆元素",
+      "命名规范是团队协作的底线，别偷懒",
+      "善用社区里免费的设计系统起步"
+    ],
+    advanced:[
+      "组件嵌套不要超过三层，维护成本会爆炸",
+      "设计令牌一定要和前端变量保持一致",
+      "切图交给开发自己在 Dev Mode 取，别手动导出",
+      "免费版文件有数量限制，重要项目及时归档"
+    ]
+  },
+  resources:[
+    {t:"Figma 官方 Learn Center",d:"官方交互式课程"},
+    {t:"B站 Figma 零基础到进阶",d:"中文实战课"},
+    {t:"Figma Community",d:"免费模板与设计系统"},
+    {t:"《Refactoring UI》",d:"界面设计实用原则"}
+  ]
+},
+
+/* ---------- 新增完成 ---------- */
+];
+
+/* ============ 全局状态 ============ */
+let currentMode = "beginner";   // beginner | advanced
+let currentSubject = null;
+
+const $ = (s)=>document.querySelector(s);
+const resultEl = ()=>$("#result");
+const overviewEl = ()=>$("#overview");
+
+/* ============================================================
+   未内置科目 · 本地规则生成引擎
+   依据科目名推断领域，套用对应模板，产出与内置科目同结构的学习计划。
+   目标：保证任何输入都能立刻拿到一份"听得懂、可执行"的方案。
+============================================================ */
+function generatePlan(name, icon, raw){
+  const field = classifyField(name, raw);
+  const tpl = FIELD_TEMPLATES[field] || FIELD_TEMPLATES.general;
+  const beginnerGoals = tpl.goals.beginner(name);
+  const advancedGoals = tpl.goals.advanced(name);
+  const beginnerPhases = tpl.phases.beginner(name, field);
+  const advancedPhases = tpl.phases.advanced(name, field);
+  const beginnerTips = tpl.tips.beginner(name);
+  const advancedTips = tpl.tips.advanced(name);
+  const resources = tpl.resources(name, field);
+  return {
+    name, icon, field,
+    intro: tpl.intro(name),
+    generated: true,
+    goals:{ beginner:beginnerGoals, advanced:advancedGoals },
+    phases:{ beginner:beginnerPhases, advanced:advancedPhases },
+    tips:{ beginner:beginnerTips, advanced:advancedTips },
+    resources
+  };
+}
+
+/* 按科目名粗分领域，用于选模板 */
+function classifyField(name, raw){
+  const t = (name+" "+raw).toLowerCase();
+  if(/python|java|javascript|前端|后端|编程|代码|开发|程序|c\+\+|go|rust|html|css|vue|react|node|算法|软件|架构/.test(t)) return "programming";
+  if(/英语|english|口语|日语|韩语|法语|德语|外语|西语|俄语|葡语|粤语/.test(t)) return "language";
+  if(/考研|考公|公考|考编|教资|cpa|注会|法考|司考|托福|雅思|gre|gmat|专四|专八|高考|升本|考博/.test(t)) return "exam";
+  if(/ai|智能|大模型|提示词|prompt|深度学习|机器学习|神经网络|自然语言|计算机视觉/.test(t)) return "ai";
+  if(/excel|表格|sql|数据库|数据|分析|报表|可视化|power bi|bi 分析/.test(t)) return "data";
+  if(/剪辑|视频|vlog|直播|导演|后期|特效|动画|播客|配音/.test(t)) return "media";
+  if(/设计|ps|海报|排版|美工|illustrator|ui|ux|原型|figma|品牌|包装/.test(t)) return "design";
+  if(/健身|跑步|瑜伽|游泳|球|运动|体能|增肌|减肥|跳绳|拳击|格斗|骑行/.test(t)) return "fitness";
+  if(/做饭|做菜|烘焙|咖啡|茶|调酒|烹饪|菜谱|西点|甜点/.test(t)) return "cooking";
+  if(/投资|理财|基金|股票|币|省钱|记账|房产|保险|税务/.test(t)) return "finance";
+  if(/琴|吉他|钢琴|架子鼓|唱歌|声乐|作曲|音乐|rap|beat|混音|编曲/.test(t)) return "music";
+  if(/画|素描|油画|水彩|书法|手办|缝纫|编织|木工|园艺|种植|陶艺|刺绣/.test(t)) return "craft";
+  if(/心理|情绪|正念|冥想|疗愈|催眠|认知/.test(t)) return "mind";
+  if(/写作|读书|笔记|历史|哲学|文学|文案|小说|自媒体|运营|短视频运营/.test(t)) return "study";
+  return "general";
+}
+
+/* 通用阶段时长表述 */
+const PERIODS = ["1-2 周","2-3 周","3-4 周","1-2 个月","2-3 个月","3-6 个月","持续进行"];
+
+/* 每个模板用普通函数返回数组，避免模板字符串嵌套陷阱。
+   所有用户可见文案都放在下面这些字符串里，便于统一维护。 */
+const FIELD_TEMPLATES = {
+
+  /* ---------------- 编程技术 ---------------- */
+  programming: {
+    intro: n => `${n} 说白了就是让电脑按你的指令干活。它不难，难的只是"开始"——一旦写出第一行能跑的代码，后面就停不下来了。`,
+    goals: {
+      beginner: n => [
+        `能写出 1 个属于自己的小程序，比如自动处理文件、做个小工具或网页`,
+        `看懂别人写的代码，能在网上找到的示例代码基础上改改动动`,
+        `掌握变量、判断、循环、函数这 4 个"砖头"，能拼出大部分功能`,
+        `学会用搜索引擎和报错信息自己解决 80% 的问题`
+      ],
+      advanced: n => [
+        `能用 ${n} 独立开发完整项目，并部署上线给别人用`,
+        `掌握核心原理与底层机制，能写出高性能、易维护的代码`,
+        `熟练使用框架/生态的主流工具链，参与团队协作开发`,
+        `能阅读源码、定位疑难 bug，并设计可扩展的架构`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"搭环境，跑通第一行代码", meta:{time:"3-5 天",out:"电脑上能写能跑"}, quote:"就像学做饭先得有个灶台，先把工具装好，别在这一步劝退自己。",
+          items:["安装开发工具（编辑器 + 运行环境），选官方推荐的稳定版本","跑通第一个 Hello World，确认环境没问题","认识代码文件长什么样、怎么运行、怎么看报错","写个 10 行的计算器，感受「程序是一步步执行的」"] },
+        { title:"啃下 4 个基础砖头", meta:{time:"2-3 周",out:"能看懂 80% 入门代码"}, quote:"变量、判断、循环、函数，几乎所有程序都是这 4 块的排列组合。",
+          items:["变量与数据类型：数字、文字、真假值，就像给东西贴标签","条件判断 if：让程序学会做选择题","循环 for/while：把重复劳动交给电脑","函数：把常用操作打包，一次写好到处调用"] },
+        { title:"做一个能用的小项目", meta:{time:"3-4 周",out:"第一个作品"}, quote:"学语言最快的方式不是背语法，是做一个「自己真的会用」的东西。",
+          items:["选一个贴近自己需求的小项目（自动整理文件、记账、小游戏、个人主页）","学会查官方文档和搜索引擎","把功能拆成小块，一块一块实现，别一上来想全套","遇到问题先看报错信息，再去搜，搜不到就问人"] },
+        { title:"学一点工程化的基本功", meta:{time:"持续",out:"能维护自己的代码"}, quote:"能跑就行是新手，能改、能加功能、不出乱子才是会写。",
+          items:["用版本管理工具（Git）保存每一次改动，随时能回退","学会调试：打断点、打印变量、一步步定位问题","写点注释和说明，让三个月后的自己还能看懂","把作品放到网上或发给朋友，收获真实反馈"] }
+      ],
+      advanced: n => [
+        { title:"吃透核心原理", meta:{time:"1-2 个月",out:"理解运行机制"}, quote:"进阶的分水岭：从「会调用」到「知道它在底层干了啥」。",
+          items:["内存模型、执行机制、作用域与生命周期","数据结构与算法：数组、链表、哈希、树、图，以及常见算法思想","复杂度分析，能判断代码快不快、省不省内存","读官方规范或源码，验证自己的理解"] },
+        { title:"掌握主流框架/生态", meta:{time:"2-3 个月",out:"能用框架做项目"}, quote:"框架是前人踩坑后总结的「最佳实践」，学它能少走几年弯路。",
+          items:["选一个生态内最主流的框架深入学习","掌握路由、状态管理、组件化等核心概念","熟练使用调试工具、性能分析工具","阅读优秀开源项目的代码结构"] },
+        { title:"工程化与协作", meta:{time:"持续",out:"能参与团队项目"}, quote:"一个人写代码是兴趣，一群人写好代码是职业。",
+          items:["代码规范、静态检查、自动化测试","CI/CD、自动化部署、监控告警","代码评审、协作流程、文档沉淀","模块化设计、接口设计、版本兼容"] },
+        { title:"架构与深度实践", meta:{time:"持续",out:"能主导项目"}, quote:"从「把功能做出来」到「把系统做稳、做快、做久」。",
+          items:["高并发、高可用、分布式基础","性能优化与容量规划","安全、可观测性与故障排查","沉淀方法论，输出技术博客或分享"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `别在「选哪个工具/版本」上纠结一周，随便选一个先跑起来`,
+        `别从头到尾看完一本厚厚的书再动手，边做边查才是正道`,
+        `复制代码可以，但一定要逐行搞懂它为什么能跑`,
+        `每天写哪怕 20 分钟，比周末突击 8 小时有效得多`
+      ],
+      advanced: n => [
+        `别陷入「框架焦虑」，底层原理比框架寿命长`,
+        `定期重读自己半年前的代码，能明显感到成长`,
+        `给开源项目提一个 PR，比看十篇文章提升都大`,
+        `关注性能与安全，这是拉开差距的地方`
+      ]
+    },
+    resources: n => [
+      {t:"官方文档 / 官方教程",d:"第一手资料，遇到疑问优先查这里，最权威也最不过时"},
+      {t:"B 站免费入门课",d:`搜「${n} 零基础」，跟完一个完整系列就够起步`},
+      {t:"菜鸟教程 / W3School",d:"语法速查与在线运行，适合边查边写"},
+      {t:"GitHub 优秀开源项目",d:`搜「awesome ${n}」找精选清单，学别人怎么组织代码`}
+    ]
+  },
+
+  /* ---------------- 语言学习 ---------------- */
+  language: {
+    intro: n => `学语言唯一的捷径就是「高频接触 + 敢开口」。别等准备好了再说，蹩脚地说也是说。`,
+    goals: {
+      beginner: n => [
+        `能进行日常简单对话：打招呼、点餐、问路、自我介绍`,
+        `看懂简单的文章、歌词、短视频字幕`,
+        `掌握 1000-1500 个高频词和基础语法`,
+        `敢开口，不怕说错，能用简单句表达基本意思`
+      ],
+      advanced: n => [
+        `能无障碍进行工作/学术场景的深度交流`,
+        `能听懂无字幕的原声影视、播客、讲座`,
+        `能写出逻辑清晰、表达地道的文章或报告`,
+        `达到对应语言等级考试的高级/母语水平`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"搞定发音和基础问候", meta:{time:"1-2 周",out:"敢开口"}, quote:"先解决「嘴」的问题，发音入门了后面听和说都顺。",
+          items:["学会字母/假名/拼音与基本发音规则","掌握打招呼、自我介绍、道谢、道歉等高频句","影子跟读：听一句跟读一句，模仿语音语调","下载一个语言学习 App，每天打卡 15 分钟"] },
+        { title:"高频词 + 核心语法", meta:{time:"4-6 周",out:"看懂简单内容"}, quote:"先把 1000 个最常用的词和 10 来条核心语法拿下，就能看懂大部分日常内容。",
+          items:["用 App 或词书按频率背高频词，重复 > 数量","学陈述句、疑问句、否定句等基本句型","看带双语字幕的短视频，先中后外再无字幕","把新词放到句子里记，别孤立背单词"] },
+        { title:"开始输入型学习", meta:{time:"2-3 个月",out:"能读能听"}, quote:"学语言像泡澡，泡得越久越自然。看感兴趣的才是坚持下来的关键。",
+          items:["找感兴趣的入门读物、漫画、儿童节目","听播客/歌曲，先泛听再精听","用目标语言刷社交平台，沉浸式接触","做「可理解输入」：材料难度比你当前水平高一丁点"] },
+        { title:"开口输出", meta:{time:"持续",out:"能简单对话"}, quote:"输出是最快的进步方式，说错了有人纠正才是赚到。",
+          items:["找语伴或线上外教，每周至少聊 1-2 次","自言自语：描述你正在做的事","写每日简短日记，哪怕 3 句话","录下自己的朗读，对比原声找差距"] }
+      ],
+      advanced: n => [
+        { title:"系统化语法与词汇升级", meta:{time:"2-3 个月",out:"表达更精准"}, quote:"进阶差距在细节：时态、语体、搭配，决定你听起来像不像母语者。",
+          items:["系统梳理语法体系，查漏补缺","学习词根词缀，扩展主动词汇量","辨析近义词、固定搭配与惯用表达","学习不同场合的语体与礼貌表达"] },
+        { title:"大量高质量输入", meta:{time:"持续",out:"听懂地道表达"}, quote:"输入量决定水平上限，看原声就是最好的老师。",
+          items:["无字幕看影视剧、脱口秀、纪录片","听新闻、播客、学术讲座","阅读原版小说、报刊、专业文献","做精听精读，摘录地道表达"] },
+        { title:"深度输出训练", meta:{time:"持续",out:"能写能讲"}, quote:"从「能表达」到「表达得好」，需要刻意练习。",
+          items:["写长文、读后感、观点文","做即兴演讲或主题分享","参加辩论、读书会等语言活动","找母语者批改写作与口语"] },
+        { title:"文化思维融合", meta:{time:"持续",out:"接近母语思维"}, quote:"语言背后是思维方式，理解文化才能真正地道。",
+          items:["了解目标语言的文化、历史、社会背景","学习俚语、笑话、潜台词","用目标语言思考与做笔记","设定长期沉浸环境（交换、留学、远程工作）"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `别追求完美发音再开口，先「能沟通」比「说得标准」重要`,
+        `背单词不如多读多听，语境里记住的词才用得上`,
+        `别天天换教材，一套跟到底胜过十套学开头`,
+        `允许自己犯错，说错被纠正一次比背十遍都牢`
+      ],
+      advanced: n => [
+        `瓶颈期是正常的，保持输入量别停`,
+        `别只看不用，输出能打破停滞`,
+        `换个场景（工作/学术/社交）使用能突破天花板`,
+        `远离逐词翻译，培养直接用目标语言思考的习惯`
+      ]
+    },
+    resources: n => [
+      {t:"多邻国 / 每日外语",d:"免费碎片化入门，养成每天接触的习惯"},
+      {t:"B 站 / YouTube 入门课",d:`搜「${n} 零基础」，挑一个完整系列跟完`},
+      {t:"HelloTalk / Tandem",d:"找语伴互相学习，免费练习真实对话"},
+      {t:"播客 / 影视原声",d:"无字幕沉浸式输入，练听力的最佳材料"}
+    ]
+  },
+
+  /* ---------------- 学科考试 ---------------- */
+  exam: {
+    intro: n => `考试这事拼的不是智商，是「正确的方法 × 坚持的时间」。把大纲拆碎，按节奏推进，通过率会高得离谱。`,
+    goals: {
+      beginner: n => [
+        `理清考试大纲与题型，知道到底要考什么、考多难`,
+        `建立稳定的每日学习节奏，不再三天打鱼两天晒网`,
+        `把薄弱科目/章节从「完全不会」补到「基本能做对」`,
+        `完成至少 2 套真题模拟，摸清自己的真实水平`
+      ],
+      advanced: n => [
+        `掌握全部考点并达到稳定高分水平`,
+        `形成高效的解题方法与答题模板`,
+        `能在规定时间内稳定发挥，减少失误`,
+        `具备冲刺阶段的精准提分策略`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"拆解大纲，定目标", meta:{time:"3-5 天",out:"心里有张地图"}, quote:"先看清路再出发，知道考什么、几分、什么题型，才能不瞎忙。",
+          items:["下载最新官方考试大纲与真题样卷","统计各科分值与题型分布","做一次摸底测试，找出薄弱环节","定一个具体的目标分数和倒计时计划"] },
+        { title:"基础轮：地毯式扫盲", meta:{time:"总时长 50%",out:"基础不漏"}, quote:"第一轮不求快，求全。基础扎实了后面提速是飞快的。",
+          items:["按章节/模块系统过一遍基础知识点","每学完一节做对应练习题，及时巩固","整理错题本，记录错因和正确思路","每天固定时段学习，形成生物钟"] },
+        { title:"强化轮：题型突破", meta:{time:"总时长 30%",out:"题型熟练"}, quote:"从「懂知识点」到「会做题」，中间差的就是大量针对性练习。",
+          items:["按题型分类刷题，总结解题套路","专项突破自己的薄弱模块","限时训练，练出考试节奏","定期复盘错题，同类不再错第二遍"] },
+        { title:"冲刺轮：模考与调整", meta:{time:"考前 4-6 周",out:"稳定发挥"}, quote:"最后阶段比的不是多学，是稳住状态、少犯错。",
+          items:["每周至少 1 套完整真题模拟","严格按考试时间，训练答题策略","查漏补缺，只看高频错题与核心公式","调整作息，保证考前精神状态"] }
+      ],
+      advanced: n => [
+        { title:"精准诊断与提分规划", meta:{time:"1 周",out:"明确短板"}, quote:"进阶的关键是「把有限时间花在最能涨分的地方」。",
+          items:["用真题做分模块诊断，找出分差最大的板块","制定分模块的提分目标","研究高分答题标准与评分细则","优化时间分配策略"] },
+        { title:"重难点攻坚", meta:{time:"4-6 周",out:"突破瓶颈"}, quote:"提分最快的地方，往往是你一直回避的难点。",
+          items:["专攻高频难点与压轴题型","学习高效解题技巧与快速验算","建立题型模板与速查清单","做高质量模拟题与变形题"] },
+        { title:"全真模考与稳定化", meta:{time:"持续",out:"稳定高分"}, quote:"从「会做」到「稳定做对」，靠的是反复全真演练。",
+          items:["高频次全真模考，记录每次成绩曲线","训练考试心理与应变能力","打磨答题顺序与取舍策略","用错题大数据指导最后复习"] },
+        { title:"临考状态优化", meta:{time:"考前 2 周",out:"最佳状态"}, quote:"临门一脚拼状态，别在最后疯狂加新知识。",
+          items:["回归基础，温习核心考点","保持适量练习，手不生","调整作息与饮食，保证睡眠","准备考场策略与应急预案"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `别买一堆资料，一套教材 + 真题就够`,
+        `错题本比多刷题重要一百倍，务必坚持`,
+        `别只学擅长的科目，弱科提分更快`,
+        `坚持比突击有效，每天 2 小时胜过周末 10 小时`
+      ],
+      advanced: n => [
+        `别把时间平均分配，优先攻提分空间最大的板块`,
+        `真题是最好的资料，反复研究出题思路`,
+        `别在考前加新内容，稳住比突破重要`,
+        `模拟考分数波动别慌，关注错因而非分数`
+      ]
+    },
+    resources: n => [
+      {t:"官方大纲 + 历年真题",d:"最权威、最直接的资料，所有复习围绕真题展开"},
+      {t:"B 站免费课程",d:`搜「${n} 备考」，找口碑好的完整系统课`},
+      {t:"Anki / 墨墨",d:"用间隔重复高效背单词、公式、知识点"},
+      {t:"考友交流群 / 经验帖",d:"吸收上岸者的时间规划与避坑经验"}
+    ]
+  },
+
+  /* ---------------- AI / 提示词 ---------------- */
+  ai: {
+    intro: n => `用好 AI 的本质是「会提问 + 会判断」。工具会不断换代，但这两种能力能让你永远领先。`,
+    goals: {
+      beginner: n => [
+        `掌握提示词的基本结构，让 AI 的回答质量明显提升`,
+        `能用 AI 帮你写文案、做总结、改稿、答疑`,
+        `学会判断 AI 回答的对错，不被它一本正经地胡说带偏`,
+        `建立自己的提示词模板库，常用场景一键复用`
+      ],
+      advanced: n => [
+        `掌握高阶提示技术（思维链、角色扮演、自洽性校验等）`,
+        `能设计多智能体协作或自动化工作流`,
+        `理解主流模型的能力边界与选型策略`,
+        `能把 AI 能力嵌入实际业务，形成可复用的解决方案`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"从「会问」开始", meta:{time:"3-5 天",out:"能问出好结果"}, quote:"同样的问题，换个问法结果天差地别，这就是提示词的价值。",
+          items:["学会【角色+任务+要求+格式】四要素结构","掌握「给例子」这一招，效果立竿见影","用「分步思考」让复杂问题算得更准","多试几个主流工具，找到顺手的"] },
+        { title:"场景化模板实战", meta:{time:"2-3 周",out:"一套自己的模板"}, quote:"把常用场景的提问方式存下来，就是你的效率外挂。",
+          items:["写作类：润色、改写、仿写、大纲","工作类：总结、翻译、邮件、PPT 文案","学习类：讲解、出题、答疑、做计划","给每个场景写一份可复用的提示词模板"] },
+        { title:"学会判断与纠错", meta:{time:"2-3 周",out:"不被带偏"}, quote:"AI 会一本正经地胡说，你的判断力才是最后一道防线。",
+          items:["学会追问和让 AI 自我检查","交叉验证关键信息，不盲信输出","处理 AI 的「幻觉」：让它给出来源和依据","识别什么任务适合交给 AI、什么不适合"] },
+        { title:"形成工作流", meta:{time:"持续",out:"效率飞升"}, quote:"单个提问是技巧，串成流程才是生产力。",
+          items:["把提示词模板整理成自己的知识库","用 AI 做「半成品」，你来把关和润色","探索能调用外部工具/联网的进阶功能","在生活和工作中持续寻找可 AI 化的环节"] }
+      ],
+      advanced: n => [
+        { title:"进阶提示工程技术", meta:{time:"2-3 周",out:"掌控输出质量"}, quote:"从「碰运气式提问」到「可控地拿到想要的结果」。",
+          items:["思维链 CoT、自洽性校验、自我一致性","少样本/零样本、角色链、结构化输出","长文规划、递归分解复杂任务","提示词的评估与迭代优化方法"] },
+        { title:"多智能体与工作流设计", meta:{time:"1-2 个月",out:"自动化流程"}, quote:"一个 AI 打辅助，多个 AI 分工协作能处理复杂任务。",
+          items:["设计多角色分工的智能体协作流程","掌握工作流编排与条件分支","接入外部工具、检索增强（RAG）","构建可复用的自动化模板"] },
+        { title:"模型选型与微调", meta:{time:"持续",out:"知其所以然"}, quote:"知道每个模型擅长什么，才能把好钢用在刀刃上。",
+          items:["对比主流模型的能力边界与成本","了解提示词之外：微调、蒸馏、RAG","学会评估模型在特定任务上的表现","关注行业动态与新工具迭代"] },
+        { title:"落地业务解决方案", meta:{time:"持续",out:"形成价值"}, quote:"把能力变成产品/流程，才是真正的进阶。",
+          items:["把 AI 能力嵌入现有业务场景","设计人机协作的边界与审核机制","量化 AI 带来的效率与成本收益","沉淀方法论并对外分享/商业化"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `提示词不是越长越好，结构清晰、要求具体最关键`,
+        `AI 胡说很正常，关键是你要有核实的习惯`,
+        `别把它当万能工具，简单任务直接做更快`,
+        `好用的提问模板一定要存下来，别每次都重写`
+      ],
+      advanced: n => [
+        `别迷信单一模型，不同任务换不同模型效率更高`,
+        `先设计评估标准，再谈优化提示词`,
+        `关注安全与隐私，敏感数据别乱喂`,
+        `把 AI 当「能力放大器」而非替代思考`
+      ]
+    },
+    resources: n => [
+      {t:"各大模型官方使用指南",d:"一手了解模型能力边界与最佳实践"},
+      {t:"Prompt 分享社区",d:"学习优质提示词的结构和思路"},
+      {t:"B 站 / 公众号实战教程",d:`搜「${n} 实战」，看真实场景怎么用`},
+      {t:"AI 工具导航站",d:"持续发现新工具，保持信息敏感度"}
+    ]
+  },
+
+  /* ---------------- 数据相关 ---------------- */
+  data: {
+    intro: n => `数据这东西，说白了就是「从一堆数字里找到能帮你做决定的信息」。工具只是手段，思维才是核心。`,
+    goals: {
+      beginner: n => [
+        `能独立用工具完成一份像样的分析报告`,
+        `掌握数据清洗与基础统计，能处理常见的脏数据`,
+        `会做清晰的图表，让不懂数据的人也能一眼看懂`,
+        `能用数据回答一个具体业务问题`
+      ],
+      advanced: n => [
+        `掌握 SQL/编程做复杂数据处理的完整技能链`,
+        `能独立完成从取数、清洗、建模到可视化的全流程`,
+        `理解常用统计与机器学习方法并会选型`,
+        `能设计指标体系，用数据驱动业务决策`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"认识你的工具", meta:{time:"1 周",out:"能上手"}, quote:"先别挑工具，Excel 就能解决 80% 的日常需求。",
+          items:["熟悉工具的基本操作与常用函数","学会导入、整理、去重、筛选数据","掌握排序、分类汇总、数据透视","跟着一个完整案例做一遍"] },
+        { title:"数据清洗基本功", meta:{time:"2-3 周",out:"数据干净可用"}, quote:"真实数据都是脏的，清洗往往占了 80% 的时间，但这是绕不过的一步。",
+          items:["处理空值、重复值、异常值","统一格式与单位，做字段拆分合并","学会用函数或公式批量处理","养成操作前先备份原始数据的习惯"] },
+        { title:"分析 + 可视化", meta:{time:"3-4 周",out:"能出报告"}, quote:"分析的价值在于「得出结论」，画图是为了让人 3 秒看懂。",
+          items:["掌握描述性统计：均值、中位数、分布","学几种常用图表及适用场景","做一个完整的分析小项目","学会用一页纸讲清楚一个结论"] },
+        { title:"用数据回答一个问题", meta:{time:"持续",out:"形成闭环"}, quote:"从「会做表」到「会分析」，差的就是一个真实问题。",
+          items:["找一个你关心的具体问题","从取数、清洗到结论走完闭环","输出一份带结论和建议的报告","收集反馈并迭代分析方法"] }
+      ],
+      advanced: n => [
+        { title:"编程取数与自动化", meta:{time:"1-2 个月",out:"摆脱手工"}, quote:"进阶的分水岭是从「手动点」到「写代码自动跑」。",
+          items:["掌握 SQL 或一门数据处理语言","学会自动化清洗与批处理","理解数据库基本结构与查询优化","建立可复用的分析代码模板"] },
+        { title:"统计与建模方法", meta:{time:"2-3 个月",out:"方法体系化"}, quote:"从「看趋势」到「做推断」，需要扎实的统计功底。",
+          items:["掌握假设检验、置信区间等推断统计","学习回归、分类、聚类等常用方法","理解每种方法的适用条件与局限","学会评估模型好坏，避免过拟合"] },
+        { title:"全流程项目实战", meta:{time:"持续",out:"独立交付"}, quote:"能独立完成从问题定义到结论落地的全过程，才算真会。",
+          items:["完整参与一个业务分析项目","设计指标体系与数据看板","用 A/B 测试验证假设","沉淀分析框架与模板"] },
+        { title:"业务驱动决策", meta:{time:"持续",out:"影响决策"}, quote:"数据分析的终点不是报表，是影响业务决策。",
+          items:["把数据结论翻译成业务语言","建立数据驱动的文化与机制","持续监控核心指标与异常","从分析师成长为数据产品/策略角色"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `别急着学 Python，Excel 用好已经能干很多事`,
+        `图表不是越花哨越好，一图一结论最清晰`,
+        `永远先问「我要回答什么问题」，再动手取数`,
+        `脏数据别直接改原始文件，先备份`
+      ],
+      advanced: n => [
+        `别沉迷工具，业务理解比技术更稀缺`,
+        `警惕「相关不等于因果」，结论要说清前提`,
+        `把重复工作脚本化，把时间留给思考`,
+        `指标体系设计是进阶高手的标志`
+      ]
+    },
+    resources: n => [
+      {t:"工具官方帮助文档",d:"最权威的函数与操作说明"},
+      {t:"B 站免费数据分析课",d:`搜「${n} 入门」，跟完一个完整案例`},
+      {t:"Kaggle 入门数据集",d:"用真实数据集练手，从小项目开始"},
+      {t:"数据类公众号 / 知乎",d:"学分析思路和业务解读视角"}
+    ]
+  },
+
+  /* ---------------- 影音制作 ---------------- */
+  media: {
+    intro: n => `这类技能最大的误区是「看完教程就会了」。真相是：教程只负责教按钮在哪，手感只能靠反复剪。`,
+    goals: {
+      beginner: n => [
+        `独立完成一条完整、能看的成片`,
+        `掌握软件的核心操作与常用快捷键`,
+        `理解镜头语言与节奏，知道好视频/好照片「好在哪」`,
+        `建立自己的素材整理与工作流程`
+      ],
+      advanced: n => [
+        `形成鲜明的个人风格与稳定的内容产出`,
+        `掌握调色、特效、声音设计等专业技法`,
+        `能独立完成商业级项目并接单/变现`,
+        `具备系统的创作方法论与团队协作能力`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"熟悉工具与基本流程", meta:{time:"1 周",out:"软件不卡手"}, quote:"先搞清从头到尾的完整流程，别一上来就钻研特效。",
+          items:["安装软件，认识界面和核心面板","完成一个最简单的完整流程（导入→处理→导出）","掌握导入、裁剪、拼接、导出等基础操作","记住最常用的 10 个快捷键，效率翻倍"] },
+        { title:"模仿一个喜欢的成品", meta:{time:"2-3 周",out:"第一个作品"}, quote:"最好的入门方式是像素级复刻一个你喜欢的作品。",
+          items:["找一个你喜欢的简单作品当范本","拆解它的结构和节奏","一步步复刻，遇到不会的就搜教程","复刻完对比原作，找出差距"] },
+        { title:"做原创小作品", meta:{time:"3-4 周",out:"能拿得出手"}, quote:"模仿是学，原创才是会。逼自己做一个「为自己而做」的作品。",
+          items:["定一个具体的小主题（vlog、教程、短片）","拍/收集素材，注意光线和收音","完成剪辑、配乐、字幕等全流程","发布出去，收集真实反馈"] },
+        { title:"建立工作流与习惯", meta:{time:"持续",out:"稳定产出"}, quote:"能稳定产出，比偶尔出爆款更重要。",
+          items:["建立素材命名与文件夹管理习惯","做常用模板（片头、转场、字幕样式）","坚持每周出 1 个小作品","复盘每次创作，记录踩过的坑"] }
+      ],
+      advanced: n => [
+        { title:"专业技法深耕", meta:{time:"1-2 个月",out:"画质/听感质变"}, quote:"进阶的分水岭在专业技法：调色、声音、特效的质感。",
+          items:["系统学习调色/后期理论与实操","掌握声音设计、混音、降噪","学习进阶特效与合成","研究画面构图与镜头语言"] },
+        { title:"形成个人风格", meta:{time:"持续",out:"一眼认出你"}, quote:"技术大家都差不多，风格才是你不可替代的部分。",
+          items:["大量观摩并分析优秀作品","总结自己擅长的题材与视觉语言","在色彩、节奏、叙事上做个人化处理","形成可复用的风格模板"] },
+        { title:"商业项目与变现", meta:{time:"持续",out:"能接活"}, quote:"从兴趣到职业，需要学会沟通需求、交付与报价。",
+          items:["尝试接单或参与商业项目","学习需求沟通与提案能力","掌握项目管理与交付流程","建立作品集与个人品牌"] },
+        { title:"系统化创作与协作", meta:{time:"持续",out:"能带队"}, quote:"从个人创作者到团队核心，靠的是方法论与协作。",
+          items:["建立标准化的创作 SOP","学习团队协作与分工","探索多渠道分发与运营","持续学习新技术与新工具"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `别追求一步到位，先完成再完美`,
+        `收音比画面更容易毁掉作品，务必重视`,
+        `别收藏一堆教程却不动手，看完立刻做`,
+        `素材一定要及时备份和整理`
+      ],
+      advanced: n => [
+        `别被工具绑架，技术服务于表达`,
+        `定期复盘自己的旧作品，进步会很明显`,
+        `风格不是刻意炫技，是自然流露`,
+        `商业化要量力而行，别透支创作热情`
+      ]
+    },
+    resources: n => [
+      {t:"软件官方教程 / 帮助",d:"系统学习功能与最佳实践"},
+      {t:"B 站免费入门到进阶课",d:`搜「${n} 教程」，跟完一个完整系列`},
+      {t:"优秀作品观摩",d:"分析你喜欢的创作者，拆解他们的手法"},
+      {t:"素材/音效网站",d:"积累正版素材，提升作品质感"}
+    ]
+  },
+
+  /* ---------------- 健身 ---------------- */
+  fitness: {
+    intro: n => `健身最难的从来不是动作，而是「持续」。先找到一个你能坚持下去的节奏，效果自然会来。`,
+    goals: {
+      beginner: n => [
+        `建立每周 3 次左右的稳定训练习惯`,
+        `掌握几个核心动作的标准姿势，不受伤`,
+        `体能与体态有明显改善`,
+        `学会自己安排一周的训练计划`
+      ],
+      advanced: n => [
+        `突破平台期，达到阶段性力量/体能目标`,
+        `掌握细分肌群与专项训练体系`,
+        `能为自己或他人设计周期化训练方案`,
+        `形成稳定的生活方式与可持续习惯`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"准备工作与评估", meta:{time:"3 天",out:"有备无患"}, quote:"先搞清自己身体什么状态，再决定练什么、练多少。",
+          items:["了解基本健康情况，有基础病先问医生","明确目标：减脂 / 增肌 / 体能 / 体态","准备合适的装备（鞋、服装、垫子）","学习训练前后热身与拉伸的基本动作"] },
+        { title:"学会核心动作", meta:{time:"2-3 周",out:"动作标准"}, quote:"动作不标准练了也白练，甚至练伤。前几周宁轻勿重。",
+          items:["学习深蹲、俯卧撑、划船、硬拉等基础动作","对着镜子或录视频自查姿势","宁可轻重量多次数，也不要硬上大重量","每次训练做好记录（重量、次数）"] },
+        { title:"建立训练节奏", meta:{time:"4-6 周",out:"习惯成型"}, quote:"习惯一旦成型，健身就不再需要意志力，变成生活的一部分。",
+          items:["固定每周 3 次训练时间，写进日程","设计上下肢或推拉腿的分化计划","逐步增加强度，遵循渐进超负荷","保证睡眠和饮食，恢复也是训练的一部分"] },
+        { title:"形成可持续方案", meta:{time:"持续",out:"长期主义"}, quote:"能坚持一年的人，效果远超练三个月放弃的人。",
+          items:["每 4-6 周调整一次计划避免平台期","学会根据状态调整强度，别硬撑","找到训练搭子或社群互相督促","把健身融入生活方式，而非短期冲刺"] }
+      ],
+      advanced: n => [
+        { title:"设定周期化目标", meta:{time:"1 周",out:"目标清晰"}, quote:"进阶的关键是「有计划的进阶」，而非天天练到累。",
+          items:["设定力量/体能的阶段性目标","学习周期化训练（准备期/强化期/峰值期）","做身体成分与体能基线测试","制定 12 周以上的训练周期"] },
+        { title:"专项技术突破", meta:{time:"4-6 周",out:"突破瓶颈"}, quote:"从「练得多」到「练得对」，需要对动作细节的极致打磨。",
+          items:["请教练或录视频精细纠正动作","学习进阶变式与专项技术","研究呼吸、发力、节奏的优化","针对薄弱部位做专项强化"] },
+        { title:"营养与恢复管理", meta:{time:"持续",out:"系统化管理"}, quote:"进阶圈有句话：训练是刺激，饮食和恢复才是生长。",
+          items:["计算并调整热量与宏量营养素","重视蛋白质摄入与补剂选择","优化睡眠、按摩、放松与心理压力","监控身体信号，避免过度训练"] },
+        { title:"个性化方案设计", meta:{time:"持续",out:"能帮别人"}, quote:"能给别人讲清楚原理，说明你真懂了。",
+          items:["学习不同人群的训练方案设计","掌握伤病预防与康复训练","尝试带练或分享经验","持续学习最新训练科学"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `别一上来就上大重量，姿势比重量重要一百倍`,
+        `练前热身、练后拉伸，能省掉大半伤病`,
+        `吃和睡比练更影响结果，别忽视`,
+        `坚持比强度重要，能练一年胜过猛练三个月`
+      ],
+      advanced: n => [
+        `别陷入「越多越好」，恢复不足会反噬`,
+        `定期测体能，用数据而非感觉调整计划`,
+        `平台期是正常的，换周期或换动作能突破`,
+        `别迷信补剂，基础营养到位才是王道`
+      ]
+    },
+    resources: n => [
+      {t:"Keep / 健身 App",d:"免费跟练课程，适合零基础起步"},
+      {t:"B 站动作教学",d:`搜「${n} 入门」，跟标准动作示范练习`},
+      {t:"运动博主 / 教练",d:"学动作细节与训练逻辑"},
+      {t:"训练记录 App",d:"记录每次训练，看到自己的进步曲线"}
+    ]
+  },
+
+  /* ---------------- 生活技能（做饭等） ---------------- */
+  cooking: {
+    intro: n => `做饭这事，最大的障碍不是手艺，是「觉得难」。先从几道能让你有成就感的菜开始，慢慢就上瘾了。`,
+    goals: {
+      beginner: n => [
+        `独立完成几道拿手菜，能请朋友来吃`,
+        `认识常用食材、调料和基本刀工`,
+        `掌握炒、煮、蒸、烤等基础烹饪方法`,
+        `能看懂菜谱并灵活调整，不照本宣科`
+      ],
+      advanced: n => [
+        `形成自己的拿手菜系与风味体系`,
+        `掌握火候、调味、摆盘的精细化控制`,
+        `能独立设计宴客菜单并完成一桌菜`,
+        `具备食材搭配、成本控制与创意研发能力`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"厨房安全与基础", meta:{time:"1 周",out:"不慌不忙"}, quote:"先认识你的厨房：刀怎么拿、火怎么开、哪些东西不能一起放。",
+          items:["认识常用厨具与刀具，学会安全用刀","分清油盐酱醋等基本调料的作用","掌握切菜、洗菜、焯水等基础操作","学会热锅冷油、控制火候等保命技巧"] },
+        { title:"跟着菜谱做 3 道菜", meta:{time:"2-3 周",out:"三道拿手菜"}, quote:"从最简单的开始，成功几次后信心就来了。",
+          items:["选 3 道评价高、步骤少的入门菜","严格按菜谱走完第一次","记录每道菜的成败细节","请家人朋友试吃，收集真实反馈"] },
+        { title:"理解烹饪逻辑", meta:{time:"3-4 周",out:"能灵活调整"}, quote:"看懂原理就能脱离菜谱。火候、时间、调味是三要素。",
+          items:["理解炒、煮、蒸、烤、煎的适用场景","学会尝味与调味的基本比例","了解食材的预处理与搭配原则","尝试在同一道菜上做小改动"] },
+        { title:"建立自己的菜单", meta:{time:"持续",out:"想吃就做"}, quote:"有自己的几道招牌菜，做饭就不再是为了完成任务。",
+          items:["整理出 10 道你常做爱做的菜","学会提前备菜，节省工作日时间","尝试做一桌完整的饭（主食+菜+汤）","探索自己喜欢的菜系与风味"] }
+      ],
+      advanced: n => [
+        { title:"技法精细化", meta:{time:"1-2 个月",out:"口味稳定"}, quote:"进阶的分水岭在细节：火候的秒数、调味的克数。",
+          items:["系统学习刀工与火候控制","掌握勾芡、收汁、调味层次","学习不同菜系的经典技法","用秤和计时器量化关键步骤"] },
+        { title:"风味体系搭建", meta:{time:"持续",out:"有个人风格"}, quote:"从「按菜谱做」到「按风味做」，是质的飞跃。",
+          items:["理解香料与调料的搭配逻辑","学习复合调味（酱汁、腌料、蘸料）","研究食材的产地、季节与品质","形成自己擅长的菜系与招牌菜"] },
+        { title:"宴客与菜单设计", meta:{time:"持续",out:"能招待一桌人"}, quote:"能从容搞定一桌不重复的菜，才算真正的「会做饭」。",
+          items:["学习菜单的时间规划与动线设计","掌握多菜同时出锅的节奏","研究摆盘与色彩搭配","尝试不同场景的主题宴（家常/节庆/朋友聚会）"] },
+        { title:"创意研发与沉淀", meta:{time:"持续",out:"能研发新菜"}, quote:"能改造和创新，说明你真正理解了烹饪原理。",
+          items:["尝试改良或研发原创菜品","研究食材成本控制与季节菜单","记录配方与心得，形成自己的菜谱库","通过社交平台或分享传播经验"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `别一上来挑战复杂菜，从煎蛋炒饭开始也不丢人`,
+        `火候宁小勿大，糊了就前功尽弃`,
+        `备料一定要在开火前完成（mise en place）`,
+        `第一次别创新，先老老实实按菜谱走`
+      ],
+      advanced: n => [
+        `别只追求好看，味道和温度才是第一位的`,
+        `多做笔记，同一道菜每次微调并记录`,
+        `别囤太多食材，新鲜度决定菜品上限`,
+        `可以学一点营养搭配，让菜更健康`
+      ]
+    },
+    resources: n => [
+      {t:"下厨房 / 小红书菜谱",d:"海量图文菜谱，新手跟着做成功率很高"},
+      {t:"B 站美食博主",d:`搜「${n} 入门」，看完整操作过程`},
+      {t:"美食纪录片",d:"培养对食材和风味的敏感度"},
+      {t:"本地菜市场",d:"多和摊主聊，能学到最实用的挑选技巧"}
+    ]
+  },
+
+  /* ---------------- 通用 / 兜底 ---------------- */
+  general: {
+    intro: n => `任何技能都能拆成「入门 → 熟练 → 精通」几步走。这份通用路线图会带你从零开始，一步步把「${n}」学出个样子来。`,
+    goals: {
+      beginner: n => [
+        `搞清楚「${n}」到底是什么、能用来做什么`,
+        `掌握最核心的基础概念和工具，能独立完成一个小成果`,
+        `建立稳定的学习节奏，不再三分钟热度`,
+        `找到这个领域里值得长期跟随的优质信息源`
+      ],
+      advanced: n => [
+        `在「${n}」上形成体系化的知识与方法论`,
+        `能独立完成有难度的项目或产出高质量作品`,
+        `能在社区/圈子里被认可为「懂行的人」`,
+        `具备指导新手或商业化的能力`
+      ]
+    },
+    phases: {
+      beginner: n => [
+        { title:"搞懂它到底是什么", meta:{time:"3-5 天",out:"心中有数"}, quote:"入门最怕一上来就钻细节。先花点时间了解全貌，知道要学什么、能做什么。",
+          items:[`用大白话给自己解释一遍「${n}」是啥、解决什么问题`,"看看这个领域已经做到了什么程度、有哪些成熟案例","找 3 个入门级的免费教程或课程","定一个具体、可衡量的小目标（比如做出一个什么东西）"] },
+        { title:"掌握核心基本功", meta:{time:"3-4 周",out:"基础扎实"}, quote:"任何技能都有那么几个「绕不过去」的基础，先花时间把它们吃透。",
+          items:["列出这个领域最核心的 5-10 个概念/操作","逐个击破，每个都动手练到会","找一份系统的免费教程完整跟一遍","把不懂的地方记下来，逐个解决"] },
+        { title:"做一个能拿得出手的小成果", meta:{time:"3-4 周",out:"第一个作品"}, quote:"学东西最快的方式，就是逼自己做一个「真实的东西」出来。",
+          items:[`围绕你定的小目标，做一个完整的作品/项目`,"遇到不会的就去搜、去问，边做边查","做完后复盘：哪里卡住了、下次怎么改进","把它展示给别人看，收获真实反馈"] },
+        { title:"建立节奏与信息源", meta:{time:"持续",out:"长期坚持"}, quote:"能坚持下来的人，最后都学成了。坚持靠的是节奏和信息源。",
+          items:["固定每天/每周的学习时间，写进日程","关注几个优质博主、社群或论坛","坚持输出：写笔记、发作品、做分享","定期回顾自己的进步，给自己正向反馈"] }
+      ],
+      advanced: n => [
+        { title:"系统构建知识体系", meta:{time:"1-2 个月",out:"融会贯通"}, quote:"从「会用」到「懂原理」，是进阶的分水岭。",
+          items:[`梳理「${n}」的知识框架与核心原理`,"读经典书籍或高质量系统课程","研究优秀案例背后的方法与思路","把零散知识整理成自己的笔记体系"] },
+        { title:"攻克难点与项目实战", meta:{time:"2-3 个月",out:"独立完成"}, quote:"挑最难的部分啃下来，你的水平会上一个台阶。",
+          items:["列出自己的薄弱点，逐个专项突破","独立完成一个有难度、有完整度的项目","尝试不同方法与工具，比较优劣","复盘每个项目，沉淀方法论"] },
+        { title:"输出与建立影响力", meta:{time:"持续",out:"被认可"}, quote:"能教别人的时候，说明你真懂了；被认可会反过来推动你进步。",
+          items:["写教程、做分享、回答新手问题","在社群/平台持续输出作品","参与圈子活动，结识同好","接受反馈并持续迭代自己的认知"] },
+        { title:"深耕与商业化/专业化", meta:{time:"持续",out:"形成价值"}, quote:"把爱好变成专业或收入，是长期主义最好的回报。",
+          items:["选定细分方向持续深耕","探索变现或职业化路径","建立个人品牌与作品集","持续学习，保持对领域变化的敏感度"] }
+      ]
+    },
+    tips: {
+      beginner: n => [
+        `别追求一次学全，先「会用」比「全懂」重要`,
+        `遇到难点卡住很正常，跳过去回头再看`,
+        `边学边输出，笔记和作品是最好的学习工具`,
+        `别收藏一堆资料却不开始，今天就开始动手`
+      ],
+      advanced: n => [
+        `别陷入「工具/资料收集癖」，行动才是关键`,
+        `定期输出能倒逼你把知识吃透`,
+        `找同好交流，能少走很多弯路`,
+        `警惕自满，这个领域永远有人比你更专业`
+      ]
+    },
+    resources: n => [
+      {t:"B 站 / YouTube 免费教程",d:`搜「${n} 入门」，挑一个完整系列跟完`},
+      {t:"知乎 / 小红书 / 公众号",d:"找入门指南与优质博主，快速建立认知"},
+      {t:"相关书籍 / 官方文档",d:"系统学习的最佳材料，适合打基础"},
+      {t:"社群 / 论坛 / 交流群",d:"遇到问题有人问，有人一起学更有动力"}
+    ]
+  }
+};
+
+/* 为未收录方向复用通用/相近模板 */
+FIELD_TEMPLATES.design = FIELD_TEMPLATES.media;
+FIELD_TEMPLATES.music = FIELD_TEMPLATES.general;
+FIELD_TEMPLATES.craft = FIELD_TEMPLATES.general;
+FIELD_TEMPLATES.mind = FIELD_TEMPLATES.general;
+FIELD_TEMPLATES.study = FIELD_TEMPLATES.general;
+FIELD_TEMPLATES.finance = FIELD_TEMPLATES.general;
+
+/* ============ 可选 AI 通道 ============
+   用法：在 index.html 的 </body> 前加一段配置即可启用真模型生成：
+     window.LUME_STUDIO_CONFIG = {
+       api: "https://你的接口地址",
+       model: "模型名",
+       format: "openai",                      // 接口是否为 OpenAI 兼容格式
+       headers: { Authorization: "Bearer xxx" }
+     };
+   没配置时自动跳过，完全不影响使用，仍走本地兜底方案。
+====================================== */
+async function tryAIGenerate(name, raw, icon){
+  const cfg = window.LUME_STUDIO_CONFIG;
+  if(!cfg || !cfg.api) return null;
+  const field = classifyField(name, raw);
+  const tpl = FIELD_TEMPLATES[field] || FIELD_TEMPLATES.general;
+  const prompt =
+`请为「${name}」这门学科或技能，生成一份面向中国初学者的学习计划，输出严格符合如下 JSON（不要任何额外文字、不要代码块标记）：
+{"intro":"一句话说清它是什么、学了能干嘛，用大白话，口语化","beginnerGoals":["4条可交付成果，每条不超过30字"],"advancedGoals":["4条进阶目标"],"beginnerPhases":[{"title":"阶段名","time":"如2-3周","out":"阶段产出","quote":"一句大白话解释这阶段在干啥，口语感","items":["5条具体知识点或动作"]},{"title":"阶段2"},{"title":"阶段3"},{"title":"阶段4"}],"advancedPhases":[{"title":"阶段名","time":"周期","out":"产出","quote":"口语化解释","items":["5条进阶知识点"]},{"title":"阶段2"},{"title":"阶段3"}],"beginnerTips":["4条避坑提醒"],"advancedTips":["4条进阶避坑提醒"],"resources":[{"t":"资源名","d":"一句话说明它适合什么、怎么用"}]}
+参考风格：${tpl.intro(name)}`;
+  const ctrl = {headers:{"Content-Type":"application/json",...(cfg.headers||{})}};
+  let body;
+  if(cfg.bodyBuilder && typeof cfg.bodyBuilder==="function"){
+    body = cfg.bodyBuilder(name, prompt, cfg);
+  }else if(cfg.format==="openai"){
+    body = JSON.stringify({model:cfg.model||"gpt-4o-mini",messages:[{role:"user",content:prompt}],temperature:0.7,response_format:{type:"json_object"}});
+  }else{
+    body = JSON.stringify({model:cfg.model||"",prompt:prompt,temperature:0.7,stream:false});
+  }
+  const res = await fetch(cfg.api,{method:"POST",headers:ctrl.headers,body});
+  if(!res.ok) throw new Error("AI 接口返回异常");
+  const json = await res.json();
+  let text = "";
+  if(typeof json==="string") text=json;
+  else if(json.choices && json.choices[0]) text = json.choices[0].message?json.choices[0].message.content:json.choices[0].text||"";
+  else if(json.output) text = json.output;
+  else if(json.result) text = json.result;
+  else if(json.data) text = typeof json.data==="string"?json.data:JSON.stringify(json.data);
+  text = (text||"").replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/i,"").trim();
+  const d = JSON.parse(text);
+  return {
+    name, icon, field,
+    intro: d.intro || tpl.intro(name),
+    generated: true, ai:true,
+    goals:{ beginner: d.beginnerGoals||[], advanced: d.advancedGoals||[] },
+    phases:{ beginner: d.beginnerPhases||[], advanced: d.advancedPhases||[] },
+    tips:{ beginner: d.beginnerTips||[], advanced: d.advancedTips||[] },
+    resources: d.resources||[]
+  };
+}
+
+function showToast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 2200);
+}
+function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+/* ============ 渲染：热门标签 + 全部科目标签 ============ */
+function renderChips(){
+  const hot = SUBJECTS.filter(s=>s.hot);
+  $("#hotChips").innerHTML = hot.map(s=>`<span class="chip hot" onclick="pickSubject('${s.id}')">${s.icon} ${s.name}</span>`).join("");
+  $("#allChips").innerHTML = SUBJECTS.map(s=>`<span class="chip" onclick="pickSubject('${s.id}')">${s.icon} ${s.name}</span>`).join("");
+}
+function renderGrid(){
+  $("#subjectGrid").innerHTML = SUBJECTS.map(s=>`
+    <div class="subject-card" onclick="pickSubject('${s.id}')">
+      <div class="ico">${s.icon}</div>
+      <h3>${s.name}</h3>
+      <p>${s.cat}</p>
+      <span class="tag">${s.hot?'🔥 热门 · ':''}${s.goals.beginner.length} 个目标</span>
+    </div>`).join("");
+}
+
+/* ============ 模式切换 ============ */
+function toggleMode(){
+  currentMode = currentMode === "beginner" ? "advanced" : "beginner";
+  const sw = $("#modeSwitch");
+  sw.classList.toggle("advanced", currentMode==="advanced");
+  $("#modeTip").innerHTML = currentMode==="beginner"
+    ? '当前：<b>小白模式</b> —— 全程大白话，像朋友一样把知识点掰碎了讲，绝不劝退。'
+    : '当前：<b>进阶模式</b> —— 讲深度、讲体系、讲实战，适合已有基础想更进一步的你。';
+  if(currentSubject){ (currentSubject.generated ? renderGeneratedResult : renderResult)(currentSubject, currentSubject.ai?"ai":"local"); }
+}
+
+/* ============ 搜索 / 选科目 ============ */
+function doSearch(){
+  const v = $("#searchInput").value.trim();
+  if(!v){ showToast("先告诉我你想学啥呀～"); $("#searchInput").focus(); return; }
+  const hit = fuzzyFind(v);
+  if(hit){ pickSubject(hit.id); }
+  else{
+    // 未内置 → 交给生成器（本地兜底），再尝试可选 AI 增强
+    renderGenerated(v);
+  }
+}
+
+/* ============ 未内置科目：智能生成学习计划 ============
+   三级降级策略：
+   1) 内置库命中 —— 走原逻辑
+   2) 本地规则引擎兜底 —— 纯静态、离线可用，永远不空手
+   3) 可选 AI 通道 —— 在页面中配置 window.LUME_STUDIO_CONFIG 后启用真模型
+*/
+async function renderGenerated(rawName){
+  const name = smartNormalize(rawName);
+  const icon = guessIcon(name, rawName);
+  resultEl().style.display="block"; overviewEl().style.display="none";
+  resultEl().innerHTML = `
+    <div class="fade-in generated">
+      <div class="gen-head">
+        <div class="back-btn" onclick="backToHome()">← 返回首页 / 换个科目</div>
+        <div class="gen-spin">
+          <div class="spinner"></div>
+          <div>
+            <h2 style="font-size:18px;margin-bottom:6px">${icon} 正在为你定制「${escapeHtml(name)}」的学习计划</h2>
+            <p style="font-size:14px;color:var(--ink3)">先给一套立即可用的方案，几秒后再用大模型打磨细节……</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  try{ resultEl().scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){ resultEl().scrollIntoView(); }
+
+  // 先用本地规则秒出方案
+  const local = generatePlan(name, icon, rawName);
+  renderGeneratedResult(local, "local");
+  showToast("已生成基础方案，正在尝试用 AI 打磨…");
+
+  // 再尝试 AI 增强（没配置会自动失败，静默保留本地方案）
+  try{
+    const ai = await tryAIGenerate(name, rawName, icon);
+    if(ai){ renderGeneratedResult(ai, "ai"); showToast("✨ AI 已优化这份计划"); }
+  }catch(e){ /* 静默降级，本地方案仍在 */ }
+}
+
+/* 智能规范化：去标点、去多余词，尽量还原标准学科名 */
+function smartNormalize(s){
+  let n = s.replace(/[，。！？!?,、；;：:·\.\s]/g,"").trim();
+  if(!n) n = s.trim();
+  return n;
+}
+/* 猜图标：按关键词给未内置科目配一个合理的 emoji */
+function guessIcon(name, raw){
+  const text = (name+" "+raw).toLowerCase();
+  const rules = [
+    ["编程","代码","开发","程序","c++","java","go","rust","js","vue","react","后端","前端"], "💻",
+    ["英语","english","口语"], "🇬🇧",
+    ["日语","韩语","法语","德语","西语","外语","俄语"], "🗣️",
+    ["考","研","公考","考公","教资","cpa","注会","法考","司考","托福","雅思","gre","gmat"], "📝",
+    ["数学","高数","线代","概率","统计"], "🧮",
+    ["画","素描","油画","水彩","书法"], "🎨",
+    ["琴","吉他","钢琴","架子鼓","唱歌","声乐","作曲"], "🎵",
+    ["视频","剪辑","导演","vlog","直播"], "🎬",
+    ["摄","后期"], "📷",
+    ["健身","跑","瑜伽","游泳","球","运动","体能","增肌","减肥"], "💪",
+    ["做饭","做菜","烘焙","咖啡","茶","调酒","烹饪"], "🍳",
+    ["投资","理财","基金","股票","币"], "💰",
+    ["ai","智能","模型","提示词","prompt","深度学习","机器学习"], "🤖",
+    ["数据","excel","表格","sql","分析"], "📊",
+    ["设计","ps","海报","排版"], "🖌️",
+    ["心","理","情绪","正念"], "🧘",
+    ["历史","哲学","文学","写作","读书","笔记"], "📖",
+    ["手办","缝纫","编织","木工","园艺","种植"], "🌱",
+  ];
+  for(let i=0;i<rules.length;i+=2){
+    if(rules[i].some(k=>text.includes(k))) return rules[i+1];
+  }
+  return "📚";
+}
+function fuzzyFind(keyword){
+  const k = keyword.toLowerCase();
+  // 精确
+  let hit = SUBJECTS.find(s=>s.name.toLowerCase()===k || s.id===k);
+  if(hit) return hit;
+  // 包含
+  hit = SUBJECTS.find(s=>s.name.toLowerCase().includes(k) || s.id.includes(k) || (s.cat||'').toLowerCase().includes(k));
+  if(hit) return hit;
+  // 关键词映射
+  const map = {
+    "编程":"python","代码":"python","语言":"python","爬虫":"python",
+    "提示词":"ai-prompt","prompt":"ai-prompt","大模型":"ai-prompt","gpt":"ai-prompt","chatgpt":"ai-prompt","ai":"ai-prompt","人工智能":"ai-prompt",
+    "前端":"frontend","网页":"frontend","网站":"frontend","html":"frontend","css":"frontend","js":"frontend","javascript":"frontend",
+    "数据":"data-analysis","分析":"data-analysis","表格":"excel","excel":"excel",
+    "视频":"video-edit","剪辑":"video-edit","剪映":"video-edit","pr":"video-edit","短视频":"video-edit",
+    "英语":"english","口语":"english","english":"english",
+    "四级":"cet4","六级":"cet4","四六级":"cet4","cet":"cet4","考试":"cet4",
+    "日语":"japanese","日本语":"japanese","japanese":"japanese",
+    "健身":"fitness","锻炼":"fitness","减肥":"fitness","增肌":"fitness",
+    "数据库":"sql","sql":"sql","查询":"sql",
+    "摄影":"photo","拍照":"photo","相机":"photo",
+    "做饭":"cooking","做菜":"cooking","烹饪":"cooking","菜谱":"cooking",
+    "设计":"design","ps":"design","美工":"design","海报":"design","illustrator":"design","ai设计":"design"
+  };
+  for(const key in map){ if(k.includes(key)) return SUBJECTS.find(s=>s.id===map[key]); }
+  return null;
+}
+function pickSubject(id){
+  const s = SUBJECTS.find(x=>x.id===id);
+  if(!s){ showToast("没找到这个科目～"); return; }
+  $("#searchInput").value = s.name;
+  currentSubject = s;
+  renderResult(s);
+  try{ resultEl().scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){ resultEl().scrollIntoView(); }
+  setAskContext(s.name, currentMode, s.field);
+  if($("#askDrawer").classList.contains("show")){ $("#askCtx").innerHTML = `📍 当前科目：<b>${s.name}</b>（${currentMode==="advanced"?"进阶":"小白"}模式）· 你的问题会带上这段上下文，回答更贴合`; refreshKbNote(); }
+  updatePlanDot();
+}
+function backToHome(){
+  resultEl().style.display="none";
+  overviewEl().style.display="block";
+  currentSubject = null;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ============ 渲染结果 ============ */
+function renderResult(subject, keepScroll){
+  const mode = currentMode;
+  const data = subject.phases[mode];
+  const goals = subject.goals[mode];
+  const tips = subject.tips[mode];
+  const badge = mode==="beginner"
+    ? '<span class="mode-badge beginner">🐣 小白模式</span>'
+    : '<span class="mode-badge advanced">🚀 进阶模式</span>';
+
+  const goalsHtml = goals.map((g,i)=>`<li><span class="num">${i+1}</span><span>${g}</span></li>`).join("");
+
+  const phasesHtml = data.map((p,i)=>{
+    const dotClass = mode==="advanced" ? "advanced" : "";
+    const itemsHtml = p.items.map(it=>`<li>${it}</li>`).join("");
+    return `
+    <div class="phase">
+      <div class="phase-dot ${dotClass}">${i+1}</div>
+      <div class="phase-head">
+        <h3>${p.title}</h3>
+        <span class="phase-meta">⏱ ${p.meta.time}</span>
+        <span class="phase-meta">🎯 ${p.meta.out}</span>
+      </div>
+      <div class="phase-quote">💬 ${p.quote}</div>
+      <ul>${itemsHtml}</ul>
+    </div>`;
+  }).join("");
+
+  const tipsHtml = tips.map(t=>`<li>${t}</li>`).join("");
+  const resHtml = subject.resources.map(r=>`<div class="res-card"><div class="rt">${r.t}</div><div class="rd">${r.d}</div></div>`).join("");
+
+  resultEl().innerHTML = `
+    <div class="fade-in">
+      <div class="result-head">
+        <div class="back-btn" onclick="backToHome()">← 返回首页 / 换个科目</div>
+        <h1>${subject.icon} ${subject.name} ${badge}</h1>
+        <p class="desc">${subject.intro}</p>
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn ${mode==='beginner'?'btn-primary':'btn-ghost'}" style="padding:10px 18px;font-size:14px" onclick="setMode('beginner')">🐣 切换小白模式</button>
+          <button class="btn ${mode==='advanced'?'btn-primary':'btn-ghost'}" style="padding:10px 18px;font-size:14px" onclick="setMode('advanced')">🚀 切换进阶模式</button>
+        </div>
+      </div>
+
+      <div class="goals">
+        <h2>🎯 你学完能达到的目标</h2>
+        <p class="sub">下面的每一条，都是你可以「拿得出手」的成果，不是空话。</p>
+        <ul class="goal-list">${goalsHtml}</ul>
+      </div>
+
+      <div class="phases">
+        <h2>🗺️ 学习路径（分步走）</h2>
+        <p class="sub">${mode==='beginner'?'跟着顺序一步一步来，别跳步，每一步都有小成果。':'按阶段深入，每个阶段都指向更硬核的能力。'}</p>
+        ${phasesHtml}
+      </div>
+
+      <div class="tips">
+        <h2>⚡ 过来人的避坑提醒</h2>
+        <p class="sub">这些坑我都替你想到了，提前避开能省一大半时间。</p>
+        <ul>${tipsHtml}</ul>
+      </div>
+
+      <div class="resources">
+        <h2>📚 推荐学习资源</h2>
+        <p class="sub">免费为主，选一个跟到底，别贪多。</p>
+        <div class="res-grid">${resHtml}</div>
+      </div>
+
+      <div style="text-align:center;margin-bottom:20px">
+        <button class="btn btn-ghost" onclick="backToHome()">⬅ 看看别的科目</button>
+      </div>
+    </div>`;
+
+  resultEl().style.display="block";
+  overviewEl().style.display="none";
+}
+
+function renderGeneratedResult(subject, source){
+  const mode = currentMode;
+  const data = subject.phases[mode] || [];
+  const goals = subject.goals[mode] || [];
+  const tips = subject.tips[mode] || [];
+  const badge = mode==="beginner"
+    ? '<span class="mode-badge beginner">🐣 小白模式</span>'
+    : '<span class="mode-badge advanced">🚀 进阶模式</span>';
+
+  const goalsHtml = goals.map((g,i)=>`<li><span class="num">${i+1}</span><span>${g}</span></li>`).join("");
+  const phasesHtml = data.map((p,i)=>{
+    const dotClass = mode==="advanced" ? "advanced" : "";
+    const itemsHtml = (p.items||[]).map(it=>`<li>${it}</li>`).join("");
+    return `
+    <div class="phase">
+      <div class="phase-dot ${dotClass}">${i+1}</div>
+      <div class="phase-head">
+        <h3>${p.title}</h3>
+        <span class="phase-meta">⏱ ${p.time||"持续"}</span>
+        <span class="phase-meta">🎯 ${p.out||"阶段产出"}</span>
+      </div>
+      <div class="phase-quote">💬 ${p.quote||""}</div>
+      <ul>${itemsHtml}</ul>
+    </div>`;
+  }).join("");
+  const tipsHtml = tips.map(t=>`<li>${t}</li>`).join("");
+  const resHtml = (subject.resources||[]).map(r=>`<div class="res-card"><div class="rt">${r.t}</div><div class="rd">${r.d}</div></div>`).join("");
+
+  // 领域标签：点击可切换同领域其他相关方向（引导探索）
+  const fieldTags = {
+    programming:["前端","Python","SQL"],language:["英语口语","日语","四六级"],
+    exam:["考研","教资","四六级"],ai:["AI 提示词","Python"],data:["数据分析","Excel","SQL"],
+    media:["短视频剪辑","摄影"],design:["平面设计","短视频剪辑"],fitness:["健身"],
+    cooking:["家常菜"],finance:["理财"],music:["吉他"],craft:["摄影"],mind:["健身"],study:["写作"]
+  };
+  const tags = (fieldTags[subject.field]||[]).filter(t=>t && t!==subject.name);
+  const tagsHtml = tags.length ? `<div class="gen-tags">${tags.map(t=>`<span class="gen-tag" onclick="quickJump('${t}')">🔍 ${t}</span>`).join("")}<span class="gen-tag" onclick="backToHome()">🏠 看全部科目</span></div>` : "";
+
+  const sourceBadge = source==="ai"
+    ? '<span class="gen-badge"><span class="ai-dot"></span>由 AI 实时生成 · 已针对「'+escapeHtml(subject.name)+'」优化</span>'
+    : '<span class="gen-badge local">⚡ 智能生成 · 本地即时方案（无需联网）</span>';
+
+  const saveBtn = source==="ai"
+    ? `<button class="btn btn-ghost" style="padding:10px 18px;font-size:14px" onclick="copyAsSubject('${escapeHtml(subject.name)}')">📋 复制为 JSON，方便提交到项目</button>`
+    : "";
+
+  resultEl().innerHTML = `
+    <div class="fade-in">
+      <div class="gen-head">
+        <div class="back-btn" onclick="backToHome()">← 返回首页 / 换个科目</div>
+        ${sourceBadge}
+        <h1 style="font-size:26px;font-weight:900;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:6px">${subject.icon||"📚"} ${escapeHtml(subject.name)} ${badge}</h1>
+        <p class="desc">${subject.intro||""}</p>
+        ${tagsHtml}
+        <div class="gen-actions">
+          <button class="btn ${mode==='beginner'?'btn-primary':'btn-ghost'}" style="padding:10px 18px;font-size:14px" onclick="setMode('beginner')">🐣 切换小白模式</button>
+          <button class="btn ${mode==='advanced'?'btn-primary':'btn-ghost'}" style="padding:10px 18px;font-size:14px" onclick="setMode('advanced')">🚀 切换进阶模式</button>
+          ${saveBtn}
+        </div>
+        <div class="gen-note">
+          💡 这是根据你的输入<b>自动生成</b>的方案，结构和内置科目一致。觉得哪里不准？
+          ${saveBtn ? `点上面「复制为 JSON」拿到数据，<a href="#" onclick="openIssue(event,'${escapeHtml(subject.name)}')">提交到 GitHub</a>，作者审核后就能让所有人搜到「${escapeHtml(subject.name)}」。`
+          : `想接入更精准的 AI 方案？在页面中配置 <code style="background:#f3f4f6;padding:2px 6px;border-radius:6px">window.LUME_STUDIO_CONFIG</code> 即可，没配置也完全可用，走本地兜底。<br>
+          🌱 开源项目欢迎贡献：把这个科目的计划写成数据提交到 GitHub，下一个搜到它的人就能直接用上你写的方案。`}
+        </div>
+      </div>
+
+      <div class="goals">
+        <h2>🎯 你学完能达到的目标</h2>
+        <p class="sub">下面的每一条，都是你可以「拿得出手」的成果，不是空话。</p>
+        ${goalsHtml?`<ul class="goal-list">${goalsHtml}</ul>`:`<p class="sub">（这个方向暂无细化目标，欢迎补充）</p>`}
+      </div>
+
+      <div class="phases">
+        <h2>🗺️ 学习路径（分步走）</h2>
+        <p class="sub">${mode==='beginner'?'跟着顺序一步一步来，别跳步，每一步都有小成果。':'按阶段深入，每个阶段都指向更硬核的能力。'}</p>
+        ${phasesHtml||'<p class="sub">（暂无阶段计划）</p>'}
+      </div>
+
+      <div class="tips">
+        <h2>⚡ 过来人的避坑提醒</h2>
+        <p class="sub">这些坑我都替你想到了，提前避开能省一大半时间。</p>
+        <ul>${tipsHtml}</ul>
+      </div>
+
+      <div class="resources">
+        <h2>📚 推荐学习资源</h2>
+        <p class="sub">免费为主，选一个跟到底，别贪多。</p>
+        <div class="res-grid">${resHtml}</div>
+      </div>
+
+      <div style="text-align:center;margin-bottom:20px">
+        <button class="btn btn-ghost" onclick="backToHome()">⬅ 看看别的科目</button>
+      </div>
+    </div>`;
+
+  resultEl().style.display="block";
+  overviewEl().style.display="none";
+}
+/* 生成态下点击相关领域标签，直接跳到对应内置科目 */
+function quickJump(name){
+  const hit = fuzzyFind(name);
+  if(hit){ $("#searchInput").value = hit.name; pickSubject(hit.id); }
+  else{ $("#searchInput").value = name; doSearch(); }
+}
+/* 复制为 JSON：方便用户贡献到开源项目 */
+function copyAsSubject(name){
+  const cfg = window.LUME_STUDIO_CONFIG;
+  if(!cfg){ showToast("当前方案来自本地生成，直接复制页面内容即可～"); return; }
+  const json = JSON.stringify(currentSubject && currentSubject.name===name ? currentSubject : null, null, 2);
+  // 构造一份可直接提交的 SUBJECTS 条目
+  const s = currentSubject && currentSubject.name===name ? currentSubject : null;
+  const snippet = s ? subjectToSnippet(s) : "// 暂无可用数据";
+  const text = `// 把下面这段加到 index.html 的 SUBJECTS 数组里，然后提 PR 即可 ✨\n`+snippet;
+  copyText(text).then(()=>showToast("✅ 已复制，去 GitHub 提 PR 吧～")).catch(()=>showToast("复制失败，可手动选取复制"));
+}
+function subjectToSnippet(s){
+  const esc = str=>String(str).replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\n/g,"\\n");
+  const g = (arr=[])=>"["+arr.map(x=>`"${esc(x)}"`).join(",")+"]";
+  const ph = (arr=[])=>"["+arr.map(p=>`{title:"${esc(p.title)}",meta:{time:"${esc(p.time)}",out:"${esc(p.out)}"},quote:"${esc(p.quote)}",items:${g(p.items)}}`).join(",")+"]";
+  return `{\n  id:"${esc((s.name||"").toLowerCase())}", icon:"${s.icon||"📚"}", name:"${esc(s.name||"")}", cat:"${({programming:"编程技术",language:"语言学习",exam:"学科考试",ai:"AI与智能",data:"职业技能",media:"职业技能",design:"职业技能",fitness:"兴趣生活",cooking:"兴趣生活",finance:"兴趣生活",music:"兴趣生活",craft:"兴趣生活",mind:"兴趣生活",study:"学科考试",general:"综合"}[s.field]||"综合")}", hot:false,\n  intro:"${esc(s.intro||"")}",\n  goals:{ beginner:${g(s.goals&&s.goals.beginner)}, advanced:${g(s.goals&&s.goals.advanced)} },\n  phases:{ beginner:${ph(s.phases&&s.phases.beginner)}, advanced:${ph(s.phases&&s.phases.advanced)} },\n  tips:{ beginner:${g(s.tips&&s.tips.beginner)}, advanced:${g(s.tips&&s.tips.advanced)} },\n  resources:${"["+((s.resources)||[]).map(r=>`{t:"${esc(r.t)}",d:"${esc(r.d)}"}`).join(",")+"]"}\n}`;
+}
+function copyText(text){
+  if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  return new Promise((res,rej)=>{ try{ const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity=0; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); res(); }catch(e){rej(e);} });
+}
+function openIssue(e,name){
+  e.preventDefault();
+  const url="https://github.com/"+(window.LUME_REPO||"你的用户名/Lume")+"/issues/new?title="+encodeURIComponent(`[新增科目] 请求收录「${name}」`)+"&body="+encodeURIComponent(`希望收录科目：**${name}**\n\n（如有，可附上你觉得合适的目标/阶段计划）`);
+  window.open(url,"_blank");
+}
+
+function setMode(mode){
+  if(currentMode===mode){ showToast(mode==='beginner'?'已经是小白模式啦':'已经是进阶模式啦'); return; }
+  currentMode = mode;
+  const sw = $("#modeSwitch");
+  sw.classList.toggle("advanced", mode==="advanced");
+  $("#modeTip").innerHTML = mode==="beginner"
+    ? '当前：<b>小白模式</b> —— 全程大白话，像朋友一样把知识点掰碎了讲，绝不劝退。'
+    : '当前：<b>进阶模式</b> —— 讲深度、讲体系、讲实战，适合已有基础想更进一步的你。';
+  if(currentSubject) renderResult(currentSubject, true);
+}
+
+/* ============ 主题切换（localStorage 记忆） ============ */
+function toggleTheme(){
+  const d = document.documentElement;
+  const next = d.getAttribute("data-theme")==="dark" ? "light" : "dark";
+  d.setAttribute("data-theme", next);
+  $("#themeBtn").textContent = next==="dark" ? "☀️" : "🌙";
+  try{ localStorage.setItem("le_theme", next); }catch(e){}
+}
+(function restoreTheme(){
+  let t="light";
+  try{ t = localStorage.getItem("le_theme") || (matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"); }catch(e){}
+  document.documentElement.setAttribute("data-theme", t);
+  // 按钮图标在 DOM 就绪后更新
+  document.addEventListener("DOMContentLoaded", ()=>{ const b=$("#themeBtn"); if(b) b.textContent = t==="dark"?"☀️":"🌙"; });
+})();
+
+/* ============ 回到顶部 ============ */
+addEventListener("scroll", ()=>{
+  const tb = $("#topBtn"); if(tb) tb.classList.toggle("show", window.scrollY > 400);
+}, {passive:true});
+
+/* ============ 抽屉：我的学习 / 常见问题 ============ */
+function openDrawer(kind){
+  const titles = { plan:"🎯 我的学习", kb:"❓ 常见问题" };
+  $("#sideTitle").innerHTML = titles[kind] || "菜单";
+  $("#sideBody").innerHTML = kind==="plan" ? renderPlanDrawer() : renderKbDrawer();
+  $("#sideDrawer").classList.add("show");
+  $("#drawerMask").classList.add("show");
+  bindCheckItems();
+}
+function closeDrawer(){ $("#sideDrawer").classList.remove("show"); $("#drawerMask").classList.remove("show"); }
+
+function planKey(){ return currentSubject ? ("le_plan_" + (currentSubject.id||currentSubject.name)) : null; }
+function loadPlan(){
+  const k = planKey(); if(!k) return null;
+  try{ return JSON.parse(localStorage.getItem(k)||"null"); }catch(e){ return null; }
+}
+function savePlan(obj){ const k = planKey(); if(!k) return; try{ localStorage.setItem(k, JSON.stringify(obj)); }catch(e){} }
+
+/* 进度总览：生成所有科目的整体完成度（localStorage） */
+function renderPlanDrawer(){
+  const all = SUBJECTS.map(s=>{
+    let obj=null;
+    try{ obj = JSON.parse(localStorage.getItem("le_plan_"+s.id)||"null"); }catch(e){}
+    if(!obj) return {s, pct:0, done:0, total:0};
+    const total = (s.goals.beginner||[]).length + (s.phases.beginner||[]).length;
+    const done = (obj.goals||[]).length + (obj.phases||[]).length;
+    return { s, pct: total?Math.round(done/total*100):0, done, total };
+  }).filter(x=>x.total>0);
+  const tracked = all.filter(x=>x.pct>0).sort((a,b)=>b.pct-a.pct);
+  const overall = all.length ? Math.round(all.reduce((a,b)=>a+b.pct,0)/all.length) : 0;
+
+  // 当前科目打卡
+  let cur = "";
+  if(currentSubject){
+    const obj = loadPlan() || {goals:[],phases:[]};
+    const goals = currentSubject.goals.beginner||[];
+    const phases = currentSubject.phases.beginner||[];
+    const gDone = obj.goals||[], pDone = obj.phases||[];
+    const items = [];
+    goals.forEach((g,i)=>items.push({key:"g"+i, label:g, done:gDone.includes(i)}));
+    phases.forEach((p,i)=>items.push({key:"p"+i, label:(p.title||"阶段")+"："+(p.items||[]).slice(0,2).join("、"), done:pDone.includes(i)}));
+    const total = items.length, doneN = items.filter(x=>x.done).length;
+    cur = `
+      <div class="overview-card">
+        <div class="ov-row"><b style="font-size:15px">${currentSubject.icon} ${currentSubject.name}</b></div>
+        <div class="ov-row">
+          <div class="ov-bar"><div class="ov-fill" style="width:${total?Math.round(doneN/total*100):0}%"></div></div>
+          <div class="ov-pct">${total?Math.round(doneN/total*100):0}%</div>
+        </div>
+        <div class="ov-meta">已完成 ${doneN} / ${total} 项 · 勾选即打卡，数据只存在你本地浏览器</div>
+        <div class="check-grid" data-checklist="1">
+          ${items.map(it=>`<label class="check-item ${it.done?'done':''}" data-key="${it.key}">
+            <span class="check-box">${it.done?'✓':''}</span><span class="check-txt">${it.label}</span></label>`).join("")}
+        </div>
+      </div>`;
+  }else{
+    cur = `<div class="overview-card"><div class="ov-meta">先在首页选一个科目，就能在这里打卡记录进度啦 🌱</div></div>`;
+  }
+
+  return cur + `
+    <div class="overview-card">
+      <div class="ov-row"><b style="font-size:15px">📊 全部科目总览</b><span class="ov-pct">${overall}%</span></div>
+      <div class="ov-row"><div class="ov-bar"><div class="ov-fill" style="width:${overall}%"></div></div></div>
+      <div class="ov-meta">你总共跟踪了 ${tracked.length} 个科目</div>
+      ${tracked.length?`<div class="check-grid" style="margin-top:12px">${tracked.slice(0,8).map(x=>`
+        <div class="ov-row" style="margin:0;cursor:pointer" onclick="closeDrawer();pickSubject('${x.s.id}')">
+          <span style="font-size:15px">${x.s.icon} ${x.s.name}</span>
+          <div class="ov-bar" style="height:8px"><div class="ov-fill" style="width:${x.pct}%"></div></div>
+          <div class="ov-pct">${x.pct}%</div>
+        </div>`).join("")}</div>`:`<div class="ov-meta">还没有进度，去挑个想学的吧 ✨</div>`}
+      <div class="ov-actions">
+        <button class="btn btn-ghost" style="padding:8px 16px;font-size:13px" onclick="exportPlan()">📤 导出进度</button>
+        <button class="btn btn-ghost" style="padding:8px 16px;font-size:13px" onclick="importPlan()">📥 导入进度</button>
+        <button class="btn btn-ghost" style="padding:8px 16px;font-size:13px;color:#ef4444" onclick="resetPlan()">🗑️ 清空记录</button>
+      </div>
+    </div>`;
+}
+
+function bindCheckItems(){
+  document.querySelectorAll('[data-checklist="1"] .check-item').forEach(el=>{
+    el.onclick = ()=>{
+      const key = el.dataset.key;
+      const obj = loadPlan() || {goals:[],phases:[]};
+      const arr = key.charAt(0)==="g" ? (obj.goals=obj.goals||[]) : (obj.phases=obj.phases||[]);
+      const idx = parseInt(key.slice(1),10);
+      const pos = arr.indexOf(idx);
+      if(pos>=0) arr.splice(pos,1); else arr.push(idx);
+      savePlan(obj);
+      // 重新渲染抽屉
+      $("#sideBody").innerHTML = renderPlanDrawer();
+      bindCheckItems();
+      // 同步刷新结果页进度
+      if(currentSubject && currentSubject.id===planKey().replace("le_plan_","")) renderResult(currentSubject, true);
+      updatePlanDot();
+    };
+  });
+}
+function updatePlanDot(){
+  let any=false;
+  SUBJECTS.forEach(s=>{ try{ if(localStorage.getItem("le_plan_"+s.id)) any=true; }catch(e){} });
+  const dot = $("#planDot"); if(dot) dot.style.display = any?"block":"none";
+}
+
+/* 导出 / 导入 / 清空 */
+function exportPlan(){
+  const out={};
+  try{
+    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k&&k.startsWith("le_plan_")) out[k]=localStorage.getItem(k); }
+  }catch(e){}
+  const text = JSON.stringify(out,null,2);
+  copyText(text).then(()=>showToast("✅ 进度已复制到剪贴板，保存好这份备份")).catch(()=>{
+    const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type:"application/json"}));
+    a.download="学习计划进度.json"; a.click(); showToast("✅ 已导出文件");
+  });
+}
+function importPlan(){
+  const input=document.createElement("input"); input.type="file"; input.accept=".json,application/json";
+  input.onchange=()=>{ const f=input.files[0]; if(!f) return;
+    const r=new FileReader(); r.onload=()=>{ try{
+      const d=JSON.parse(r.result); let n=0;
+      Object.keys(d).forEach(k=>{ if(k.startsWith("le_plan_")){ localStorage.setItem(k,d[k]); n++; } });
+      showToast(`✅ 已导入 ${n} 条进度`); if($("#sideDrawer").classList.contains("show")){ $("#sideBody").innerHTML=renderPlanDrawer(); bindCheckItems(); }
+    }catch(e){ showToast("❌ 文件格式不对，导入失败"); } }; r.readAsText(f); };
+  input.click();
+}
+function resetPlan(){
+  if(!confirm("确定清空所有科目的打卡进度吗？这个操作没法撤销。")) return;
+  try{
+    const keys=[];
+    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k&&k.startsWith("le_plan_")) keys.push(k); }
+    keys.forEach(k=>localStorage.removeItem(k));
+  }catch(e){}
+  showToast("🗑️ 已清空全部记录");
+  $("#sideBody").innerHTML=renderPlanDrawer(); bindCheckItems(); updatePlanDot();
+}
+
+/* ============ 常见问题知识库 ============ */
+window.KB = [
+  {q:"完全零基础，从哪个科目开始好？", a:"先选一个「你马上就想用上」的。想提效办公选 Excel 或 Python；想追风口选 AI 提示词；想做副业选剪辑或设计。千万别为了「学得多」同时开三个，先跟完一个再说。"},
+  {q:"每天只有 30 分钟，够吗？", a:"够，而且绰绰有余。学技能靠的是「连续天数」而不是单次时长。每天 30 分钟 × 60 天 = 30 小时，足够入门一门硬技能。关键是别断，断了再捡起来成本很高。"},
+  {q:"跟着学了一周，还是觉得啥都不会？", a:"这是正常的「学习高原期」。别用「懂没懂」衡量，用「能不能动手做出东西」衡量。哪怕只是复制代码改两个字跑起来，也算学会了。多看几遍、多敲一遍，某天突然就通了。"},
+  {q:"要不要报班 / 买课？", a:"建议先用本站计划和免费资源自学 2 周，确认自己真的有热情、真的能坚持，再考虑付费。大部分入门知识网上都有免费的，付费买的是「陪伴和督促」，不是知识本身。选课优先看课程作业和作品，而不是宣传。"},
+  {q:"资料收藏了一堆却没看，怎么办？", a:"这是「资料囤积症」。规则很简单：同一时间只保留 1 套主资料 + 1 个练习项目，其他的先删掉或放进「以后再看」的冷库。学完再换下一套，永远不要并行。"},
+  {q:"学到一半想放弃，怎么撑过去？", a:"三个办法：① 把目标从「学完」改成「本周做出一个小东西」；② 找个同好或社群打卡，公开承诺最有效；③ 允许自己学得慢，但不允许自己停。实在卡住就跳过这章往后学，回头再看往往秒懂。"},
+  {q:"英语不好能学编程/AI吗？", a:"能，而且现在比以前容易太多。报错信息和文档可以先看中文社区；想深入再看英文原文。AI 工具本身就能帮你翻译和解释代码。别让「英语不行」成为借口，边学边补就行。"},
+  {q:"电脑配置很低能学吗？", a:"入门阶段完全够用。Python、Excel、剪辑、设计入门都不吃配置，一台能开浏览器的电脑就行。真到需要高性能的阶段（比如训练模型、剪 4K），你早就知道自己要不要升级了。"},
+  {q:"怎么判断自己真的学会了？", a:"三个检验标准：① 能不能不看教程自己写出来；② 能不能给一个完全不懂的人讲明白；③ 能不能用它解决一个自己真实遇到的问题。三个里做到两个，就算过关。"},
+  {q:"AI 工具（比如这个助手）说的能信吗？", a:"能参考，但别当真理。AI 可能出错、可能给过时信息。代码类一定要自己跑一遍验证；知识类多查两个来源交叉确认。涉及医疗、法律、投资、税务这类高风险决策，务必咨询专业持证人士——本站免责声明里有详细说明 ⚖️"},
+  {q:"想学的科目这里没有收录？", a:"直接在搜索框输入科目名，本站会用本地规则引擎即时生成一份方案。如果觉得生成得不够准，可以点「复制为 JSON」贡献到开源项目，审核通过后所有人都能搜到；也可以在 GitHub 提 issue 请求收录。"},
+  {q:"进度和打卡记录存在哪？安全吗？", a:"全部存在你浏览器本地的 localStorage，不上传、不收集、不发往任何服务器。清空浏览器数据会丢失，建议用抽屉里的「导出进度」定期备份。"}
+];
+function renderKbDrawer(){
+  return `
+    <div class="ov-meta" style="margin-bottom:14px">这些都是新手最常见的疑问，点开就能看。如果是你自己的具体问题，点右下角 💬 直接问助手。</div>
+    <div id="kbList">
+      ${KB.map((it,i)=>`<div class="kb-item" onclick="toggleKb(${i})">
+        <div class="kq">❓ ${it.q}</div>
+        <div class="ka" id="ka${i}" style="display:none">${it.a}</div>
+      </div>`).join("")}
+    </div>`;
+}
+function toggleKb(i){
+  const el = $("#ka"+i);
+  if(!el) return;
+  el.style.display = el.style.display==="none" ? "block" : "none";
+}
+
+/* ============ 关于 / 免责声明弹窗 ============ */
+const MODALS = {
+  about: { title:"🌱 关于 Lume Studio", html:`
+    <p><b>Lume Studio · 小白学习指南</b>（Your First Step into Anything）是一个零依赖的纯静态开源学习网站：输入你想学的科目，自动给出一份「听得懂、学得会、不放弃」的学习目标和路径。</p>
+    <h3>✨ 它能做什么</h3>
+    <ul>
+      <li>内置 14 个热门科目的「小白 / 进阶」双模式计划</li>
+      <li>输入任意科目名，智能生成本地兜底方案</li>
+      <li>右下角 💬 学习助手，卡住了随时问（知识库 / AI 智能体 / 外链三通道）</li>
+      <li>🎯 打卡记录 + 进度总览，数据存在你本地浏览器</li>
+      <li>☀️/🌙 明/暗双主题，PC 与手机自适应</li>
+    </ul>
+    <h3>🛠 技术特点</h3>
+    <p>单文件 <code>index.html</code>，零依赖、零构建。双击即开，也可直接扔到 GitHub Pages 变成公网网站。科目计划是纯数据，想加科目就往 <code>SUBJECTS</code> 数组里塞一条。</p>
+    <h3>📜 开源协议</h3>
+    <p>采用 <b>MIT 协议</b> 开源，可自由使用、修改、分发，包括商业用途。详见仓库 LICENSE 文件。</p>
+    <h3>🙌 贡献方式</h3>
+    <p>1) 提交新科目的 <code>SUBJECTS</code> 数据；2) 优化某个科目的目标/阶段文案；3) 扩充内置知识库问答；4) 提 issue 反馈 bug 或建议。欢迎 Star / Fork / PR ✨</p>
+  `},
+  disclaimer: { title:"⚖️ 免责声明", html:`
+    <p>使用本项目前，请花一分钟读完以下说明。简言之：本站提供学习建议，不提供任何结果承诺，也不对第三方内容和 AI 输出承担责任。</p>
+    <h3>1. 内容性质</h3>
+    <p>本站所有学习计划、目标、路径、资源推荐，均为经验性学习建议与参考信息，不构成任何学习成果、就业、考试通过率或收益承诺。学习效果因个人基础、投入时间、方法而异，请理性预期。</p>
+    <h3>2. 第三方资源</h3>
+    <p>本站提及的书籍、课程、视频、网站、社群等第三方资源，其内容、价格、质量、版权状态由各平台/作者自行负责，本站不作担保、不承担连带责任，也不从这些推荐中直接获利（除非另有明确标注）。请在使用前自行核实。</p>
+    <h3>3. AI 与助手回答</h3>
+    <p>学习助手中的 AI 智能体输出由第三方大模型生成，<b>可能存在事实性错误、过时信息或理解偏差</b>。请务必自行验证关键信息，尤其是：</p>
+    <ul>
+      <li><b>医疗健康</b>：症状判断、用药、治疗建议</li>
+      <li><b>法律事务</b>：合同、纠纷、权利义务</li>
+      <li><b>金融投资</b>：股票、基金、币、理财决策</li>
+      <li><b>税务 / 资质考试</b>：政策时效性强，以官方为准</li>
+    </ul>
+    <p>上述高敏领域请务必咨询相应持证专业人士，不要仅凭本站或 AI 回答做决定。</p>
+    <h3>4. 隐私与数据安全</h3>
+    <p>本站的打卡进度、学习记录仅保存在你本地浏览器的 <code>localStorage</code> 中，<b>不会上传、不会收集、不会发往任何服务器</b>。API Key（若自行配置）同样只存本地浏览器内存。但：清空浏览器数据会丢失记录；把含 Key 的代码提交到公开仓库有被盗用风险，请务必自行保管。</p>
+    <h3>5. 实践安全</h3>
+    <p>涉及编程（谨慎执行来源不明的代码）、健身（量力而行、注意热身）、烹饪（用火用电用刀具）、财务（勿轻信投资话术）等操作，请在安全、合法、合规的前提下进行，责任自负。</p>
+    <h3>6. 开源协议</h3>
+    <p>本项目以 MIT 协议开源，详见仓库 LICENSE。使用即视为已阅读并同意上述说明。</p>
+    <div class="warn">⚠️ 如果你正在经历身体不适、心理危机或法律困境，请优先寻求专业机构与持证人士的帮助，而不是依赖一个学习网站。</div>
+  `}
+};
+function openModal(kind){
+  const m = MODALS[kind]; if(!m) return;
+  $("#modalBody").innerHTML = `<h2>${m.title}</h2>${m.html}`;
+  $("#modalMask").classList.add("show");
+}
+function closeModal(){ $("#modalMask").classList.remove("show"); }
+addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeModal(); closeDrawer(); toggleAsk(false); } });
+
+/* ============ 悬浮学习助手 ============ */
+let askHistory = [];
+let askContext = null;      // {name, mode, field} 当前科目上下文
+let askFirstOpen = true;
+const ASK_QUICKS = ["我完全零基础，从哪开始？","卡在基础概念上了","学了很久还是不会用","推荐一个免费入门资源","怎么判断自己学会了？","怎么坚持下去不放弃？"];
+
+function setAskContext(name, mode, field){
+  askContext = { name, mode, field };
+  const ctx = $("#askCtx");
+  if(ctx){ ctx.innerHTML = name ? `📍 当前科目：<b>${name}</b>（${mode==="advanced"?"进阶":"小白"}模式）· 你的问题会带上这段上下文，回答更贴合` : "💡 你在任意科目页提问，助手会自动结合当前内容回答"; }
+}
+function refreshQuickBar(){
+  $("#askQuick").innerHTML = ASK_QUICKS.map(q=>`<button onclick="askQuick('${q.replace(/'/g,"\\'")}')">${q}</button>`).join("");
+}
+function askQuick(q){ $("#askInput").value = q; sendAsk(); }
+
+function toggleAsk(force){
+  const open = typeof force==="boolean" ? force : !$("#askDrawer").classList.contains("show");
+  $("#askDrawer").classList.toggle("show", open);
+  $("#askMask").classList.toggle("show", open);
+  $("#askBadge").style.display = "none";
+  if(open){
+    // 自动带入当前科目上下文
+    if(currentSubject) setAskContext(currentSubject.name, currentMode, currentSubject.field); else setAskContext(null,null,null);
+    if(askFirstOpen){ askFirstOpen=false; welcomeAsk(); }
+    refreshQuickBar();
+    syncProviderUI();
+    setTimeout(()=>$("#askInput").focus(), 300);
+  }
+}
+function welcomeAsk(){
+  addBubble("ai", `你好，我是你的学习助手 🌱\n\n遇到下面这些都能问我：\n• 某个知识点没听懂（比如「循环到底是啥」）\n• 卡在某个报错或操作上\n• 不知道下一步该学啥\n• 想找免费好用的资源\n\n建议先选一个科目再问，这样我能结合当前计划给你更贴身的答案。`);
+  refreshKbNote();
+}
+function refreshKbNote(){
+  const note = $("#askKbNote");
+  if(!note) return;
+  // 依据当前上下文挑 3 条相关知识库条目
+  const ctx = (askContext&&askContext.name)||"";
+  const picks = KB.filter(it=>!ctx || (it.q+it.a).includes(ctx.slice(0,2)) || it.q.includes("基础")||it.q.includes("学会")||it.q.includes("坚持"))
+    .slice(0,3);
+  note.innerHTML = picks.length ? `📌 你可能也想看：${picks.map((it,i)=>`<br>· <a href="javascript:void(0)" onclick="askQuick('${it.q.replace(/'/g,"\\'")}')" style="color:var(--blue-d)">${it.q}</a>`).join("")}` : "";
+}
+
+function addBubble(role, text){
+  const log = $("#askLog");
+  const div = document.createElement("div");
+  div.className = "ask-bubble " + role;
+  const ava = role==="user" ? "🙋" : "🤖";
+  // 轻量 markdown：代码块保留，行内 `code` 高亮
+  const html = escapeHtml(text)
+    .replace(/`([^`\n]+)`/g,'<code>$1</code>')
+    .replace(/\n/g,'<br>');
+  div.innerHTML = `<div class="ask-ava">${ava}</div><div class="ask-msg">${html}</div>`;
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+  return div;
+}
+
+async function sendAsk(){
+  const input = $("#askInput");
+  const q = input.value.trim();
+  if(!q){ showToast("先打点啥再问呀～"); input.focus(); return; }
+  addBubble("user", q);
+  askHistory.push({role:"user",content:q});
+  input.value = "";
+  const cfg = window.LUME_STUDIO_CONFIG;
+  const useAI = $("#askProvider").value==="ai" && cfg && cfg.api;
+  const sendBtn = $("#askSend");
+  sendBtn.disabled = true;
+  const typing = addBubble("ai", "思考中…").querySelector(".ask-msg");
+  typing.classList.add("typing");
+
+  try{
+    let answer;
+    if(useAI){
+      answer = await callAI(q);
+    }else{
+      answer = await kbAnswer(q);
+    }
+    typing.classList.remove("typing");
+    typing.innerHTML = escapeHtml(answer).replace(/`([^`\n]+)`/g,'<code>$1</code>').replace(/\n/g,'<br>');
+    askHistory.push({role:"assistant",content:answer});
+    refreshKbNote();
+  }catch(e){
+    typing.classList.remove("typing");
+    typing.innerHTML = `😥 出错了：${escapeHtml(e&&e.message?e.message:e)}\n\n你可以：\n· 换个问法再试一次\n· 切换到「内置知识库」通道\n· 点下面的按钮到外部社区搜一下`;
+    refreshKbNote();
+  }finally{
+    sendBtn.disabled = false;
+    input.focus();
+  }
+}
+
+/* AI 通道：把当前科目作为上下文塞进 system，强制小白口吻 */
+async function callAI(q){
+  const cfg = window.LUME_STUDIO_CONFIG;
+  const ctx = askContext;
+  const sys = `你是一个耐心、口语化的学习助手，专门帮零基础小白学新东西。规则：① 全程大白话，禁止堆术语；必须用生活化的例子打比方；② 先给一句结论，再展开，最后问对方「这一步听懂了吗，要不要我拆得更细」；③ 能举例就举例，代码要简短可复制；④ 不知道就说不知道，不要编造；⑤ 医疗/法律/投资等高风险话题，只做科普，必须提醒「建议咨询专业人士」；⑥ 回答控制在 200 字以内，除非对方追问。${ctx&&ctx.name?`当前用户正在学「${ctx.name}」的${ctx.mode==="advanced"?"进阶":"小白"}内容，请结合这个背景回答。`:""}`;
+  const messages = [{role:"system",content:sys},...askHistory.slice(-10).map(m=>({role:m.role,content:m.content}))];
+  const ctrl = {headers:{"Content-Type":"application/json",...(cfg.headers||{})}};
+  let body;
+  if(cfg.bodyBuilder && typeof cfg.bodyBuilder==="function"){
+    body = cfg.bodyBuilder(q, JSON.stringify(messages), cfg);
+  }else if(cfg.format==="openai"){
+    body = JSON.stringify({model:cfg.model||"gpt-4o-mini",messages,temperature:0.6,stream:false});
+  }else{
+    body = JSON.stringify({model:cfg.model||"",prompt:sys+"\n\n用户："+q,temperature:0.6,stream:false});
+  }
+  const res = await fetch(cfg.api,{method:"POST",headers:ctrl.headers,body});
+  if(!res.ok) throw new Error("接口返回异常（"+res.status+"）");
+  const json = await res.json();
+  let text="";
+  if(typeof json==="string") text=json;
+  else if(json.choices && json.choices[0]) text = json.choices[0].message?json.choices[0].message.content:json.choices[0].text||"";
+  else if(json.output) text=json.output;
+  else if(json.result) text=json.result;
+  else if(json.data) text = typeof json.data==="string"?json.data:JSON.stringify(json.data);
+  text = (text||"").replace(/^```(?:json|markdown)?\s*/i,"").replace(/\s*```$/i,"").trim();
+  if(!text) throw new Error("AI 返回为空");
+  return text;
+}
+
+/* 内置知识库通道：关键词匹配 + 兜底外链 */
+async function kbAnswer(q){
+  const t = q.toLowerCase();
+  // 1) 命中内置知识库
+  for(const it of KB){
+    if(matchQuestion(q, it.q)) return it.a + "\n\n还有别的问题随时问我，或者点开右侧「常见问题 ❓」看更多。";
+  }
+  // 2) 通用建议
+  const ctx = askContext;
+  const tips = [
+    ctx&&ctx.name? `你正在学「${ctx.name}」，这步卡住很正常——先别钻牛角尖，试试用下面几个办法：\n① 把报错信息或现象原样复制到搜索引擎，90% 的问题都有人问过；\n② 去 B 站 / 知乎搜「${ctx.name} ${q.slice(0,12)}」，看视频比看文字更直观；\n③ 实在解不出就先跳过，往后学一章再回头看，常常秒懂。`:
+    `这个问题我内置的知识库里暂时没有标准答案，给你几个通用办法：\n① 把你的具体困惑原样丢到搜索引擎，加「小白」「入门」这类词；\n② 去 B 站 / 知乎 / 掘金搜一下，视频比文字更直观；\n③ 先在首页选一个具体科目，再来问我，我能结合当前计划给你更贴身的答案。`
+  ];
+  await new Promise(r=>setTimeout(r, 250)); // 模拟一点思考感
+  return tips[0] + "\n\n如果还是搞不定，可以告诉我你具体卡在哪一步（比如「第 2 阶段循环那里看不懂」），我给你拆得更细。也可以切换到「AI 智能体」通道获得更灵活的回答。";
+}
+function matchQuestion(q, known){
+  const a = q.replace(/[吗？?！!。.，,\s]/g,"").toLowerCase();
+  const b = known.replace(/[吗？?！!。.，,\s]/g,"").toLowerCase();
+  if(a.includes(b)||b.includes(a)) return true;
+  const kws = b.split(/[的了我从到在是能会把给把把让把用]/).filter(x=>x.length>=2);
+  return kws.filter(k=>a.includes(k)).length >= 2;
+}
+
+/* 外链搜索兜底 */
+function searchExternal(){
+  const q = ($("#askInput").value.trim()) || (askContext&&askContext.name? `学${askContext.name}`: "学习");
+  const urls = [
+    ["知乎","https://www.zhihu.com/search?type=content&q="+encodeURIComponent(q)],
+    ["B 站","https://search.bilibili.com/all?keyword="+encodeURIComponent(q)],
+    ["掘金","https://juejin.cn/search/"+encodeURIComponent(q)]
+  ];
+  window.open(urls[1][1],"_blank");
+  showToast("已在新标签打开 B 站搜索，也可以去知乎 / 掘金找答案");
+}
+
+/* 通道切换 */
+function switchProvider(){
+  syncProviderUI();
+}
+function syncProviderUI(){
+  const cfg = window.LUME_STUDIO_CONFIG;
+  const sel = $("#askProvider");
+  const state = $("#askAiState");
+  if(!sel||!state) return;
+  if(!cfg || !cfg.api){
+    // 没配置：隐藏 AI 选项
+    sel.value = "kb";
+    state.innerHTML = ' <span style="color:#9ca3af">AI 未配置</span> <a href="javascript:void(0)" onclick="openModal(\'about\')" style="color:var(--blue-d)">怎么接入？</a>';
+    return;
+  }
+  const key = sel.value;
+  state.innerHTML = key==="ai"
+    ? ' <span style="color:#16a34a">● 已启用 AI（回答更灵活，可能有偏差）</span>'
+    : ' <span style="color:#9ca3af">● 内置知识库（离线可用，稳定）</span>';
+}
+document.addEventListener("DOMContentLoaded", syncProviderUI);
+
+/* ============ 初始化 ============ */
+function init(){
+  renderChips();
+  renderGrid();
+  $("#searchInput").addEventListener("keydown", e=>{ if(e.key==="Enter") doSearch(); });
+  updatePlanDot();
+  setAskContext(null,null,null);
+  refreshQuickBar();
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
