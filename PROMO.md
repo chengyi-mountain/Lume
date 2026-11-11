@@ -16,9 +16,9 @@
 
 ## 短文案（GitHub 仓库简介 / 公众号摘要 / 产品页副标题）
 
-> Lume Studio 是一个面向零基础学习者的开源学习指南。输入想学的科目，自动生成小白 / 进阶双模式的学习目标与分阶段计划，全程大白话教学，知识点不丢；内置 18 个热门科目，未内置的科目也能秒出方案，还能随时召唤智能答疑助手。纯静态、零依赖、双击即开。
+> Lume Studio 是一个面向零基础学习者的开源学习指南。输入想学的科目，自动生成小白 / 进阶双模式的学习目标与分阶段计划，全程大白话教学，知识点不丢；内置 31 个热门科目，未内置的科目也能秒出方案，还能随时召唤智能答疑助手。纯静态、零依赖、双击即开。
 
-> Lume Studio is an open-source study guide for absolute beginners. Type any subject and get a bilingual (beginner / advanced) study plan in plain language, plus an on-demand Q&A assistant. 18 popular subjects built in, pure static, zero dependencies, just open the file.
+> Lume Studio is an open-source study guide for absolute beginners. Type any subject and get a bilingual (beginner / advanced) study plan in plain language, plus an on-demand Q&A assistant. 31 popular subjects built in, pure static, zero dependencies, just open the file.
 
 ---
 
@@ -34,7 +34,7 @@
 >
 > - **小白模式**：不堆术语，每个知识点配一句人话解释（比如"变量就像贴了标签的盒子"），步骤拆到最小颗粒度，绝不劝退。
 > - **进阶模式**：讲深度、讲体系、讲实战，给已经入门的人一条清晰的进阶路线。
-> - **智能兜底**：内置 18 个热门科目（编程、AI 提示词、数据分析、剪辑、英语四六级、健身、做饭等），未内置的科目也能秒出方案。
+> - **智能兜底**：内置 31 个热门科目（编程、AI 提示词、数据分析、剪辑、英语四六级、健身、做饭等），未内置的科目也能秒出方案。
 > - **答疑助手**：学卡住了随时提问，助手会自动结合你正在学的科目给答，而不是泛泛而谈。
 >
 > 技术上它极简：纯静态、零依赖、无需构建、双击 `index.html` 即可运行，部署到 GitHub Pages 只需三步。采用 MIT 协议开源，欢迎提交新科目。
@@ -49,7 +49,7 @@
 >
 > - **Beginner mode** — no jargon, every concept explained in one plain sentence (e.g. "a variable is just a box with a label"), steps broken down to the smallest unit.
 > - **Advanced mode** — depth, structure, and real practice for those who already started.
-> - **Smart fallback** — 18 popular subjects built in (programming, AI prompts, data analysis, video editing, CET-4/6, fitness, cooking, and more); anything else gets an instant plan too.
+> - **Smart fallback** — 31 popular subjects built in (programming, AI prompts, data analysis, video editing, CET-4/6, fitness, cooking, and more); anything else gets an instant plan too.
 > - **Q&A assistant** — stuck on something? Ask anytime; it answers in the context of what you're currently learning, not generically.
 >
 > Technically it's minimal: pure static, zero dependencies, no build step, just open `index.html`. Deploy to GitHub Pages in three steps. Open source under the MIT License — new subjects are welcome.

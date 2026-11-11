@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lume Studio · 小白学习指南 | 让每一个"我想学"都有第一步</title>
 <meta name="description" content="Lume Studio 小白学习指南：输入想学的科目，自动生成大白话学习目标与分阶段计划，小白/进阶双模式，含智能答疑与学习打卡。Your First Step into Anything.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lume Studio · 小白学习指南">
+<meta property="og:description" content="输入想学的科目，自动生成大白话学习目标与分阶段计划，小白/进阶双模式，含智能答疑与学习打卡。Your First Step into Anything.">
+<meta property="og:url" content="https://chengyi-mountain.github.io/Lume/">
 <style>
 :root{
   --green:#4ade80; --green-d:#22c55e; --green-dd:#16a34a;
@@ -849,7 +854,7 @@ window.SUBJECTS = [
   ]
 },
 {
-  id:"cet4", icon:"📝", name:"英语四六级", cat:"学科考试", hot:true,
+  id:"cet4", icon:"📝", name:"英语四六级", cat:"学科与考试", hot:true,
   intro:"大学生绕不开的一关，掌握方法比死磕更重要——单词是地基，真题是捷径。",
   goals:{
     beginner:[
@@ -3293,7 +3298,7 @@ function subjectToSnippet(s){
   const esc = str=>String(str).replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\n/g,"\\n");
   const g = (arr=[])=>"["+arr.map(x=>`"${esc(x)}"`).join(",")+"]";
   const ph = (arr=[])=>"["+arr.map(p=>`{title:"${esc(p.title)}",meta:{time:"${esc(p.time)}",out:"${esc(p.out)}"},quote:"${esc(p.quote)}",items:${g(p.items)}}`).join(",")+"]";
-  return `{\n  id:"${esc((s.name||"").toLowerCase())}", icon:"${s.icon||"📚"}", name:"${esc(s.name||"")}", cat:"${({programming:"编程技术",language:"语言学习",exam:"学科考试",ai:"AI与智能",data:"职业技能",media:"职业技能",design:"职业技能",fitness:"兴趣生活",cooking:"兴趣生活",finance:"兴趣生活",music:"兴趣生活",craft:"兴趣生活",mind:"兴趣生活",study:"学科考试",general:"综合"}[s.field]||"综合")}", hot:false,\n  intro:"${esc(s.intro||"")}",\n  goals:{ beginner:${g(s.goals&&s.goals.beginner)}, advanced:${g(s.goals&&s.goals.advanced)} },\n  phases:{ beginner:${ph(s.phases&&s.phases.beginner)}, advanced:${ph(s.phases&&s.phases.advanced)} },\n  tips:{ beginner:${g(s.tips&&s.tips.beginner)}, advanced:${g(s.tips&&s.tips.advanced)} },\n  resources:${"["+((s.resources)||[]).map(r=>`{t:"${esc(r.t)}",d:"${esc(r.d)}"}`).join(",")+"]"}\n}`;
+  return `{\n  id:"${esc((s.name||"").toLowerCase())}", icon:"${s.icon||"📚"}", name:"${esc(s.name||"")}", cat:"${({programming:"编程技术",language:"语言学习",exam:"学科与考试",ai:"AI与智能",data:"职业技能",media:"职业技能",design:"职业技能",fitness:"兴趣生活",cooking:"兴趣生活",finance:"兴趣生活",music:"兴趣生活",craft:"兴趣生活",mind:"兴趣生活",study:"学科与考试",general:"综合"}[s.field]||"综合")}", hot:false,\n  intro:"${esc(s.intro||"")}",\n  goals:{ beginner:${g(s.goals&&s.goals.beginner)}, advanced:${g(s.goals&&s.goals.advanced)} },\n  phases:{ beginner:${ph(s.phases&&s.phases.beginner)}, advanced:${ph(s.phases&&s.phases.advanced)} },\n  tips:{ beginner:${g(s.tips&&s.tips.beginner)}, advanced:${g(s.tips&&s.tips.advanced)} },\n  resources:${"["+((s.resources)||[]).map(r=>`{t:"${esc(r.t)}",d:"${esc(r.d)}"}`).join(",")+"]"}\n}`;
 }
 function copyText(text){
   if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
@@ -3301,7 +3306,7 @@ function copyText(text){
 }
 function openIssue(e,name){
   e.preventDefault();
-  const url="https://github.com/"+(window.LUME_REPO||"你的用户名/Lume")+"/issues/new?title="+encodeURIComponent(`[新增科目] 请求收录「${name}」`)+"&body="+encodeURIComponent(`希望收录科目：**${name}**\n\n（如有，可附上你觉得合适的目标/阶段计划）`);
+  const url="https://github.com/"+(window.LUME_REPO||"chengyi-mountain/Lume")+"/issues/new?title="+encodeURIComponent(`[新增科目] 请求收录「${name}」`)+"&body="+encodeURIComponent(`希望收录科目：**${name}**\n\n（如有，可附上你觉得合适的目标/阶段计划）`);
   window.open(url,"_blank");
 }
 
