@@ -174,10 +174,11 @@ header{text-align:center;padding:52px 20px 28px;position:relative}
 /* 资源 */
 .resources{background:var(--card);border-radius:24px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px}
 .res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.res-card{background:#f9fafb;border-radius:16px;padding:16px;border:1px solid var(--line);transition:.2s}
+.res-card{background:#f9fafb;border-radius:16px;padding:16px;border:1px solid var(--line);transition:.2s;cursor:pointer;display:block;text-decoration:none;color:inherit}
 .res-card:hover{border-color:var(--green);background:#f0fdf4;transform:translateY(-3px)}
 .res-card .rt{font-size:15px;font-weight:800;margin-bottom:4px}
 .res-card .rd{font-size:13px;color:var(--ink3)}
+.res-card .ext{font-size:11px;color:var(--green-dd);margin-left:5px;font-weight:700}
 
 /* ===== Footer ===== */
 footer{text-align:center;padding:40px 20px 50px;color:var(--ink3);font-size:13px}
@@ -566,10 +567,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"菜鸟教程 Python3",d:"中文免费，语法速查首选"},
+    {t:"菜鸟教程 Python3",d:"中文免费，语法速查首选",u:"https://www.runoob.com/python3/python3-tutorial.html"},
     {t:"B站 小甲鱼《零基础入门》",d:"讲得通俗，小白友好"},
-    {t:"Python 官方文档（中文）",d:"最权威，当字典用"},
-    {t:"LeetCode 简单题",d:"刷 20 道练编程手感"}
+    {t:"Python 官方文档（中文）",d:"最权威，当字典用",u:"https://docs.python.org/zh-cn/3/"},
+    {t:"LeetCode 简单题",d:"刷 20 道练编程手感",u:"https://leetcode.cn/problemset/?difficulty=EASY"}
   ]
 },
 {
@@ -2949,6 +2950,11 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove("show"), 2200);
 }
 function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+/* 资源卡片跳转：配了直达链接的直接打开，否则按标题+描述走搜索引擎兜底 */
+function openResource(el){
+  const t = el.dataset.q || "", d = el.dataset.d || "";
+  window.open("https://www.bing.com/search?q="+encodeURIComponent(t+" "+d), "_blank", "noopener");
+}
 
 /* ============ 渲染：热门标签 + 全部科目标签 ============ */
 function renderChips(){
@@ -3134,7 +3140,12 @@ function renderResult(subject, keepScroll){
   }).join("");
 
   const tipsHtml = tips.map(t=>`<li>${t}</li>`).join("");
-  const resHtml = subject.resources.map(r=>`<div class="res-card"><div class="rt">${r.t}</div><div class="rd">${r.d}</div></div>`).join("");
+  const resHtml = subject.resources.map(r=>{
+    const inner = `<div class="rt">${escapeHtml(r.t)}${r.u?'<span class="ext">↗</span>':''}</div><div class="rd">${escapeHtml(r.d)}</div>`;
+    return r.u
+      ? `<a class="res-card" href="${escapeHtml(r.u)}" target="_blank" rel="noopener">${inner}</a>`
+      : `<div class="res-card" data-q="${escapeHtml(r.t)}" data-d="${escapeHtml(r.d)}" onclick="openResource(this)">${inner}</div>`;
+  }).join("");
 
   resultEl().innerHTML = `
     <div class="fade-in">
@@ -3207,7 +3218,12 @@ function renderGeneratedResult(subject, source){
     </div>`;
   }).join("");
   const tipsHtml = tips.map(t=>`<li>${t}</li>`).join("");
-  const resHtml = (subject.resources||[]).map(r=>`<div class="res-card"><div class="rt">${r.t}</div><div class="rd">${r.d}</div></div>`).join("");
+  const resHtml = (subject.resources||[]).map(r=>{
+    const inner = `<div class="rt">${escapeHtml(r.t)}${r.u?'<span class="ext">↗</span>':''}</div><div class="rd">${escapeHtml(r.d)}</div>`;
+    return r.u
+      ? `<a class="res-card" href="${escapeHtml(r.u)}" target="_blank" rel="noopener">${inner}</a>`
+      : `<div class="res-card" data-q="${escapeHtml(r.t)}" data-d="${escapeHtml(r.d)}" onclick="openResource(this)">${inner}</div>`;
+  }).join("");
 
   // 领域标签：点击可切换同领域其他相关方向（引导探索）
   const fieldTags = {
@@ -3301,7 +3317,7 @@ function subjectToSnippet(s){
   const esc = str=>String(str).replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\n/g,"\\n");
   const g = (arr=[])=>"["+arr.map(x=>`"${esc(x)}"`).join(",")+"]";
   const ph = (arr=[])=>"["+arr.map(p=>`{title:"${esc(p.title)}",meta:{time:"${esc(p.time)}",out:"${esc(p.out)}"},quote:"${esc(p.quote)}",items:${g(p.items)}}`).join(",")+"]";
-  return `{\n  id:"${esc((s.name||"").toLowerCase())}", icon:"${s.icon||"📚"}", name:"${esc(s.name||"")}", cat:"${({programming:"编程技术",language:"语言学习",exam:"学科与考试",ai:"AI与智能",data:"职业技能",media:"职业技能",design:"职业技能",fitness:"兴趣生活",cooking:"兴趣生活",finance:"兴趣生活",music:"兴趣生活",craft:"兴趣生活",mind:"兴趣生活",study:"学科与考试",general:"综合"}[s.field]||"综合")}", hot:false,\n  intro:"${esc(s.intro||"")}",\n  goals:{ beginner:${g(s.goals&&s.goals.beginner)}, advanced:${g(s.goals&&s.goals.advanced)} },\n  phases:{ beginner:${ph(s.phases&&s.phases.beginner)}, advanced:${ph(s.phases&&s.phases.advanced)} },\n  tips:{ beginner:${g(s.tips&&s.tips.beginner)}, advanced:${g(s.tips&&s.tips.advanced)} },\n  resources:${"["+((s.resources)||[]).map(r=>`{t:"${esc(r.t)}",d:"${esc(r.d)}"}`).join(",")+"]"}\n}`;
+  return `{\n  id:"${esc((s.name||"").toLowerCase())}", icon:"${s.icon||"📚"}", name:"${esc(s.name||"")}", cat:"${({programming:"编程技术",language:"语言学习",exam:"学科与考试",ai:"AI与智能",data:"职业技能",media:"职业技能",design:"职业技能",fitness:"兴趣生活",cooking:"兴趣生活",finance:"兴趣生活",music:"兴趣生活",craft:"兴趣生活",mind:"兴趣生活",study:"学科与考试",general:"综合"}[s.field]||"综合")}", hot:false,\n  intro:"${esc(s.intro||"")}",\n  goals:{ beginner:${g(s.goals&&s.goals.beginner)}, advanced:${g(s.goals&&s.goals.advanced)} },\n  phases:{ beginner:${ph(s.phases&&s.phases.beginner)}, advanced:${ph(s.phases&&s.phases.advanced)} },\n  tips:{ beginner:${g(s.tips&&s.tips.beginner)}, advanced:${g(s.tips&&s.tips.advanced)} },\n  resources:${"["+((s.resources)||[]).map(r=>`{t:"${esc(r.t)}",d:"${esc(r.d)}"${r.u?`,u:"${esc(r.u)}"`:""}}`).join(",")+"]"}\n}`;
 }
 function copyText(text){
   if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
