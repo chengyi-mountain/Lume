@@ -190,6 +190,10 @@ header{text-align:center;padding:52px 20px 28px;position:relative}
 .res-card .rt{font-size:15px;font-weight:800;margin-bottom:4px}
 .res-card .rd{font-size:13px;color:var(--ink3)}
 .res-card .ext{font-size:11px;color:var(--green-dd);margin-left:5px;font-weight:700}
+/* 无直达链接的卡片：不显示手型、不悬浮跳动，只给获取方式提示 */
+.res-off{cursor:default}
+.res-off:hover{border-color:var(--line);background:#f9fafb;transform:none;box-shadow:none}
+.res-card .rh{font-size:12px;color:var(--ink3);margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)}
 .res-note{font-size:12px;color:var(--ink3);margin-top:14px;line-height:1.7}
 
 /* ===== Footer ===== */
@@ -261,6 +265,7 @@ footer .seal{display:inline-block;margin-top:16px;padding:4px 13px;border:1px so
 :root[data-theme="dark"] .check-item.done .check-txt{color:var(--ink3)}
 :root[data-theme="dark"] .chip:hover,:root[data-theme="dark"] .res-card:hover,:root[data-theme="dark"] .gen-tag:hover,:root[data-theme="dark"] .ask-quick button:hover{background:#2f4058}
 :root[data-theme="dark"] .res-card:hover{border-color:var(--green)}
+:root[data-theme="dark"] .res-off:hover{background:#273449;border-color:var(--line)}
 :root[data-theme="dark"] .search-box input:focus{background:#273449}
 
 /* 主题切换按钮 */
@@ -371,7 +376,7 @@ footer .seal{display:inline-block;margin-top:16px;padding:4px 13px;border:1px so
   .hero{padding:20px} .intro{padding:22px} .wrap{padding:0 14px}
   .btn{padding:0 18px} .search-box input{padding:13px 15px;min-width:0;flex:1 1 100%}
   .search-box .btn{flex:1 1 100%;height:46px;margin-right:60px}
-  .mode-tip{min-width:0;padding-right:64px}
+  .mode-tip{flex:1 1 100%;min-width:0;padding-right:0;margin-top:2px}
   .tools{right:56px;gap:6px;top:12px} .tool-btn{width:36px;height:36px;font-size:15px}
   .theme-btn{right:12px;top:12px;width:36px;height:36px;font-size:16px}
   .ask-fab{right:14px;bottom:18px;width:52px;height:52px;font-size:23px}
@@ -606,7 +611,7 @@ window.SUBJECTS = [
   },
   resources:[
     {t:"菜鸟教程 Python3",d:"中文免费，语法速查首选",u:"https://www.runoob.com/python3/python3-tutorial.html"},
-    {t:"B站 小甲鱼《零基础入门》",d:"讲得通俗，小白友好"},
+    {t:"B站 小甲鱼《零基础入门》",d:"讲得通俗，小白友好",u:"https://search.bilibili.com/all?keyword=%E5%B0%8F%E7%94%B2%E9%B1%BC+python+%E9%9B%B6%E5%9F%BA%E7%A1%80"},
     {t:"Python 官方文档（中文）",d:"最权威，当字典用",u:"https://docs.python.org/zh-cn/3/"},
     {t:"LeetCode 简单题",d:"刷 20 道练编程手感",u:"https://leetcode.cn/problemset/?difficulty=EASY"}
   ]
@@ -663,10 +668,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"《AI 提示词工程入门》免费课",d:"Google / 各大平台均有中文版"},
-    {t:"Prompt 样例库（GitHub 开源）",d:"搜 awesome-chatgpt-prompts"},
-    {t:"LangChain 官方文档",d:"进阶工程化必备"},
-    {t:"B站「跟李沐学 AI」",d:"前沿原理讲得通俗"}
+    {t:"《AI 提示词工程入门》免费课",d:"Google / 各大平台均有中文版",u:"https://www.promptingguide.ai/zh"},
+    {t:"Prompt 样例库（GitHub 开源）",d:"搜 awesome-chatgpt-prompts",u:"https://github.com/f/awesome-chatgpt-prompts"},
+    {t:"LangChain 官方文档",d:"进阶工程化必备",u:"https://python.langchain.com/"},
+    {t:"B站「跟李沐学 AI」",d:"前沿原理讲得通俗",u:"https://search.bilibili.com/all?keyword=%E8%B7%9F%E6%9D%8E%E6%B2%90%E5%AD%A6AI"}
   ]
 },
 {
@@ -723,7 +728,7 @@ window.SUBJECTS = [
   resources:[
     {t:"MDN Web 文档（中文）",d:"前端最权威的百科全书",u:"https://developer.mozilla.org/zh-CN/"},
     {t:"菜鸟教程 HTML/CSS/JS",d:"边学边练，语法速查",u:"https://www.runoob.com/html/html-tutorial.html"},
-    {t:"B站 尚硅谷 / 黑马前端课",d:"体系完整，免费"},
+    {t:"B站 尚硅谷 / 黑马前端课",d:"体系完整，免费",u:"https://search.bilibili.com/all?keyword=%E5%B0%9A%E7%A1%85%E8%B0%B7+%E5%89%8D%E7%AB%AF+%E9%9B%B6%E5%9F%BA%E7%A1%80"},
     {t:"freeCodeCamp",d:"交互式练习，边做边学",u:"https://www.freecodecamp.org/"}
   ]
 },
@@ -777,10 +782,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 戴师兄《数据分析课》",d:"通俗易懂，体系完整"},
+    {t:"B站 戴师兄《数据分析课》",d:"通俗易懂，体系完整",u:"https://search.bilibili.com/all?keyword=%E6%88%B4%E5%B8%88%E5%85%84+%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"},
     {t:"SQLZoo / 牛客网",d:"在线刷题练 SQL",u:"https://sqlzoo.net/"},
-    {t:"《数据分析思维》",d:"补业务分析思路"},
-    {t:"ExcelHome 论坛",d:"函数问题搜得到答案"}
+    {t:"《数据分析思维》",d:"补业务分析思路",h:"书籍 · 微信读书或图书馆找"},
+    {t:"ExcelHome 论坛",d:"函数问题搜得到答案",u:"https://www.excelhome.net/"}
   ]
 },
 {
@@ -833,10 +838,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"剪映内置教程",d:"官方免费，上手最快"},
-    {t:"B站 影视飓风 / 南门录像厅",d:"剪辑思维讲得透"},
-    {t:"B站 doyoudo",d:"零基础软件操作课"},
-    {t:"《剪辑的语法》",d:"经典教材，讲剪辑逻辑"}
+    {t:"剪映内置教程",d:"官方免费，上手最快",u:"https://www.capcut.cn/"},
+    {t:"B站 影视飓风 / 南门录像厅",d:"剪辑思维讲得透",u:"https://search.bilibili.com/all?keyword=%E5%BD%B1%E8%A7%86%E9%A3%93%E9%A3%8E+%E5%89%AA%E8%BE%91+%E6%95%99%E7%A8%8B"},
+    {t:"B站 doyoudo",d:"零基础软件操作课",u:"https://search.bilibili.com/all?keyword=doyoudo+%E5%89%AA%E8%BE%91"},
+    {t:"《剪辑的语法》",d:"经典教材，讲剪辑逻辑",h:"书籍 · 微信读书或图书馆找"}
   ]
 },
 {
@@ -889,10 +894,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"多邻国 / 不背单词",d:"碎片时间背词练句"},
-    {t:"HelloTalk / Tandem",d:"找语伴真人对话"},
-    {t:"《赖世雄美语音标》",d:"发音基础纠正"},
-    {t:"BBC 6 Minute English",d:"适合进阶的听力材料"}
+    {t:"多邻国 / 不背单词",d:"碎片时间背词练句",u:"https://www.duolingo.com/"},
+    {t:"HelloTalk / Tandem",d:"找语伴真人对话",h:"应用商店免费下载「HelloTalk」；官网需外网"},
+    {t:"《赖世雄美语音标》",d:"发音基础纠正",h:"书籍 · 微信读书或图书馆找"},
+    {t:"BBC 6 Minute English",d:"适合进阶的听力材料",u:"https://search.bilibili.com/all?keyword=BBC+6+Minute+English"}
   ]
 },
 {
@@ -945,10 +950,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"星火/新东方真题",d:"主流真题资料"},
-    {t:"百词斩 / 墨墨背单词",d:"APP 碎片背词"},
-    {t:"B站 刘晓艳 / 烤鸭TV",d:"免费四六级课"},
-    {t:"每日英语听力",d:"精听泛听材料"}
+    {t:"星火/新东方真题",d:"主流真题资料",u:"https://cet.neea.edu.cn/"},
+    {t:"百词斩 / 墨墨背单词",d:"APP 碎片背词",u:"https://www.baicizhan.com/"},
+    {t:"B站 刘晓艳 / 烤鸭TV",d:"免费四六级课",u:"https://search.bilibili.com/all?keyword=%E5%88%98%E6%99%93%E8%89%B3+%E5%9B%9B%E5%85%AD%E7%BA%A7"},
+    {t:"每日英语听力",d:"精听泛听材料",u:"https://www.eudic.net/"}
   ]
 },
 {
@@ -1001,10 +1006,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"《标准日本语》初级",d:"经典教材，体系完整"},
-    {t:"B站 叶子先生 / 明王道",d:"免费入门课"},
-    {t:"MOJi辞書 / 沪江开心词场",d:"APP 背单词"},
-    {t:"NHK やさしいニュース",d:"简单日语新闻"}
+    {t:"《标准日本语》初级",d:"经典教材，体系完整",h:"书籍 · 微信读书或图书馆找"},
+    {t:"B站 叶子先生 / 明王道",d:"免费入门课",u:"https://search.bilibili.com/all?keyword=%E5%8F%B6%E5%AD%90%E5%85%88%E7%94%9F+%E6%97%A5%E8%AF%AD+%E5%85%A5%E9%97%A8"},
+    {t:"MOJi辞書 / 沪江开心词场",d:"APP 背单词",u:"https://www.mojidict.com/"},
+    {t:"NHK やさしいニュース",d:"简单日语新闻",u:"https://search.bilibili.com/all?keyword=NHK+easy+news+%E6%97%A5%E8%AF%AD"}
   ]
 },
 {
@@ -1057,9 +1062,9 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"ExcelHome 论坛",d:"问题基本都能搜到"},
-    {t:"B站 Excel 自学成才",d:"函数实战讲解"},
-    {t:"《别怕，Excel 函数其实很简单》",d:"通俗入门书"},
+    {t:"ExcelHome 论坛",d:"问题基本都能搜到",u:"https://www.excelhome.net/"},
+    {t:"B站 Excel 自学成才",d:"函数实战讲解",u:"https://search.bilibili.com/all?keyword=Excel+%E8%87%AA%E5%AD%A6%E6%88%90%E6%89%8D+%E5%87%BD%E6%95%B0"},
+    {t:"《别怕，Excel 函数其实很简单》",d:"通俗入门书",h:"书籍 · 微信读书或图书馆找"},
     {t:"微软官方支持文档",d:"权威函数说明",u:"https://support.microsoft.com/zh-cn/excel"}
   ]
 },
@@ -1113,10 +1118,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 doyoudo / 李涛 PS",d:"软件操作与理念"},
-    {t:"站酷 / Behance",d:"找灵感、看作品"},
-    {t:"《写给大家看的设计书》",d:"排版四原则入门"},
-    {t:"Google Fonts / 免费商用字体",d:"解决字体版权"}
+    {t:"B站 doyoudo / 李涛 PS",d:"软件操作与理念",u:"https://search.bilibili.com/all?keyword=%E6%9D%8E%E6%B6%9B+Photoshop+%E5%9F%BA%E7%A1%80"},
+    {t:"站酷 / Behance",d:"找灵感、看作品",u:"https://www.zcool.com.cn/"},
+    {t:"《写给大家看的设计书》",d:"排版四原则入门",h:"书籍 · 微信读书或图书馆找"},
+    {t:"Google Fonts / 免费商用字体",d:"解决字体版权",h:"Google Fonts 需外网；国内可用站酷字体专区"}
   ]
 },
 {
@@ -1169,10 +1174,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 帅soserious / 马克老师",d:"动作教学与科普"},
-    {t:"《力量训练基础》",d:"经典入门教材"},
-    {t:"Keep APP",d:"在家跟练课程"},
-    {t:"运动解剖学图谱",d:"理解肌肉发力"}
+    {t:"B站 帅soserious / 马克老师",d:"动作教学与科普",u:"https://search.bilibili.com/all?keyword=%E5%B8%85soserious+%E5%81%A5%E8%BA%AB"},
+    {t:"《力量训练基础》",d:"经典入门教材",h:"书籍 · 微信读书或图书馆找"},
+    {t:"Keep APP",d:"在家跟练课程",u:"https://www.gotokeep.com/"},
+    {t:"运动解剖学图谱",d:"理解肌肉发力",h:"书籍 · 微信读书或图书馆找"}
   ]
 },
 {
@@ -1227,8 +1232,8 @@ window.SUBJECTS = [
   resources:[
     {t:"菜鸟教程 SQL",d:"语法速查与练习",u:"https://www.runoob.com/sql/sql-tutorial.html"},
     {t:"SQLZoo / LeetCode 数据库",d:"在线刷题",u:"https://sqlzoo.net/"},
-    {t:"《SQL 必知必会》",d:"薄薄一本，入门经典"},
-    {t:"B站 戴师兄 SQL 课",d:"零基础到进阶"}
+    {t:"《SQL 必知必会》",d:"薄薄一本，入门经典",h:"书籍 · 微信读书或图书馆找"},
+    {t:"B站 戴师兄 SQL 课",d:"零基础到进阶",u:"https://search.bilibili.com/all?keyword=%E6%88%B4%E5%B8%88%E5%85%84+SQL"}
   ]
 },
 {
@@ -1281,10 +1286,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 影视飓风 / Thomas 看看世界",d:"摄影技巧与理念"},
-    {t:"《纽约摄影学院教材》",d:"经典大部头"},
-    {t:"Snapseed / Lightroom",d:"手机后期工具"},
-    {t:"500px / 图虫",d:"看作品找灵感"}
+    {t:"B站 影视飓风 / Thomas 看看世界",d:"摄影技巧与理念",u:"https://search.bilibili.com/all?keyword=Thomas+%E7%9C%8B%E7%9C%8B%E4%B8%96%E7%95%8C+%E6%91%84%E5%BD%B1"},
+    {t:"《纽约摄影学院教材》",d:"经典大部头",h:"书籍 · 微信读书或图书馆找"},
+    {t:"Snapseed / Lightroom",d:"手机后期工具",h:"应用商店免费下载"},
+    {t:"500px / 图虫",d:"看作品找灵感",u:"https://tuchong.com/"}
   ]
 },
 {
@@ -1337,10 +1342,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 美食作家王刚",d:"硬核川菜技法"},
-    {t:"B站 小高姐的 Magic Ingredients",d:"原理讲得透"},
-    {t:"下厨房 APP",d:"海量菜谱与步骤"},
-    {t:"《风味人间》",d:"开阔对食材的认知"}
+    {t:"B站 美食作家王刚",d:"硬核川菜技法",u:"https://search.bilibili.com/all?keyword=%E7%BE%8E%E9%A3%9F%E4%BD%9C%E5%AE%B6%E7%8E%8B%E5%88%9A"},
+    {t:"B站 小高姐的 Magic Ingredients",d:"原理讲得透",u:"https://search.bilibili.com/all?keyword=%E5%B0%8F%E9%AB%98%E5%A7%90%E7%9A%84MagicIngredients"},
+    {t:"下厨房 APP",d:"海量菜谱与步骤",u:"https://www.xiachufang.com/"},
+    {t:"《风味人间》",d:"开阔对食材的认知",h:"纪录片 · 腾讯视频/哔哩哔哩正版观看"}
   ]
 },
   // ---- v1.1 新增科目（17 个，由作者与社区补充）----
@@ -1396,10 +1401,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 旁门左道PPT / 邵云蛟",d:"排版与逻辑讲得透"},
-    {t:"《写给大家看的 PPT 设计书》",d:"零基础排版入门"},
-    {t:"iSlide / 母版库插件",d:"快速规范全篇排版"},
-    {t:"Dribbble / 优设网",d:"找排版灵感"}
+    {t:"B站 旁门左道PPT / 邵云蛟",d:"排版与逻辑讲得透",u:"https://search.bilibili.com/all?keyword=%E6%97%81%E9%97%A8%E5%B7%A6%E9%81%93PPT"},
+    {t:"《写给大家看的 PPT 设计书》",d:"零基础排版入门",h:"书籍 · 微信读书或图书馆找"},
+    {t:"iSlide / 母版库插件",d:"快速规范全篇排版",u:"https://www.islide.cc/"},
+    {t:"Dribbble / 优设网",d:"找排版灵感",u:"https://www.uisdc.com/"}
   ]
 },
 {
@@ -1452,10 +1457,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 王树义 / Python 办公自动化",d:"实战案例多"},
-    {t:"《Python 自动化办公》",d:"系统入门教材"},
-    {t:"飞书/企微开放平台文档",d:"接口与机器人配置"},
-    {t:"UiBot / 影刀 RPA",d:"无代码自动化工具"}
+    {t:"B站 王树义 / Python 办公自动化",d:"实战案例多",u:"https://search.bilibili.com/all?keyword=%E7%8E%8B%E6%A0%91%E4%B9%89+Python+%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96"},
+    {t:"《Python 自动化办公》",d:"系统入门教材",h:"书籍 · 微信读书或图书馆找"},
+    {t:"飞书/企微开放平台文档",d:"接口与机器人配置",u:"https://open.feishu.cn/"},
+    {t:"UiBot / 影刀 RPA",d:"无代码自动化工具",u:"https://www.yingdao.com/"}
   ]
 },
 
@@ -1510,10 +1515,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 老蒋聊音乐 / 胡sir 弹吉他",d:"零基础系统课"},
-    {t:"《吉他自学三月通》",d:"经典入门教材"},
-    {t:"吉他社 / Ultimate-Guitar",d:"海量曲谱与和弦"},
-    {t:"GuitarTuna APP",d:"免费调音与和弦练习"}
+    {t:"B站 老蒋聊音乐 / 胡sir 弹吉他",d:"零基础系统课",u:"https://search.bilibili.com/all?keyword=%E8%80%81%E8%92%8B+%E5%90%89%E4%BB%96+%E9%9B%B6%E5%9F%BA%E7%A1%80"},
+    {t:"《吉他自学三月通》",d:"经典入门教材",h:"书籍 · 微信读书或图书馆找"},
+    {t:"吉他社 / Ultimate-Guitar",d:"海量曲谱与和弦",u:"https://www.ultimate-guitar.com/"},
+    {t:"GuitarTuna APP",d:"免费调音与和弦练习",h:"应用商店免费下载「GuitarTuna」"}
   ]
 },
 {
@@ -1566,10 +1571,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 抖抖村 / Krenz 色彩课",d:"理念与技法讲解"},
-    {t:"《伯里曼人体结构绘画教学》",d:"人体结构经典"},
-    {t:"《色彩与光线》",d:"光色关系理论"},
-    {t:"Pixiv / ArtStation",d:"找参考与灵感"}
+    {t:"B站 抖抖村 / Krenz 色彩课",d:"理念与技法讲解",u:"https://search.bilibili.com/all?keyword=%E6%8A%96%E6%8A%96%E6%9D%91+%E7%94%BB%E7%94%BB"},
+    {t:"《伯里曼人体结构绘画教学》",d:"人体结构经典",h:"书籍 · 微信读书或图书馆找"},
+    {t:"《色彩与光线》",d:"光色关系理论",h:"书籍 · 微信读书或图书馆找"},
+    {t:"Pixiv / ArtStation",d:"找参考与灵感",h:"Pixiv 需外网；国内可用站酷、花瓣看图"}
   ]
 },
 {
@@ -1622,10 +1627,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"《写作这回事》斯蒂芬·金",d:"作家谈写作本质"},
-    {t:"《金字塔原理》",d:"结构化表达经典"},
-    {t:"《文心》夏丏尊、叶圣陶",d:"中文写作基本功"},
-    {t:"豆瓣阅读 / 简书",d:"练笔与投稿平台"}
+    {t:"《写作这回事》斯蒂芬·金",d:"作家谈写作本质",h:"书籍 · 微信读书或图书馆找"},
+    {t:"《金字塔原理》",d:"结构化表达经典",h:"书籍 · 微信读书或图书馆找"},
+    {t:"《文心》夏丏尊、叶圣陶",d:"中文写作基本功",h:"书籍 · 微信读书或图书馆找"},
+    {t:"豆瓣阅读 / 简书",d:"练笔与投稿平台",u:"https://read.douban.com/"}
   ]
 },
 
@@ -1680,10 +1685,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"《延世韩国语》",d:"主流教材体系完整"},
-    {t:"B站 韩语养乐多老师",d:"免费入门课"},
-    {t:"Papago / 多邻国",d:"翻译与日常练习"},
-    {t:"Talk to Me in Korean",d:"免费音频课带文本"}
+    {t:"《延世韩国语》",d:"主流教材体系完整",h:"书籍 · 微信读书或图书馆找"},
+    {t:"B站 韩语养乐多老师",d:"免费入门课",u:"https://search.bilibili.com/all?keyword=%E9%9F%A9%E8%AF%AD%E5%85%BB%E4%B9%90%E5%A4%9A%E8%80%81%E5%B8%88"},
+    {t:"Papago / 多邻国",d:"翻译与日常练习",u:"https://papago.naver.com/"},
+    {t:"Talk to Me in Korean",d:"免费音频课带文本",u:"https://talktomeinkorean.com/"}
   ]
 },
 {
@@ -1736,10 +1741,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"BBC 6 Minute English",d:"最适合进阶的短材料"},
-    {t:"ESL Pod / 6 Minute Grammar",d:"慢速场景对话"},
-    {t:"TED / YouTube 英文频道",d:"题材丰富常速输入"},
-    {t:"每日英语听力 APP",d:"精听材料与单句循环"}
+    {t:"BBC 6 Minute English",d:"最适合进阶的短材料",u:"https://search.bilibili.com/all?keyword=BBC+6+Minute+English"},
+    {t:"ESL Pod / 6 Minute Grammar",d:"慢速场景对话",u:"https://www.eslpod.com/"},
+    {t:"TED / YouTube 英文频道",d:"题材丰富常速输入",u:"https://www.ted.com/talks"},
+    {t:"每日英语听力 APP",d:"精听材料与单句循环",u:"https://www.eudic.net/"}
   ]
 },
 
@@ -1794,10 +1799,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 考研名师免费课（张宇、唐迟等）",d:"各科基础到强化"},
+    {t:"B站 考研名师免费课（张宇、唐迟等）",d:"各科基础到强化",u:"https://search.bilibili.com/all?keyword=%E5%BC%A0%E5%AE%87+%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6+%E5%9F%BA%E7%A1%80"},
     {t:"研招网 / 目标院校官网",d:"最权威的信息源",u:"https://yz.chsi.com.cn/"},
-    {t:"红宝书 / 恋练有词",d:"英语单词书"},
-    {t:"考研帮 / 知乎经验帖",d:"择校与复习节奏参考"}
+    {t:"红宝书 / 恋练有词",d:"英语单词书",h:"书籍 · 微信读书或图书馆找"},
+    {t:"考研帮 / 知乎经验帖",d:"择校与复习节奏参考",u:"https://www.kaoyan.com/"}
   ]
 },
 {
@@ -1850,10 +1855,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"东奥 / 中华会计网校",d:"各科网课与讲义"},
-    {t:"轻松过关 / 轻一轻二",d:"主流教辅与题库"},
+    {t:"东奥 / 中华会计网校",d:"各科网课与讲义",h:"免费部分以官网公开资料为准"},
+    {t:"轻松过关 / 轻一轻二",d:"主流教辅与题库",h:"书籍 · 微信读书或图书馆找"},
     {t:"中国注册会计师协会官网",d:"报名与考试政策",u:"https://www.cicpa.org.cn/"},
-    {t:"B站 CPA 免费试听课",d:"选老师前先试听"}
+    {t:"B站 CPA 免费试听课",d:"选老师前先试听",u:"https://search.bilibili.com/all?keyword=CPA+%E8%AF%95%E5%90%AC%E8%AF%BE"}
   ]
 },
 
@@ -1908,10 +1913,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"B站 SQLBI / 马世权",d:"DAX 与建模深度讲解"},
-    {t:"《DAX 权威指南》",d:"系统学 DAX 必备"},
+    {t:"B站 SQLBI / 马世权",d:"DAX 与建模深度讲解",u:"https://search.bilibili.com/all?keyword=%E9%A9%AC%E4%B8%96%E6%9D%83+PowerBI"},
+    {t:"《DAX 权威指南》",d:"系统学 DAX 必备",h:"书籍 · 微信读书或图书馆找"},
     {t:"微软官方 Learn 文档",d:"Power Query 与建模",u:"https://learn.microsoft.com/zh-cn/power-bi/"},
-    {t:"Power BI 社区论坛",d:"报错和疑难问题搜得到"}
+    {t:"Power BI 社区论坛",d:"报错和疑难问题搜得到",u:"https://community.fabric.microsoft.com/"}
   ]
 },
 {
@@ -1964,9 +1969,9 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"Cursor 官方文档",d:"功能与规则文件说明"},
-    {t:"Claude Code 官方指南",d:"工作流与最佳实践"},
-    {t:"B站 AI 编程实战分享",d:"中文案例演示"},
+    {t:"Cursor 官方文档",d:"功能与规则文件说明",h:"官网文档需外网；可先用下方 Copilot 中文文档"},
+    {t:"Claude Code 官方指南",d:"工作流与最佳实践",u:"https://docs.anthropic.com/en/docs/claude-code/overview"},
+    {t:"B站 AI 编程实战分享",d:"中文案例演示",u:"https://search.bilibili.com/all?keyword=AI+%E7%BC%96%E7%A8%8B+Cursor+%E5%AE%9E%E6%88%98"},
     {t:"GitHub Copilot 文档",d:"辅助补全对比参考",u:"https://docs.github.com/zh/copilot"}
   ]
 },
@@ -2022,10 +2027,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"《小狗钱钱》",d:"入门最温和的一本"},
-    {t:"《指数基金投资指南》银行螺丝钉",d:"定投实操"},
-    {t:"且慢 / 天天基金 APP",d:"基金筛选与组合"},
-    {t:"雪球 / 集思录",d:"投资者社区与讨论"}
+    {t:"《小狗钱钱》",d:"入门最温和的一本",h:"书籍 · 微信读书或图书馆找"},
+    {t:"《指数基金投资指南》银行螺丝钉",d:"定投实操",h:"书籍 · 微信读书或图书馆找"},
+    {t:"且慢 / 天天基金 APP",d:"基金筛选与组合",u:"https://fund.eastmoney.com/"},
+    {t:"雪球 / 集思录",d:"投资者社区与讨论",u:"https://xueqiu.com/"}
   ]
 },
 {
@@ -2078,10 +2083,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"《被讨厌的勇气》",d:"阿德勒心理学通俗版"},
-    {t:"《认知行为疗法基础》",d:"CBT 系统入门"},
-    {t:"简单心理 / 壹心理",d:"科普文章与咨询平台"},
-    {t:"《蛤蟆先生去看心理医生》",d:"心理咨询过程故事化"}
+    {t:"《被讨厌的勇气》",d:"阿德勒心理学通俗版",h:"书籍 · 微信读书或图书馆找"},
+    {t:"《认知行为疗法基础》",d:"CBT 系统入门",h:"书籍 · 微信读书或图书馆找"},
+    {t:"简单心理 / 壹心理",d:"科普文章与咨询平台",u:"https://www.jiandanxinli.com/"},
+    {t:"《蛤蟆先生去看心理医生》",d:"心理咨询过程故事化",h:"书籍 · 微信读书或图书馆找"}
   ]
 },
 {
@@ -2134,10 +2139,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"《深度工作》卡尔·纽波特",d:"专注力理论"},
-    {t:"《搞定：无压工作的艺术》",d:"GTD 方法全集"},
-    {t:"《番茄工作法》",d:"短周期专注实操"},
-    {t:"滴答清单 / Notion",d:"任务与时间管理工具"}
+    {t:"《深度工作》卡尔·纽波特",d:"专注力理论",h:"书籍 · 微信读书或图书馆找"},
+    {t:"《搞定：无压工作的艺术》",d:"GTD 方法全集",h:"书籍 · 微信读书或图书馆找"},
+    {t:"《番茄工作法》",d:"短周期专注实操",h:"书籍 · 微信读书或图书馆找"},
+    {t:"滴答清单 / Notion",d:"任务与时间管理工具",u:"https://dida365.com/"}
   ]
 },
 
@@ -2194,7 +2199,7 @@ window.SUBJECTS = [
   resources:[
     {t:"《Pro Git》中文版（git-scm.com）",d:"最权威的完整教程",u:"https://git-scm.com/book/zh/v2"},
     {t:"Learn Git Branching（可视化练习）",d:"交互式学分支",u:"https://learngitbranching.js.org/?locale=zh_CN"},
-    {t:"B站 Git 教学视频",d:"零基础到进阶"},
+    {t:"B站 Git 教学视频",d:"零基础到进阶",u:"https://search.bilibili.com/all?keyword=Git+%E6%95%99%E5%AD%A6+%E9%9B%B6%E5%9F%BA%E7%A1%80"},
     {t:"GitHub Docs",d:"PR 与协作流程官方说明",u:"https://docs.github.com/zh"}
   ]
 },
@@ -2248,9 +2253,9 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"Docker 官方文档（中文部分）",d:"命令与概念权威说明",u:"https://docs.docker.com/"},
-    {t:"B站 Docker 实战教程",d:"从入门到部署"},
-    {t:"《Docker 从入门到实践》",d:"开源中文电子书"},
+    {t:"菜鸟教程 Docker 教程（中文）",d:"命令与概念权威说明",u:"https://www.runoob.com/docker/docker-tutorial.html"},
+    {t:"B站 Docker 实战教程",d:"从入门到部署",u:"https://search.bilibili.com/all?keyword=Docker+%E5%AE%9E%E6%88%98+%E6%95%99%E7%A8%8B"},
+    {t:"《Docker 从入门到实践》",d:"开源中文电子书",u:"https://yeasy.gitbook.io/docker_practice"},
     {t:"Play with Docker",d:"在线免费实验环境",u:"https://labs.play-with-docker.com/"}
   ]
 },
@@ -2304,10 +2309,10 @@ window.SUBJECTS = [
     ]
   },
   resources:[
-    {t:"Figma 官方 Learn Center",d:"官方交互式课程"},
-    {t:"B站 Figma 零基础到进阶",d:"中文实战课"},
+    {t:"Figma 官方 Learn Center",d:"官方交互式课程",u:"https://help.figma.com/hc/en-us"},
+    {t:"B站 Figma 零基础到进阶",d:"中文实战课",u:"https://search.bilibili.com/all?keyword=Figma+%E9%9B%B6%E5%9F%BA%E7%A1%80+%E6%95%99%E7%A8%8B"},
     {t:"Figma Community",d:"免费模板与设计系统",u:"https://www.figma.com/community/"},
-    {t:"《Refactoring UI》",d:"界面设计实用原则"}
+    {t:"《Refactoring UI》",d:"界面设计实用原则",h:"免费部分以官网公开资料为准"}
   ]
 },
 
@@ -2988,11 +2993,17 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove("show"), 2200);
 }
 function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-/* 资源卡片跳转：配了直达链接的直接打开，否则按标题+描述走搜索引擎兜底 */
-function openResource(el){
-  const t = el.dataset.q || "", d = el.dataset.d || "";
-  window.open("https://www.bing.com/search?q="+encodeURIComponent(t+" "+d), "_blank", "noopener");
-}
+/* 资源卡片：只有通过白名单校验的官网/免费平台地址才渲染为可点击链接；
+   其余（书籍、APP、付费课）只显示标题与获取方式提示，不再跳搜索引擎。 */
+const resourceCardHtml = function(r){
+  if (r.u) {
+    const inner = `<div class="rt">${escapeHtml(r.t)}<span class="ext">↗</span></div><div class="rd">${escapeHtml(r.d)}</div>`;
+    return `<a class="res-card" href="${escapeHtml(r.u)}" target="_blank" rel="noopener">${inner}</a>`;
+  }
+  const inner = `<div class="rt">${escapeHtml(r.t)}</div><div class="rd">${escapeHtml(r.d)}</div>`
+    + (r.h ? `<div class="rh">${escapeHtml(r.h)}</div>` : "");
+  return `<div class="res-card res-off">${inner}</div>`;
+};
 
 /* ============ 渲染：热门标签 + 全部科目标签 ============ */
 function renderChips(){
@@ -3178,12 +3189,7 @@ function renderResult(subject, keepScroll){
   }).join("");
 
   const tipsHtml = tips.map(t=>`<li>${t}</li>`).join("");
-  const resHtml = subject.resources.map(r=>{
-    const inner = `<div class="rt">${escapeHtml(r.t)}${r.u?'<span class="ext">↗</span>':''}</div><div class="rd">${escapeHtml(r.d)}</div>`;
-    return r.u
-      ? `<a class="res-card" href="${escapeHtml(r.u)}" target="_blank" rel="noopener">${inner}</a>`
-      : `<div class="res-card" data-q="${escapeHtml(r.t)}" data-d="${escapeHtml(r.d)}" onclick="openResource(this)">${inner}</div>`;
-  }).join("");
+  const resHtml = subject.resources.map(resourceCardHtml).join("");
 
   resultEl().innerHTML = `
     <div class="fade-in">
@@ -3257,12 +3263,7 @@ function renderGeneratedResult(subject, source){
     </div>`;
   }).join("");
   const tipsHtml = tips.map(t=>`<li>${t}</li>`).join("");
-  const resHtml = (subject.resources||[]).map(r=>{
-    const inner = `<div class="rt">${escapeHtml(r.t)}${r.u?'<span class="ext">↗</span>':''}</div><div class="rd">${escapeHtml(r.d)}</div>`;
-    return r.u
-      ? `<a class="res-card" href="${escapeHtml(r.u)}" target="_blank" rel="noopener">${inner}</a>`
-      : `<div class="res-card" data-q="${escapeHtml(r.t)}" data-d="${escapeHtml(r.d)}" onclick="openResource(this)">${inner}</div>`;
-  }).join("");
+  const resHtml = (subject.resources||[]).map(resourceCardHtml).join("");
 
   // 领域标签：点击可切换同领域其他相关方向（引导探索）
   const fieldTags = {
