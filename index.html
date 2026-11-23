@@ -10,12 +10,21 @@
 <meta property="og:title" content="Lume Studio · 小白学习指南">
 <meta property="og:description" content="输入想学的科目，自动生成大白话学习目标与分阶段计划，小白/进阶双模式，含智能答疑与学习打卡。Your First Step into Anything.">
 <meta property="og:url" content="https://chengyi-mountain.github.io/Lume/">
+<meta property="og:site_name" content="Lume Studio">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chengyi-mountain.github.io/Lume/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://chengyi-mountain.github.io/Lume/preview.png">
+<meta name="theme-color" content="#f0fdf4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
 <style>
 :root{
   --green:#4ade80; --green-d:#22c55e; --green-dd:#16a34a;
   --blue:#60a5fa; --blue-d:#3b82f6;
   --orange:#fb923c; --pink:#f472b6; --purple:#a78bfa;
-  --ink:#1f2937; --ink2:#4b5563; --ink3:#9ca3af;
+  --ink:#1f2937; --ink2:#4b5563; --ink3:#6b7280; --danger:#dc2626;
   --bg:#f0fdf4; --card:#ffffff; --line:#e5e7eb;
   --shadow:0 8px 30px rgba(34,197,94,.10);
 }
@@ -84,6 +93,7 @@ header{text-align:center;padding:52px 20px 28px;position:relative}
 .btn-primary:active{transform:translateY(0)}
 .btn-ghost{background:#f3f4f6;color:var(--ink2)}
 .btn-ghost:hover{background:#e5e7eb}
+.btn-danger{color:var(--danger)}
 
 /* 模式切换 */
 .mode-switch{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#f9fafb;padding:12px 16px;border-radius:16px;border:1px dashed var(--line)}
@@ -160,7 +170,7 @@ header{text-align:center;padding:52px 20px 28px;position:relative}
 .phase-dot.advanced{background:var(--orange)}
 .phase-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .phase-head h3{font-size:17px;font-weight:900}
-.phase-meta{font-size:12px;color:var(--ink3);background:#f3f4f6;padding:2px 10px;border-radius:12px;font-weight:700}
+.phase-meta{font-size:12px;color:var(--ink2);background:#f3f4f6;padding:2px 10px;border-radius:12px;font-weight:700}
 .phase-quote{font-size:13.5px;color:var(--ink2);background:linear-gradient(90deg,#ecfdf5,#f0f9ff);border-left:3px solid var(--green);padding:8px 14px;border-radius:0 10px 10px 0;margin:8px 0 14px}
 .phase ul{list-style:none;display:grid;gap:8px}
 .phase ul li{font-size:14px;padding-left:20px;position:relative;color:var(--ink2)}
@@ -220,7 +230,7 @@ footer .seal{display:inline-block;margin-top:16px;padding:4px 13px;border:1px so
 /* ===== 暗色主题 ===== */
 :root[data-theme="dark"]{
   --bg:#0f172a; --card:#1e293b; --line:#334155;
-  --ink:#e2e8f0; --ink2:#cbd5e1; --ink3:#94a3b8;
+  --ink:#e2e8f0; --ink2:#cbd5e1; --ink3:#94a3b8; --danger:#f87171;
   --shadow:0 8px 30px rgba(0,0,0,.4);
 }
 :root[data-theme="dark"] body{background-image:radial-gradient(circle at 15% 10%,rgba(74,222,128,.10),transparent 40%),radial-gradient(circle at 85% 20%,rgba(96,165,250,.10),transparent 40%),radial-gradient(circle at 50% 90%,rgba(244,114,182,.08),transparent 45%)}
@@ -238,6 +248,20 @@ footer .seal{display:inline-block;margin-top:16px;padding:4px 13px;border:1px so
 :root[data-theme="dark"] .ask-bubble.ai{background:#273449}
 :root[data-theme="dark"] .kb-item{background:var(--card);border-color:var(--line)}
 :root[data-theme="dark"] .kb-item:hover{background:#273449}
+/* 暗色主题：清理写死浅色底的组件，避免浅底浅字 */
+:root[data-theme="dark"] .intro{background:linear-gradient(135deg,rgba(30,41,59,.96),rgba(23,34,52,.92));border-color:var(--line)}
+:root[data-theme="dark"] .intro-points .pk{background:rgba(74,222,128,.14)}
+:root[data-theme="dark"] .intro-art .tag{background:#273449;color:var(--ink2)}
+:root[data-theme="dark"] .btn-ghost{background:#273449;color:var(--ink2)}
+:root[data-theme="dark"] .btn-ghost:hover{background:#334155}
+:root[data-theme="dark"] .btn-danger{color:var(--danger)}
+:root[data-theme="dark"] .switch{background:#334155}
+:root[data-theme="dark"] .subject-card .tag,:root[data-theme="dark"] .phase-meta,:root[data-theme="dark"] .gen-tag,:root[data-theme="dark"] .ask-quick button,:root[data-theme="dark"] .check-item{background:#273449;color:var(--ink2);border-color:var(--line)}
+:root[data-theme="dark"] .check-item.done{background:rgba(74,222,128,.14);border-color:rgba(74,222,128,.45)}
+:root[data-theme="dark"] .check-item.done .check-txt{color:var(--ink3)}
+:root[data-theme="dark"] .chip:hover,:root[data-theme="dark"] .res-card:hover,:root[data-theme="dark"] .gen-tag:hover,:root[data-theme="dark"] .ask-quick button:hover{background:#2f4058}
+:root[data-theme="dark"] .res-card:hover{border-color:var(--green)}
+:root[data-theme="dark"] .search-box input:focus{background:#273449}
 
 /* 主题切换按钮 */
 .theme-btn{position:fixed;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:2px solid #fff;background:var(--card);color:var(--ink);font-size:18px;cursor:pointer;box-shadow:var(--shadow);z-index:60;display:flex;align-items:center;justify-content:center;transition:.2s}
@@ -345,8 +369,9 @@ footer .seal{display:inline-block;margin-top:16px;padding:4px 13px;border:1px so
   .logo .emoji{font-size:28px}
   .tagline{font-size:13.5px;margin-top:10px}
   .hero{padding:20px} .intro{padding:22px} .wrap{padding:0 14px}
-  .btn{padding:0 18px} .search-box input{padding:13px 15px;min-width:0}
-  .mode-tip{min-width:0}
+  .btn{padding:0 18px} .search-box input{padding:13px 15px;min-width:0;flex:1 1 100%}
+  .search-box .btn{flex:1 1 100%;height:46px;margin-right:60px}
+  .mode-tip{min-width:0;padding-right:64px}
   .tools{right:56px;gap:6px;top:12px} .tool-btn{width:36px;height:36px;font-size:15px}
   .theme-btn{right:12px;top:12px;width:36px;height:36px;font-size:16px}
   .ask-fab{right:14px;bottom:18px;width:52px;height:52px;font-size:23px}
@@ -470,7 +495,7 @@ footer .seal{display:inline-block;margin-top:16px;padding:4px 13px;border:1px so
   <!-- 搜索区 -->
   <section class="hero">
     <div class="search-box">
-      <input id="searchInput" type="text" placeholder="想学点啥？比如：Python、英语、剪辑、四六级、Excel……" autocomplete="off">
+      <input id="searchInput" type="text" placeholder="想学点啥？比如 Python" autocomplete="off">
       <button class="btn btn-primary" onclick="doSearch()">🚀 生成学习计划</button>
     </div>
 
@@ -3273,7 +3298,7 @@ function renderGeneratedResult(subject, source){
         <div class="gen-note">
           💡 这是根据你的输入<b>自动生成</b>的方案，结构和内置科目一致。觉得哪里不准？
           ${saveBtn ? `点上面「复制为 JSON」拿到数据，<a href="#" onclick="openIssue(event,'${escapeHtml(subject.name)}')">提交到 GitHub</a>，作者审核后就能让所有人搜到「${escapeHtml(subject.name)}」。`
-          : `想接入更精准的 AI 方案？在页面中配置 <code style="background:#f3f4f6;padding:2px 6px;border-radius:6px">window.LUME_STUDIO_CONFIG</code> 即可，没配置也完全可用，走本地兜底。<br>
+          : `想接入更精准的 AI 方案？在页面中配置 <code style="background:var(--line);padding:2px 6px;border-radius:6px">window.LUME_STUDIO_CONFIG</code> 即可，没配置也完全可用，走本地兜底。<br>
           🌱 开源项目欢迎贡献：把这个科目的计划写成数据提交到 GitHub，下一个搜到它的人就能直接用上你写的方案。`}
         </div>
       </div>
@@ -3449,7 +3474,7 @@ function renderPlanDrawer(){
       <div class="ov-actions">
         <button class="btn btn-ghost" style="padding:8px 16px;font-size:13px" onclick="exportPlan()">📤 导出进度</button>
         <button class="btn btn-ghost" style="padding:8px 16px;font-size:13px" onclick="importPlan()">📥 导入进度</button>
-        <button class="btn btn-ghost" style="padding:8px 16px;font-size:13px;color:#ef4444" onclick="resetPlan()">🗑️ 清空记录</button>
+        <button class="btn btn-ghost btn-danger" style="padding:8px 16px;font-size:13px" onclick="resetPlan()">🗑️ 清空记录</button>
       </div>
     </div>`;
 }
