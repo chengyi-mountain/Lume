@@ -196,6 +196,74 @@ header{text-align:center;padding:52px 20px 28px;position:relative}
 .res-card .rh{font-size:12px;color:var(--ink3);margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)}
 .res-note{font-size:12px;color:var(--ink3);margin-top:14px;line-height:1.7}
 
+/* ===== 学习单元 / 今日任务 ===== */
+.qhist{max-width:860px;margin:-4px auto 14px;display:none;flex-wrap:wrap;align-items:center;gap:8px;padding:0 4px}
+.qhist.show{display:flex}
+.qhist .qh-label{font-size:12px;font-weight:700;color:var(--ink3);flex:0 0 auto}
+.qhist .qh-item{font-size:12.5px;font-weight:700;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;color:var(--ink2);transition:.18s}
+.qhist .qh-item:hover{border-color:var(--green);color:var(--green-dd)}
+.qhist .qh-clear{font-size:12px;color:var(--ink3);cursor:pointer;text-decoration:underline;background:none;border:0;padding:0 2px}
+.qhist .qh-clear:hover{color:var(--danger)}
+.today-wrap{max-width:860px;margin:0 auto 4px}
+.today-card{display:flex;gap:20px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:18px}
+.today-card .tc-main{flex:1 1 280px;min-width:0}
+.today-eyebrow{font-size:12px;font-weight:900;color:var(--green-dd);letter-spacing:.06em}
+.today-title{font-size:20px;font-weight:900;margin:8px 0 6px;line-height:1.35}
+.today-sub{font-size:13px;color:var(--ink3);line-height:1.65}
+.today-go{flex:0 0 auto}
+.unit-list{display:grid;gap:12px;margin-top:18px}
+.unit-item{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;cursor:pointer;transition:.2s}
+.unit-item:hover{border-color:var(--green);transform:translateY(-2px)}
+.unit-no{flex:0 0 34px;height:34px;border-radius:50%;background:#f0fdf4;color:var(--green-dd);font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center}
+.unit-info{flex:1;min-width:0}
+.unit-t{font-size:15px;font-weight:800}
+.unit-goal{font-size:12.5px;color:var(--ink3);margin-top:5px;line-height:1.6}
+.unit-badge{font-size:11px;font-weight:900;padding:4px 10px;border-radius:999px;white-space:nowrap;align-self:center}
+.unit-badge.idle{background:#f3f4f6;color:var(--ink3)}
+.unit-badge.doing{background:rgba(34,197,94,.15);color:#15803d}
+.unit-badge.proof{background:rgba(245,158,11,.18);color:#b45309}
+.unit-badge.done{background:rgba(59,130,246,.15);color:#1d4ed8}
+.unit-bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:10px}
+.unit-bar>i{display:block;height:100%;background:var(--green);border-radius:99px}
+.unit-nav{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+.unit-coming{background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:14px 18px;font-size:13px;color:var(--ink3);margin-bottom:18px;line-height:1.7}
+.u-head{background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow);border:1px solid var(--line);margin-bottom:18px}
+.u-eyebrow{font-size:12px;font-weight:900;color:var(--green-dd);letter-spacing:.06em}
+.u-title{font-size:24px;font-weight:900;margin:8px 0 8px;line-height:1.35}
+.u-goal{font-size:14px;color:var(--ink2);line-height:1.7;background:rgba(34,197,94,.08);border-left:4px solid var(--green);border-radius:0 12px 12px 0;padding:12px 14px;margin-top:12px}
+.u-meta{font-size:12.5px;color:var(--ink3);margin-top:12px;display:flex;gap:16px;flex-wrap:wrap}
+.u-steps{background:var(--card);border-radius:24px;padding:24px 26px;box-shadow:var(--shadow);border:1px solid var(--line);margin-bottom:18px}
+.u-steps h2{font-size:19px;font-weight:900;margin-bottom:4px}
+.u-steps .sub{font-size:13px;color:var(--ink3);margin-bottom:14px}
+.step-item{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;transition:.18s;background:#f9fafb}
+.step-item:hover{border-color:var(--green)}
+.step-item.done{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.35)}
+.step-box{flex:0 0 20px;height:20px;border-radius:6px;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;margin-top:2px}
+.step-item.done .step-box{background:var(--green);border-color:var(--green)}
+.step-txt{font-size:14px;line-height:1.65;color:var(--ink)}
+.proof-box{background:var(--card);border-radius:24px;padding:24px 26px;box-shadow:var(--shadow);border:1px solid var(--line);margin-bottom:18px}
+.proof-box h2{font-size:19px;font-weight:900;margin-bottom:10px}
+.proof-text{font-size:14.5px;line-height:1.75;background:#fffbeb;border:1px dashed #fcd34d;border-radius:14px;padding:14px 16px;color:#92400e}
+.proof-actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.proof-done{font-size:13px;color:var(--green-dd);font-weight:800}
+:root[data-theme="dark"] .unit-no{background:rgba(74,222,128,.14);color:var(--green)}
+:root[data-theme="dark"] .unit-badge.idle{background:#273449;color:var(--ink2)}
+:root[data-theme="dark"] .unit-badge.doing{background:rgba(74,222,128,.18);color:#86efac}
+:root[data-theme="dark"] .unit-badge.proof{background:rgba(245,158,11,.2);color:#fcd34d}
+:root[data-theme="dark"] .unit-badge.done{background:rgba(96,165,250,.2);color:#93c5fd}
+:root[data-theme="dark"] .step-item{background:#273449}
+:root[data-theme="dark"] .step-item.done{background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.4)}
+:root[data-theme="dark"] .u-goal{background:rgba(74,222,128,.1);border-left-color:var(--green)}
+:root[data-theme="dark"] .proof-text{background:rgba(245,158,11,.12);border-color:rgba(252,211,77,.35);color:#fcd34d}
+:root[data-theme="dark"] .today-card,:root[data-theme="dark"] .u-head,:root[data-theme="dark"] .u-steps,:root[data-theme="dark"] .proof-box{background:var(--card);border-color:var(--line)}
+@media(max-width:600px){
+  .today-card{padding:18px 18px}
+  .today-title{font-size:17px}
+  .unit-item{padding:14px 14px;gap:12px}
+  .u-head,.u-steps,.proof-box{padding:20px 18px}
+  .u-title{font-size:20px}
+}
+
 /* ===== Footer ===== */
 footer{text-align:center;padding:40px 20px 50px;color:var(--ink3);font-size:13px}
 footer .heart{color:#ef4444}
@@ -499,10 +567,14 @@ footer .seal{display:inline-block;margin-top:16px;padding:4px 13px;border:1px so
 
   <!-- 搜索区 -->
   <section class="hero">
+    <div class="today-wrap"><div id="todayCard"></div></div>
+
     <div class="search-box">
       <input id="searchInput" type="text" placeholder="想学点啥？比如 Python" autocomplete="off">
       <button class="btn btn-primary" onclick="doSearch()">🚀 生成学习计划</button>
     </div>
+
+    <div class="qhist" id="qHist"></div>
 
     <div class="mode-switch">
       <span class="mode-label">🎚️ 难度模式</span>
@@ -543,6 +615,664 @@ footer .seal{display:inline-block;margin-top:16px;padding:4px 13px;border:1px so
 </footer>
 
 <div class="toast" id="toast"></div>
+
+<script>
+/* ============ 学习单元数据（Phase 1：6 个科目，38 个单元） ============ */
+window.UNITS = {
+ "python": {
+  "units": [
+   {
+    "t": "装上环境，跑通第一个程序",
+    "goal": "能在自己电脑上跑通一个 .py 文件，从此不怕黑框框",
+    "mins": 40,
+    "steps": [
+     "装 Python 3.11+（Windows 安装时勾上 Add python.exe to PATH）",
+     "新建 hello.py，写一行 print(\"你好，Lume\")",
+     "打开终端，输入 python hello.py 看结果",
+     "把引号里的字改成你的名字，再跑一次"
+    ],
+    "proof": "终端能显示 python --version 的版本号，且 hello.py 输出的是你自己写的内容",
+    "res": [
+     0,
+     2
+    ],
+    "id": "u1"
+   },
+   {
+    "t": "变量与计算：写一个 BMI 计算器",
+    "goal": "搞懂变量、数字、字符串和输入输出",
+    "mins": 45,
+    "steps": [
+     "用 input() 收身高和体重",
+     "套公式 体重 / (身高 * 身高) 算出 BMI",
+     "用 f-string 把结果保留一位小数打印出来",
+     "试 3 组数据验证结果对不对"
+    ],
+    "proof": "输入 170 / 65 时，脚本输出 BMI ≈ 22.5",
+    "res": [
+     0,
+     2
+    ],
+    "id": "u2"
+   },
+   {
+    "t": "列表与循环：批量处理 10 个文件",
+    "goal": "学会列表和 for 循环，能一次处理一堆东西",
+    "mins": 50,
+    "steps": [
+     "建一个 files 列表，塞 10 个假文件名",
+     "用 for 循环逐个打印「第 n 个：文件名」",
+     "改用 enumerate 加序号，对比两者差别",
+     "用 sorted 让列表按字母序输出"
+    ],
+    "proof": "屏幕按顺序输出 10 行，编号和文件名都没错位",
+    "res": [
+     0,
+     3
+    ],
+    "id": "u3"
+   },
+   {
+    "t": "条件与函数：做一个猜数字游戏",
+    "goal": "会写 if/else 和自定义函数，把逻辑拆开",
+    "mins": 60,
+    "steps": [
+     "用 random.randint 生成 1–100 的答案",
+     "写 guess(n) 判断 大了 / 小了 / 对了",
+     "外面套 while 循环，最多猜 7 次",
+     "每次输入后提示还剩几次机会"
+    ],
+    "proof": "连续玩 3 局，输赢提示都对，次数用完会正常结束",
+    "res": [
+     0,
+     1
+    ],
+    "id": "u4"
+   },
+   {
+    "t": "文件读写：统计一段文字的字数",
+    "goal": "能读文件、写文件，处理真实数据",
+    "mins": 50,
+    "steps": [
+     "准备一个 txt，随便贴一段文章",
+     "用 open() 读进来，统计总字数",
+     "统计出现最多的前 5 个词（提示：字典计数）",
+     "把结果写进 report.txt"
+    ],
+    "proof": "report.txt 里有总字数和前 5 个高频词，数字和原文对得上",
+    "res": [
+     2
+    ],
+    "id": "u5"
+   },
+   {
+    "t": "装第三方库：抓一个网页标题",
+    "goal": "会用 pip，知道第三方生态怎么接进来",
+    "mins": 45,
+    "steps": [
+     "pip install requests",
+     "用 requests.get 抓 https://www.runoob.com/",
+     "从返回的 HTML 里取出 <title> 内容",
+     "加上超时和异常处理，断网时不能崩"
+    ],
+    "proof": "脚本打印出对方网页的真实标题，断网再跑一次不会红字崩溃",
+    "res": [
+     0
+    ],
+    "id": "u6"
+   },
+   {
+    "t": "看懂报错：故意制造 3 个错误",
+    "goal": "遇到红字不慌，会读报错定位问题",
+    "mins": 35,
+    "steps": [
+     "故意拼错变量名，看 NameError 在说什么",
+     "故意少传一个参数，看 TypeError 在说什么",
+     "故意访问列表越界，看 IndexError 在说什么",
+     "把这三条报错各写一句人话翻译"
+    ],
+    "proof": "不看搜索引擎，能说出这三类报错分别是什么意思",
+    "res": [
+     2
+    ],
+    "id": "u7"
+   },
+   {
+    "t": "小项目：批量重命名文件",
+    "goal": "把前面学的串起来，做一个真省时间的工具",
+    "mins": 70,
+    "steps": [
+     "先复制 10 个测试文件到单独文件夹（别拿真文件练）",
+     "用 os.listdir 拿到文件名列表",
+     "按规则（加前缀 / 改序号）生成新名字",
+     "重命名前先打印「旧名 → 新名」清单，确认了再执行"
+    ],
+    "proof": "10 个测试文件重命名成功，且脚本是先打印清单再动手（有防误伤保护）",
+    "res": [
+     0
+    ],
+    "id": "u8"
+   }
+  ]
+ },
+ "frontend": {
+  "units": [
+   {
+    "t": "HTML 骨架：做一张个人名片页",
+    "goal": "看懂标签结构，能独立写出一个完整页面",
+    "mins": 50,
+    "steps": [
+     "写 doctype / head / body 三层骨架",
+     "放上姓名、一句话介绍、3 个联系方式",
+     "用 img 和 a 加上头像与链接",
+     "用浏览器打开，标题栏显示你的名字"
+    ],
+    "proof": "本地打开这张名片页，内容完整、没有乱码",
+    "res": [
+     0,
+     1
+    ],
+    "id": "u1"
+   },
+   {
+    "t": "CSS 布局：三栏卡片用 Flex 排好",
+    "goal": "掌握盒模型和 Flex，元素能按你想的位置排",
+    "mins": 60,
+    "steps": [
+     "给页面加一个 .wrap 限制最大宽度",
+     "三张卡片放进 display:flex 的容器",
+     "设 gap 和 flex:1，让它们等宽排列",
+     "调整 padding / border-radius 看视觉变化"
+    ],
+    "proof": "三张卡片等宽、间距一致，缩窗口时会自动换行不重叠",
+    "res": [
+     1,
+     0
+    ],
+    "id": "u2"
+   },
+   {
+    "t": "响应式：480px 下不出现横向滚动",
+    "goal": "让页面在手机上也是能看的",
+    "mins": 50,
+    "steps": [
+     "在浏览器开发者工具里切到 iPhone 尺寸",
+     "找出溢出的元素（一般是固定宽度或超长文字）",
+     "加 @media (max-width:600px) 单独调窄屏样式",
+     "用 max-width:100% 和换行处理长内容"
+    ],
+    "proof": "窗口宽度 480px 时没有横向滚动条，文字不超出屏幕",
+    "res": [
+     0,
+     3
+    ],
+    "id": "u3"
+   },
+   {
+    "t": "JS 基础：按钮点一次数字加一",
+    "goal": "第一次让页面「活」起来",
+    "mins": 45,
+    "steps": [
+     "写一个 <button> 和一个显示数字的 span",
+     "用 querySelector 拿到这两个元素",
+     "addEventListener 监听 click",
+     "每次点击把数字加一并写回页面"
+    ],
+    "proof": "点三次按钮，页面数字显示 3，刷新后重新归零",
+    "res": [
+     0,
+     3
+    ],
+    "id": "u4"
+   },
+   {
+    "t": "DOM 渲染：把数组变成 5 张卡片",
+    "goal": "理解「数据驱动界面」，这是所有框架的地基",
+    "mins": 60,
+    "steps": [
+     "建一个 5 个对象的数组（标题 + 描述）",
+     "用 forEach 拼出 HTML 字符串",
+     "一次性塞进容器的 innerHTML",
+     "改成模板字符串写法，代码更干净"
+    ],
+    "proof": "页面出现 5 张卡片，内容和数组一一对应",
+    "res": [
+     0,
+     3
+    ],
+    "id": "u5"
+   },
+   {
+    "t": "上线：把页面发到 GitHub Pages",
+    "goal": "拥有一个能发给朋友的网址",
+    "mins": 50,
+    "steps": [
+     "新建仓库，把 index.html 传上去",
+     "在 Settings → Pages 里选 main 分支根目录",
+     "等 1–2 分钟，访问 用户名.github.io/仓库名",
+     "把链接发给自己手机，确认能打开"
+    ],
+    "proof": "拿到一个公开可访问的网址，手机上也能正常显示",
+    "res": [
+     3
+    ],
+    "id": "u6"
+   }
+  ]
+ },
+ "excel": {
+  "units": [
+   {
+    "t": "先立规矩：一张规范的收支表",
+    "goal": "建立「一个字段一列」的肌肉记忆，后面所有分析都靠它",
+    "mins": 40,
+    "steps": [
+     "建表头：日期 / 分类 / 金额 / 备注",
+     "录 20 行真实数据，别用合并单元格",
+     "选中表头 → 视图 → 冻结首行",
+     "金额列设置成货币格式"
+    ],
+    "proof": "一张 20 行、字段齐全、没有合并单元格的收支表",
+    "res": [
+     3,
+     1
+    ],
+    "id": "u1"
+   },
+   {
+    "t": "三个打底函数：SUM / AVERAGE / IF",
+    "goal": "会写最常用的三个函数，表格开始自己算",
+    "mins": 45,
+    "steps": [
+     "用 SUM 算总支出、AVERAGE 算日均",
+     "用 IF 判断某行是否超预算",
+     "把 IF 结果做成「超支 / 正常」两列提示",
+     "拖动填充柄复制公式到整列"
+    ],
+    "proof": "整列自动显示「超支 / 正常」，改动某行金额结果跟着变",
+    "res": [
+     3,
+     1
+    ],
+    "id": "u2"
+   },
+   {
+    "t": "排序、筛选、条件格式",
+    "goal": "一眼看出数据里的异常和重点",
+    "mins": 40,
+    "steps": [
+     "按金额降序排一次，找出最大的 3 笔",
+     "用筛选只看「餐饮」分类",
+     "给金额前 10% 加高亮（条件格式 → 前 10%）",
+     "取消所有筛选，确认数据没被破坏"
+    ],
+    "proof": "打开表格就能看到高亮的重点行，且原始数据顺序可恢复",
+    "res": [
+     1
+    ],
+    "id": "u3"
+   },
+   {
+    "t": "数据透视表：按月汇总支出",
+    "goal": "把几百行数据压成一张能看的表",
+    "mins": 50,
+    "steps": [
+     "选中整张表 → 插入 → 数据透视表",
+     "行放「月份」，列放「分类」，值放「金额求和」",
+     "加一个总计行，检查数字和 SUM 对得上",
+     "按总额降序，找出最花钱的分类"
+    ],
+    "proof": "一张按月 × 分类的汇总表，总计与原始 SUM 一致",
+    "res": [
+     1,
+     3
+    ],
+    "id": "u4"
+   },
+   {
+    "t": "跨表匹配：XLOOKUP 对上两张表",
+    "goal": "告别手工复制粘贴对数据",
+    "mins": 45,
+    "steps": [
+     "准备两张表：订单表、商品价目表",
+     "用 XLOOKUP 把单价匹配进订单表",
+     "加 IFERROR，匹配不到时显示「未找到」",
+     "抽查 5 行手工核对结果"
+    ],
+    "proof": "两张表匹配成功率 100%，抽查 5 行全部对得上",
+    "res": [
+     3
+    ],
+    "id": "u5"
+   },
+   {
+    "t": "出一页月度报告",
+    "goal": "把分析结果变成别人看得懂的东西",
+    "mins": 50,
+    "steps": [
+     "用透视表数据做一张柱状图",
+     "加标题、坐标轴单位、数据标签",
+     "写三句结论：花最多的是哪类、环比变化、下月建议",
+     "整页截图或导出 PDF 发出去"
+    ],
+    "proof": "一页含图表 + 三句结论的报告，别人不看原表也能懂",
+    "res": [
+     1
+    ],
+    "id": "u6"
+   }
+  ]
+ },
+ "english": {
+  "units": [
+   {
+    "t": "先修发音：3 个最容易错的地方",
+    "goal": "把基础音对准，后面开口才不别扭",
+    "mins": 35,
+    "steps": [
+     "查清 th / v / 短元音 i 三个音的正确口型",
+     "各挑 10 个常用词，跟读音频 3 遍",
+     "录下自己的版本，和原音对比",
+     "标出自己最容易混的那 3 组词"
+    ],
+    "proof": "录一段包含这 10 个词的音频，能听出和原音的主要差别",
+    "res": [
+     0,
+     3
+    ],
+    "id": "u1"
+   },
+   {
+    "t": "场景句块：自我介绍 + 求助",
+    "goal": "先背「能直接用」的句子，而不是背语法",
+    "mins": 40,
+    "steps": [
+     "挑 8 句自我介绍（名字/职业/兴趣/正在学什么）",
+     "挑 8 句求助（没听清、说慢点、这个怎么说）",
+     "每句读 5 遍，直到不看稿能顺下来",
+     "对着手机录一遍完整的 1 分钟自述"
+    ],
+    "proof": "不看稿说完 8 句自我介绍，中间不停顿超过 3 秒",
+    "res": [
+     0,
+     2
+    ],
+    "id": "u2"
+   },
+   {
+    "t": "影子跟读：30 秒材料跟 3 遍",
+    "goal": "练节奏和连读，这是口语最像「外国人」的部分",
+    "mins": 30,
+    "steps": [
+     "选一段 30 秒、语速正常的对话材料",
+     "第一遍只听，标出连读位置",
+     "第二遍延迟 1 秒跟着念（影子跟读）",
+     "第三遍录音，对比第一遍的感觉"
+    ],
+    "proof": "能跟上 30 秒材料不断句，且录音里至少 3 处连读念对了",
+    "res": [
+     3
+    ],
+    "id": "u3"
+   },
+   {
+    "t": "用 AI 做 10 轮对话",
+    "goal": "在没有语伴的情况下也能练「真实交流」",
+    "mins": 35,
+    "steps": [
+     "让 AI 扮演咖啡店店员，你点单",
+     "规则：只能用英文，卡住就写「How do I say...」",
+     "聊满 10 轮，不要中途切回中文",
+     "把对话记录存下来，挑 3 句自己说得别扭的"
+    ],
+    "proof": "一段 10 轮的英文对话记录，且你能指出 3 处自己需要改的表达",
+    "res": [
+     0,
+     1
+    ],
+    "id": "u4"
+   },
+   {
+    "t": "单词卡 + 间隔复习",
+    "goal": "用检索练习代替「抄单词」",
+    "mins": 30,
+    "steps": [
+     "建 30 张卡：正面英文、背面中文 + 一个例句",
+     "今天过一遍，只留没记住的",
+     "第 3 天再测一次，只测上次错的",
+     "记录每轮正确率"
+    ],
+    "proof": "30 张卡，3 天后仍能答对 24 张以上",
+    "res": [
+     3,
+     0
+    ],
+    "id": "u5"
+   },
+   {
+    "t": "输出检验：录一段 1 分钟自述",
+    "goal": "用「能不能说出来」验收，而不是「学了多少」",
+    "mins": 40,
+    "steps": [
+     "定题：我最近在学什么、为什么学、遇到什么困难",
+     "先写关键词（不写完整句子）",
+     "对着关键词说满 1 分钟，录音",
+     "回听，只改 2 个最影响表达的地方，再录一遍"
+    ],
+    "proof": "两版 1 分钟录音，第二版明显更顺，且没有超过 5 秒的长停顿",
+    "res": [
+     2
+    ],
+    "id": "u6"
+   }
+  ]
+ },
+ "ai-prompt": {
+  "units": [
+   {
+    "t": "五要素公式：角色+任务+上下文+格式+约束",
+    "goal": "写出第一次就能用的提示词",
+    "mins": 35,
+    "steps": [
+     "拿一件你真实要做的事（比如写周报）",
+     "按公式写全五个要素",
+     "让 AI 输出，检查是否符合格式要求",
+     "把不满意的部分补一句约束再试"
+    ],
+    "proof": "用公式让 AI 产出一份你能直接交上去的周报",
+    "res": [
+     0
+    ],
+    "id": "u1"
+   },
+   {
+    "t": "追问与自我检查：3 轮修正",
+    "goal": "学会「聊出好结果」，而不是一次定生死",
+    "mins": 35,
+    "steps": [
+     "第一轮先让它自由输出",
+     "第二轮要求它指出自己答案里的 3 个弱点",
+     "第三轮针对弱点重写",
+     "对比三轮结果，记下差别"
+    ],
+    "proof": "三轮之后输出质量明显提升，并能说出提升在哪",
+    "res": [
+     0,
+     1
+    ],
+    "id": "u2"
+   },
+   {
+    "t": "结构化输出：把一段话转成 5 行 CSV",
+    "goal": "让 AI 输出可被程序用的数据",
+    "mins": 30,
+    "steps": [
+     "贴一段会议纪要给它",
+     "要求输出 CSV：任务 / 负责人 / 截止日",
+     "明确「只输出 CSV，不要解释」",
+     "复制到表格里验证能正常分列"
+    ],
+    "proof": "粘进 Excel 能正确分成三列五行，没有多余文字",
+    "res": [
+     1,
+     0
+    ],
+    "id": "u3"
+   },
+   {
+    "t": "少样本：给 3 个例子再让它写",
+    "goal": "用例子定义风格，比形容词有效十倍",
+    "mins": 35,
+    "steps": [
+     "挑 3 条你满意的文案当示例",
+     "让 AI 按同样语气写第 4 条",
+     "对比：不给例子 vs 给例子，差在哪",
+     "把最好的一组例子存成模板"
+    ],
+    "proof": "给 3 个例子后，AI 输出的语气和示例一致，不用再改",
+    "res": [
+     0
+    ],
+    "id": "u4"
+   },
+   {
+    "t": "模板化：3 个可复用提示词",
+    "goal": "把一次性技巧变成长期资产",
+    "mins": 40,
+    "steps": [
+     "选 3 个高频场景（总结、翻译、提意见）",
+     "每个写成带占位符的模板（{{内容}}）",
+     "换 2 个不同主题试跑，确认通用",
+     "存在记事本或笔记软件里"
+    ],
+    "proof": "3 个模板换主题后仍可用，且不用大改就能出结果",
+    "res": [
+     1
+    ],
+    "id": "u5"
+   },
+   {
+    "t": "防幻觉：同一问题采样 3 次",
+    "goal": "知道 AI 什么时候在编，什么时候可信",
+    "mins": 30,
+    "steps": [
+     "问一个含具体数字/年份的问题",
+     "把温度调高，采样 3 次",
+     "对比三份答案里不一致的地方",
+     "对不一致的点去找原始来源核实"
+    ],
+    "proof": "能指出 3 份答案里至少 2 处不一致，并说明哪份更可信",
+    "res": [
+     0
+    ],
+    "id": "u6"
+   }
+  ]
+ },
+ "time-mgmt": {
+  "units": [
+   {
+    "t": "先记账：记录半天真实的时间开销",
+    "goal": "先看清时间去哪了，再谈管理",
+    "mins": 30,
+    "steps": [
+     "挑半天，每 30 分钟记一次在做什么",
+     "按「工作 / 学习 / 刷手机 / 杂事」分类",
+     "算每类占多少比例",
+     "圈出最想砍掉的一项"
+    ],
+    "proof": "一张半天时间账单，能说出最大的一块时间花在哪",
+    "res": [
+     3
+    ],
+    "id": "u1"
+   },
+   {
+    "t": "把任务拆成 15 分钟动作",
+    "goal": "让「开始」这件事变得没有阻力",
+    "mins": 35,
+    "steps": [
+     "挑 3 件一直拖着的事",
+     "每件拆成 3 个 15 分钟内能完成的动作",
+     "写清第一步具体做什么（动手指令，不是目标）",
+     "只做第一步，做完打勾"
+    ],
+    "proof": "3 件事拆成 9 个动作，且今天真的完成了其中 3 个",
+    "res": [
+     3,
+     0
+    ],
+    "id": "u2"
+   },
+   {
+    "t": "番茄钟：今天完成 4 个 25 分钟",
+    "goal": "用短周期专注替代「硬撑两小时」",
+    "mins": 40,
+    "steps": [
+     "选 4 个 25 分钟的任务块",
+     "每块开始前把手机放远、关掉通知",
+     "25 分钟只做一件事，响了就停",
+     "记录每个番茄实际有效时间"
+    ],
+    "proof": "今天完成 4 个完整番茄，且中途没碰手机",
+    "res": [
+     0
+    ],
+    "id": "u3"
+   },
+   {
+    "t": "每周复盘：一页纸就够",
+    "goal": "让经验沉淀下来，避免重复踩坑",
+    "mins": 30,
+    "steps": [
+     "写三栏：完成了什么 / 卡在哪 / 下周改什么",
+     "每栏最多 3 条，不要写长篇",
+     "标出下周唯一最重要的一件事",
+     "定好下周哪天做这件事"
+    ],
+    "proof": "一页复盘，且下周的日历里已经占好那个时间块",
+    "res": [
+     3
+    ],
+    "id": "u4"
+   },
+   {
+    "t": "关掉 5 个入口：减少被动打断",
+    "goal": "把「注意力被抢」变成默认不发生",
+    "mins": 25,
+    "steps": [
+     "列出最常弹通知的 5 个 App",
+     "关闭非必要推送（保留电话与家人）",
+     "把社交 App 移出首屏",
+     "设一个固定时间集中处理消息"
+    ],
+    "proof": "5 个通知已关闭，且今天没有被它们打断过 3 次以上",
+    "res": [
+     0
+    ],
+    "id": "u5"
+   },
+   {
+    "t": "一次 90 分钟深度工作块",
+    "goal": "体验「不被打断」能产出多少",
+    "mins": 100,
+    "steps": [
+     "提前定好这一块要产出什么（一个文件/一页稿）",
+     "准备水、纸笔，关掉所有提醒",
+     "90 分钟只做这一件事，中间不查消息",
+     "结束后写 3 行：产出了什么、卡在哪、下次改进"
+    ],
+    "proof": "一个 90 分钟块结束后，有明确产出物 + 3 行复盘",
+    "res": [
+     2,
+     3
+    ],
+    "id": "u6"
+   }
+  ]
+ }
+};
+</script>
 
 <script>
 /* ============================================================
@@ -3036,6 +3766,7 @@ function toggleMode(){
 function doSearch(){
   const v = $("#searchInput").value.trim();
   if(!v){ showToast("先告诉我你想学啥呀～"); $("#searchInput").focus(); return; }
+  addQueryHistory(v);
   const hit = fuzzyFind(v);
   if(hit){ pickSubject(hit.id); }
   else{
@@ -3142,14 +3873,16 @@ function fuzzyFind(keyword){
   for(const key in map){ if(k.includes(key)) return SUBJECTS.find(s=>s.id===map[key]); }
   return null;
 }
-function pickSubject(id){
+function pickSubject(id, quiet){
   const s = SUBJECTS.find(x=>x.id===id);
   if(!s){ showToast("没找到这个科目～"); return; }
   $("#searchInput").value = s.name;
   currentSubject = s;
+  rememberSubject(s.id);
   renderResult(s);
-  try{ resultEl().scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){ resultEl().scrollIntoView(); }
+  if(!quiet){ try{ resultEl().scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){ resultEl().scrollIntoView(); } }
   setAskContext(s.name, currentMode, s.field);
+  (function(){ const pr = subjectUnitProgress(s.id); if(pr.cur) setActivePtr(s.id, pr.cur.id); })();
   if($("#askDrawer").classList.contains("show")){ $("#askCtx").innerHTML = `📍 当前科目：<b>${s.name}</b>（${currentMode==="advanced"?"进阶":"小白"}模式）· 你的问题会带上这段上下文，回答更贴合`; refreshKbNote(); }
   updatePlanDot();
 }
@@ -3157,6 +3890,7 @@ function backToHome(){
   resultEl().style.display="none";
   overviewEl().style.display="block";
   currentSubject = null;
+  try{ localStorage.removeItem(LAST_SUBJECT_KEY); localStorage.setItem("le_home_at", String(Date.now())); }catch(e){}
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -3202,6 +3936,8 @@ function renderResult(subject, keepScroll){
           <button class="btn ${mode==='advanced'?'btn-primary':'btn-ghost'}" style="padding:10px 18px;font-size:14px" onclick="setMode('advanced')">🚀 切换进阶模式</button>
         </div>
       </div>
+
+      ${unitSectionHtml(subject)}
 
       <div class="goals">
         <h2>🎯 你学完能达到的目标</h2>
@@ -3451,6 +4187,7 @@ function renderPlanDrawer(){
           <div class="ov-bar"><div class="ov-fill" style="width:${total?Math.round(doneN/total*100):0}%"></div></div>
           <div class="ov-pct">${total?Math.round(doneN/total*100):0}%</div>
         </div>
+        ${(function(){ const pr = subjectUnitProgress(currentSubject.id); return pr.total ? `<div class="ov-meta" style="color:var(--green-dd);font-weight:800">🚦 学习单元：已掌握 ${pr.done} / ${pr.total}${pr.cur?` · 下一个「${escapeHtml(pr.cur.t)}」`:""}</div>` : ""; })()}
         <div class="ov-meta">已完成 ${doneN} / ${total} 项 · 勾选即打卡，数据只存在你本地浏览器</div>
         <div class="check-grid" data-checklist="1">
           ${items.map(it=>`<label class="check-item ${it.done?'done':''}" data-key="${it.key}">
@@ -3501,15 +4238,19 @@ function bindCheckItems(){
 }
 function updatePlanDot(){
   let any=false;
-  SUBJECTS.forEach(s=>{ try{ if(localStorage.getItem("le_plan_"+s.id)) any=true; }catch(e){} });
+  SUBJECTS.forEach(s=>{ try{ if(localStorage.getItem("le_plan_"+s.id) || localStorage.getItem("le_unit_"+s.id)) any=true; }catch(e){} });
   const dot = $("#planDot"); if(dot) dot.style.display = any?"block":"none";
 }
 
 /* 导出 / 导入 / 清空 */
+/* 参与备份的键：各科目进度 + 单元进度 + 当前指针 + 上次位置 + 搜索记忆 */
+function isPlanStoreKey(k){
+  return !!k && (k.startsWith("le_plan_") || k.startsWith("le_unit_") || k==="le_active" || k==="le_last_subject" || k==="le_home_at" || k==="le_q_hist");
+}
 function exportPlan(){
   const out={};
   try{
-    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k&&k.startsWith("le_plan_")) out[k]=localStorage.getItem(k); }
+    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(isPlanStoreKey(k)) out[k]=localStorage.getItem(k); }
   }catch(e){}
   const text = JSON.stringify(out,null,2);
   copyText(text).then(()=>showToast("✅ 进度已复制到剪贴板，保存好这份备份")).catch(()=>{
@@ -3522,8 +4263,8 @@ function importPlan(){
   input.onchange=()=>{ const f=input.files[0]; if(!f) return;
     const r=new FileReader(); r.onload=()=>{ try{
       const d=JSON.parse(r.result); let n=0;
-      Object.keys(d).forEach(k=>{ if(k.startsWith("le_plan_")){ localStorage.setItem(k,d[k]); n++; } });
-      showToast(`✅ 已导入 ${n} 条进度`); if($("#sideDrawer").classList.contains("show")){ $("#sideBody").innerHTML=renderPlanDrawer(); bindCheckItems(); }
+      Object.keys(d).forEach(k=>{ if(isPlanStoreKey(k)){ localStorage.setItem(k,d[k]); n++; } });
+      showToast(`✅ 已导入 ${n} 条进度`); if($("#sideDrawer").classList.contains("show")){ $("#sideBody").innerHTML=renderPlanDrawer(); bindCheckItems(); } renderQueryHistory();
     }catch(e){ showToast("❌ 文件格式不对，导入失败"); } }; r.readAsText(f); };
   input.click();
 }
@@ -3531,11 +4272,11 @@ function resetPlan(){
   if(!confirm("确定清空所有科目的打卡进度吗？这个操作没法撤销。")) return;
   try{
     const keys=[];
-    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k&&k.startsWith("le_plan_")) keys.push(k); }
+    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(isPlanStoreKey(k)) keys.push(k); }
     keys.forEach(k=>localStorage.removeItem(k));
   }catch(e){}
   showToast("🗑️ 已清空全部记录");
-  $("#sideBody").innerHTML=renderPlanDrawer(); bindCheckItems(); updatePlanDot();
+  $("#sideBody").innerHTML=renderPlanDrawer(); bindCheckItems(); updatePlanDot(); renderToday(); renderQueryHistory();
 }
 
 /* ============ 常见问题知识库 ============ */
@@ -3801,6 +4542,278 @@ function syncProviderUI(){
 }
 document.addEventListener("DOMContentLoaded", syncProviderUI);
 
+/* ============ 学习单元（Phase 1） ============ */
+const UNIT_LABEL = {idle:"未开始", doing:"进行中", proof:"待验收", done:"已掌握"};
+function unitKey(sid){ return "le_unit_" + sid; }
+function loadUnitState(sid){
+  try{ const o = JSON.parse(localStorage.getItem(unitKey(sid))||"null"); if(o && o.units) return o; }catch(e){}
+  return {units:{}, at:0};
+}
+function saveUnitState(sid, obj){ try{ localStorage.setItem(unitKey(sid), JSON.stringify(obj)); }catch(e){} }
+function subjectUnits(sid){ const U = window.UNITS && window.UNITS[sid]; return (U && U.units) || []; }
+function unitById(sid, uid){ return subjectUnits(sid).find(u=>u.id===uid) || null; }
+function unitIndex(sid, uid){ return subjectUnits(sid).findIndex(u=>u.id===uid); }
+function unitRec(sid, uid, create){
+  const st = loadUnitState(sid);
+  let r = st.units[uid];
+  if(!r && create){ r = st.units[uid] = {steps:[], proofDone:false, st:"idle", at:Date.now()}; }
+  return {st, r};
+}
+function unitStatus(sid, uid){
+  const u = unitById(sid, uid); if(!u) return "idle";
+  const st = loadUnitState(sid), r = st.units[uid];
+  if(!r) return "idle";
+  if(r.proofDone) return "done";
+  const total = (u.steps||[]).length, done = (r.steps||[]).length;
+  if(total && done >= total) return "proof";
+  if(done > 0) return "doing";
+  return r.st === "proof" ? "proof" : "idle";
+}
+function subjectUnitProgress(sid){
+  const list = subjectUnits(sid);
+  const done = list.filter(u=>unitStatus(sid, u.id)==="done").length;
+  let cur = list.find(u=>unitStatus(sid, u.id)==="doing" || unitStatus(sid, u.id)==="proof");
+  if(!cur) cur = list.find(u=>unitStatus(sid, u.id)==="idle");
+  return {total:list.length, done, cur, pct: list.length ? Math.round(done/list.length*100) : 0};
+}
+function activePtr(){ try{ return JSON.parse(localStorage.getItem("le_active")||"null"); }catch(e){ return null; } }
+function setActivePtr(sid, uid){ try{ localStorage.setItem("le_active", JSON.stringify({sid, uid, at:Date.now()})); }catch(e){} }
+
+function todayHtml(){
+  const ptr = activePtr();
+  let sid = null, uid = null;
+  if(ptr && unitById(ptr.sid, ptr.uid) && unitStatus(ptr.sid, ptr.uid) !== "done"){ sid = ptr.sid; uid = ptr.uid; }
+  if(!sid && window.UNITS){
+    let best = null;
+    Object.keys(window.UNITS).forEach(k=>{
+      const st = loadUnitState(k), pr = subjectUnitProgress(k);
+      if(pr.total && pr.done < pr.total && (!best || (st.at||0) > best.at)) best = {sid:k, at:st.at||0, cur:pr.cur};
+    });
+    if(best && best.cur){ sid = best.sid; uid = best.cur.id; }
+  }
+  if(!sid || !uid) return "";
+  const s = SUBJECTS.find(x=>x.id===sid); const u = unitById(sid, uid);
+  if(!s || !u) return "";
+  const idx = unitIndex(sid, uid) + 1;
+  const st = loadUnitState(sid), r = st.units[uid] || {steps:[]};
+  const left = Math.max(0, (u.steps||[]).length - (r.steps||[]).length);
+  return `<div class="today-card">
+      <div class="tc-main">
+        <span class="today-eyebrow">☀️ 今日任务 · 接着上次继续</span>
+        <div class="today-title">${s.icon} ${s.name} · 第 ${idx} 单元：${escapeHtml(u.t)}</div>
+        <div class="today-sub">预计 ${u.mins} 分钟 · ${left>0?`还剩 ${left} 步`: "步骤已做完，等你验收"}</div>
+      </div>
+      <div class="today-go"><button class="btn btn-primary" style="padding:12px 22px" onclick="openUnit('${sid}','${uid}')">继续学习 →</button></div>
+    </div>`;
+}
+function renderToday(){
+  const box = $("#todayCard"); if(!box) return;
+  const html = todayHtml();
+  box.innerHTML = html;
+  box.style.display = html ? "block" : "none";
+}
+
+/* ============ 搜索记忆：上次搜的词 + 最近搜过 ============ */
+const QH_KEY = "le_q_hist", QH_MAX = 6;
+
+function loadQHist(){
+  try{ const a = JSON.parse(localStorage.getItem(QH_KEY)||"[]"); return Array.isArray(a) ? a.filter(x=>typeof x==="string"&&x.trim()) : []; }
+  catch(e){ return []; }
+}
+function saveQHist(arr){ try{ localStorage.setItem(QH_KEY, JSON.stringify(arr.slice(0,QH_MAX))); }catch(e){} }
+
+function addQueryHistory(word){
+  const w = (word||"").trim(); if(!w) return;
+  const list = loadQHist().filter(x=>x!==w);
+  list.unshift(w);
+  saveQHist(list);
+  renderQueryHistory();
+}
+
+function clearQueryHistory(){
+  try{ localStorage.removeItem(QH_KEY); }catch(e){}
+  renderQueryHistory();
+}
+
+function renderQueryHistory(){
+  const box = $("#qHist"); if(!box) return;
+  const list = loadQHist();
+  if(!list.length){ box.className = "qhist"; box.innerHTML = ""; return; }
+  box.className = "qhist show";
+  box.innerHTML = `<span class="qh-label">🕘 最近搜过</span>` +
+    list.map(w=>`<span class="qh-item" onclick="reuseQuery(this)" title="点一下重新搜">${escapeHtml(w)}</span>`).join("") +
+    `<button class="qh-clear" onclick="clearQueryHistory()">清空</button>`;
+}
+
+function reuseQuery(el){
+  const w = el.textContent.trim();
+  $("#searchInput").value = w;
+  addQueryHistory(w);
+  doSearch();
+}
+
+/* ============ 打开网页时，回到上次的位置 ============ */
+const LAST_SUBJECT_KEY = "le_last_subject";
+
+function rememberSubject(sid){ try{ localStorage.setItem(LAST_SUBJECT_KEY, JSON.stringify({sid, at:Date.now()})); }catch(e){} }
+
+function restoreLast(){
+  // 只恢复 14 天内的现场，太久远的直接留在首页，避免「一打开就在某个旧科目页」的困惑
+  const DAY = 864e5, FRESH = 14 * DAY;
+  let homeAt = 0;
+  try{ homeAt = Number(localStorage.getItem("le_home_at")||0) || 0; }catch(e){}
+  const ap = activePtr();
+  // 你主动点过「返回首页」，就用首页；只有后来又继续学习过，才恢复上次位置
+  if(ap && ap.sid && ap.uid && (Date.now() - (ap.at||0)) < FRESH && (ap.at||0) > homeAt && unitById(ap.sid, ap.uid)){
+    const s = SUBJECTS.find(x=>x.id===ap.sid);
+    if(s){
+      openUnit(ap.sid, ap.uid, true);
+      $("#searchInput").value = s.name;
+      renderQueryHistory();
+      return true;
+    }
+  }
+  let last = null;
+  try{ last = JSON.parse(localStorage.getItem(LAST_SUBJECT_KEY)||"null"); }catch(e){}
+  if(last && last.sid && (Date.now() - (last.at||0)) < FRESH){
+    const s = SUBJECTS.find(x=>x.id===last.sid);
+    if(s){ pickSubject(last.sid, true); $("#searchInput").value = s.name; renderQueryHistory(); return true; }
+  }
+  // 没有可恢复的现场：至少把上次搜过的词回填到搜索框里（不自动搜，留给你改）
+  const hist = loadQHist();
+  if(hist.length){ $("#searchInput").value = hist[0]; }
+  renderQueryHistory();
+  return false;
+}
+
+function unitSectionHtml(subject){
+  const list = subjectUnits(subject.id);
+  if(!window.UNITS) return "";
+  if(!list.length) return `<div class="unit-coming">🚧 这个科目的「单元版」还在建设中，先用下面的整体路径走一遍就好。</div>`;
+  const box = `<div class="phases" style="margin-bottom:20px">
+      <h2>🚦 单元执行清单</h2>
+      <p class="sub">把一个科目拆成了能一次做完的小单元。做完一步勾一步，有产出才算过。</p>`;
+  const pr = subjectUnitProgress(subject.id);
+  const items = list.map((u,i)=>{
+    const stt = unitStatus(subject.id, u.id);
+    const st = loadUnitState(subject.id), r = st.units[u.id] || {steps:[]};
+    const pct = Math.round(((r.steps||[]).length)/((u.steps||[]).length||1)*100);
+    return `<div class="unit-item" onclick="openUnit('${subject.id}','${u.id}')">
+        <div class="unit-no">${i+1}</div>
+        <div class="unit-info">
+          <div class="unit-t">${escapeHtml(u.t)} <span style="font-size:12px;color:var(--ink3);font-weight:600;white-space:nowrap">· ${u.mins} 分钟</span></div>
+          <div class="unit-goal">${escapeHtml(u.goal)}</div>
+          ${stt!=="idle" ? `<div class="unit-bar"><i style="width:${stt==="done"||stt==="proof"?100:pct}%"></i></div>` : ""}
+        </div>
+        <span class="unit-badge ${stt}">${UNIT_LABEL[stt]}</span>
+      </div>`;
+  }).join("");
+  return box + `
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:4px">已掌握 ${pr.done} / ${pr.total} 个单元${pr.cur?` · 当前在「${escapeHtml(pr.cur.t)}」`:""}</div>
+      <div class="unit-list">${items}</div>
+    </div>`;
+}
+
+function toggleUnitStep(sid, uid, idx){
+  const {st, r} = unitRec(sid, uid, true);
+  const arr = r.steps || (r.steps = []);
+  const p = arr.indexOf(idx);
+  if(p >= 0) arr.splice(p,1); else arr.push(idx);
+  const u = unitById(sid, uid);
+  const total = (u.steps||[]).length;
+  if(arr.length >= total) r.st = "proof"; else if(arr.length) r.st = "doing"; else r.st = "idle";
+  r.at = Date.now(); st.at = Date.now();
+  saveUnitState(sid, st);
+  const s = SUBJECTS.find(x=>x.id===sid);
+  renderUnit(s, u, uid, true);
+  renderToday();
+}
+function confirmUnitProof(sid, uid){
+  const {st, r} = unitRec(sid, uid, true);
+  r.proofDone = true; r.st = "done"; r.at = Date.now(); st.at = Date.now();
+  saveUnitState(sid, st);
+  const list = subjectUnits(sid), i = unitIndex(sid, uid), next = list[i+1];
+  if(next) setActivePtr(sid, next.id);
+  const s = SUBJECTS.find(x=>x.id===sid);
+  renderUnit(s, unitById(sid, uid), uid, true);
+  renderToday(); updatePlanDot();
+  showToast(next ? `🎉 第 ${i+1} 单元已掌握，下一单元已就位` : `🎉 第 ${i+1} 单元已掌握，这个科目收尾了`);
+}
+function openUnit(sid, uid, quiet){
+  const s = SUBJECTS.find(x=>x.id===sid), u = unitById(sid, uid);
+  if(!s || !u){ showToast("找不到这个单元"); return; }
+  currentSubject = s;
+  $("#searchInput").value = s.name;
+  setActivePtr(sid, uid);
+  rememberSubject(sid);
+  renderUnit(s, u, uid);
+  if(!quiet){ try{ resultEl().scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){ resultEl().scrollIntoView(); } }
+  setAskContext(s.name, currentMode, s.field);
+}
+
+function renderUnit(subject, unit, uid, keepScroll){
+  const sid = subject.id;
+  const idx = unitIndex(sid, uid) + 1, total = subjectUnits(sid).length;
+  const st = loadUnitState(sid), r = st.units[uid] || {steps:[], proofDone:false};
+  const steps = unit.steps || [];
+  const doneN = (r.steps||[]).length;
+  const stt = unitStatus(sid, uid);
+  const pct = steps.length ? Math.round((stt==="done"||stt==="proof"?steps.length:doneN)/steps.length*100) : 0;
+
+  const stepsHtml = steps.map((s,i)=>{
+    const on = (r.steps||[]).indexOf(i) >= 0;
+    return `<div class="step-item ${on?"done":""}" onclick="toggleUnitStep('${sid}','${uid}',${i})">
+        <div class="step-box">${on?"✓":""}</div><div class="step-txt">${escapeHtml(s)}</div>
+      </div>`;
+  }).join("");
+
+  const resList = (unit.res || []).map(i => subject.resources[i]).filter(Boolean);
+  const resHtml = resList.length ? `<div class="res-grid">${resList.map(resourceCardHtml).join("")}</div>` : "";
+
+  const prev = subjectUnits(sid)[idx-2], next = subjectUnits(sid)[idx];
+  const proofDone = !!r.proofDone;
+
+  resultEl().innerHTML = `
+    <div class="fade-in">
+      <div class="u-head">
+        <div class="back-btn" onclick="pickSubject('${sid}')">← 返回 ${escapeHtml(subject.name)} 单元列表</div>
+        <span class="u-eyebrow">第 ${idx} / ${total} 单元 · 预计 ${unit.mins} 分钟 · <span class="unit-badge ${stt}">${UNIT_LABEL[stt]}</span></span>
+        <h1 class="u-title">${escapeHtml(unit.t)}</h1>
+        <div class="u-goal">🎯 这一单元要做到：${escapeHtml(unit.goal)}</div>
+        <div class="u-meta"><span>进度 ${doneN}/${steps.length} 步</span><span>${pct}%</span></div>
+        <div class="unit-bar"><i style="width:${pct}%"></i></div>
+      </div>
+
+      <div class="u-steps">
+        <h2>🧱 今天做的事（点一下打勾）</h2>
+        <p class="sub">不用全做完，做一步勾一步；关掉页面也不丢，回来就在这一步。</p>
+        ${stepsHtml}
+      </div>
+
+      <div class="proof-box">
+        <h2>🏁 怎样算学会（达标判据）</h2>
+        <div class="proof-text">${escapeHtml(unit.proof)}</div>
+        <div class="proof-actions">
+          ${proofDone
+            ? `<span class="proof-done">✅ 已验收通过，这一单元算掌握了</span>`
+            : `<button class="btn btn-primary" style="padding:11px 20px" onclick="confirmUnitProof('${sid}','${uid}')">✅ 我做到了，验收通过</button>
+               <span style="font-size:12.5px;color:var(--ink3)">做不出来就回去补步骤，别急着点</span>`}
+        </div>
+      </div>
+
+      ${resHtml ? `<div class="resources"><h2>📚 这一单元的资源</h2><p class="sub">一个主用、一个备用，学完这单元再看下一个。</p>${resHtml}</div>` : ""}
+
+      <div class="unit-nav">
+        ${prev ? `<button class="btn btn-ghost" onclick="openUnit('${sid}','${prev.id}')">← 上一单元</button>` : ""}
+        ${next ? `<button class="btn ${proofDone?"btn-primary":"btn-ghost"}" onclick="openUnit('${sid}','${next.id}')">下一单元 →</button>` : ""}
+        <button class="btn btn-ghost" onclick="pickSubject('${sid}')">📋 回单元列表</button>
+      </div>
+    </div>`;
+  resultEl().style.display = "block";
+  overviewEl().style.display = "none";
+  if(!keepScroll){ /* 由 openUnit 负责滚动 */ }
+}
+
 /* ============ 初始化 ============ */
 function init(){
   renderChips();
@@ -3809,6 +4822,8 @@ function init(){
   updatePlanDot();
   setAskContext(null,null,null);
   refreshQuickBar();
+  renderToday();
+  restoreLast();
 }
 document.addEventListener("DOMContentLoaded", init);
 </script>
